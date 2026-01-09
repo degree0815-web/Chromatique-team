@@ -1,12 +1,23 @@
 {
-  "name": "chromatique-team",
+  "name": "chromatique-perfume",
   "version": "1.0.0",
-  "description": "Chromatique team project with SASS",
+  "description": "Chromatique - Premium Perfume Brand Website with SCSS, GSAP & Swiper",
   "scripts": {
-    "sass": "sass assets/scss:assets/css --watch",
-    "sass:build": "sass assets/scss:assets/css --style=compressed",
-    "sass:dev": "sass assets/scss:assets/css --watch --style=expanded"
+    "sass": "sass assets/scss/main.scss:assets/css/main.css --watch",
+    "sass:build": "sass assets/scss/main.scss:assets/css/main.css --style=compressed --source-map",
+    "sass:dev": "sass assets/scss/main.scss:assets/css/main.css --watch --style=expanded --source-map",
+    "build": "npm run sass:build"
   },
+  "keywords": [
+    "perfume",
+    "luxury",
+    "brand",
+    "scss",
+    "gsap",
+    "swiper"
+  ],
+  "author": "Chromatique Team",
+  "license": "MIT",
   "devDependencies": {
     "sass": "^1.77.0"
   }

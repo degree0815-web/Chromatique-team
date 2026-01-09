@@ -1,0 +1,194 @@
+// ==========================================================================
+// Header Component
+// ==========================================================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $headerHeight;
+    z-index: $zFixed;
+    transition: background-color $transitionSlow,
+        backdrop-filter $transitionSlow;
+
+    // Scrolled state
+    &.is-scrolled {
+        // @include glass-effect; // TODO: Add glass-effect mixin
+        background: rgba(10, 10, 10, 0.9);
+    }
+
+    // Hidden state (on scroll down)
+    &.is-hidden {
+        transform: translateY(-100%);
+    }
+
+    &__inner {
+        width: 100%;
+        max-width: $containerMax;
+        margin-inline: auto;
+        padding-inline: $containerPadding;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    &__logo {
+        position: relative;
+        z-index: $zFixed;
+    }
+
+    &__logo-link {
+        display: flex;
+        align-items: center;
+        gap: $spaceSm;
+    }
+
+    &__logo-text {
+        font-family: $fontPrimary;
+        font-size: clamp(2rem, 2.5vw, 2.8rem);
+        font-weight: $fwLight;
+        letter-spacing: $lsWider;
+        color: $colorCream;
+        text-transform: uppercase;
+    }
+
+    &__nav {
+        @media (max-width: 1023px) {
+            position: fixed;
+            inset: 0;
+            background: $colorBlack;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity $transitionBase, visibility $transitionBase;
+
+            &.is-open {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    &__nav-list {
+        display: flex;
+        align-items: center;
+        gap: $spaceXl;
+
+        @media (max-width: 1023px) {
+            flex-direction: column;
+            gap: $spaceLg;
+        }
+    }
+
+    &__nav-item {
+        overflow: hidden;
+    }
+
+    &__nav-link {
+        display: inline-block;
+        font-family: $fontSecondary;
+        font-size: $fsSmall;
+        font-weight: $fwMedium;
+        letter-spacing: $lsWider;
+        text-transform: uppercase;
+        color: $colorCream;
+        position: relative;
+        padding: $spaceXs 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: $colorGold;
+            transition: width $transitionBase;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $colorGold;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 1023px) {
+            font-size: $fsH4;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: $spaceMd;
+    }
+
+    &__cta {
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
+
+    // Mobile menu toggle
+    &__menu-toggle {
+        appearance: none;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-family: inherit;
+        position: relative;
+        width: 3.2rem;
+        height: 2.4rem;
+        z-index: $zFixed;
+
+        @media (min-width: 1024px) {
+            display: none;
+        }
+    }
+
+    &__menu-line {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: $colorCream;
+        transition: transform $transitionBase, opacity $transitionBase;
+
+        &:nth-child(1) {
+            top: 0;
+        }
+
+        &:nth-child(2) {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &:nth-child(3) {
+            bottom: 0;
+        }
+
+        .header__menu-toggle.is-active & {
+            &:nth-child(1) {
+                transform: translateY(1.1rem) rotate(45deg);
+            }
+
+            &:nth-child(2) {
+                opacity: 0;
+            }
+
+            &:nth-child(3) {
+                transform: translateY(-1.1rem) rotate(-45deg);
+            }
+        }
+    }
+}

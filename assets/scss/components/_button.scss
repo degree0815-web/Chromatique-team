@@ -1,0 +1,270 @@
+// ==========================================================================
+// Button Components
+// ==========================================================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// ========================================
+// Base Button
+// ========================================
+
+.btn {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spaceSm;
+  padding: $spaceMd $spaceXl;
+  font-family: $fontSecondary;
+  font-size: $fsCaption;
+  font-weight: $fwSemibold;
+  letter-spacing: $lsWider;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all $transitionBase;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $colorGold;
+    outline-offset: 2px;
+  }
+  
+  // Sizes
+  &--sm {
+    padding: $spaceSm $spaceMd;
+    font-size: 1rem;
+  }
+  
+  &--lg {
+    padding: $spaceLg $space2xl;
+    font-size: $fsSmall;
+  }
+  
+  // Icons
+  &__icon {
+    width: 1.6rem;
+    height: 1.6rem;
+    transition: transform $transitionBase;
+  }
+  
+  &:hover &__icon {
+    transform: translateX(4px);
+  }
+}
+
+// ========================================
+// Button Variants
+// ========================================
+
+// Primary - Gold filled
+.btn--primary {
+  background-color: $colorGold;
+  color: $colorBlack;
+  
+  &:hover {
+    background-color: $colorGoldLight;
+  }
+  
+  &:active {
+    background-color: $colorGoldDark;
+  }
+}
+
+// Secondary - Outlined
+.btn--secondary {
+  background-color: transparent;
+  color: $colorCream;
+  border: 1px solid $colorCream;
+  
+  &:hover {
+    background-color: $colorCream;
+    color: $colorBlack;
+  }
+}
+
+// Gold outlined
+.btn--outline-gold {
+  background-color: transparent;
+  color: $colorGold;
+  border: 1px solid $colorGold;
+  
+  &:hover {
+    background-color: $colorGold;
+    color: $colorBlack;
+  }
+}
+
+// Ghost - No border
+.btn--ghost {
+  background-color: transparent;
+  color: $colorCream;
+  padding: $spaceSm 0;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: $colorGold;
+    transition: width $transitionBase;
+  }
+  
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+// ========================================
+// Text Link Button
+// ========================================
+
+.link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spaceSm;
+  font-family: $fontSecondary;
+  font-size: $fsSmall;
+  font-weight: $fwMedium;
+  letter-spacing: $lsWide;
+  color: $colorGold;
+  transition: all $transitionBase;
+  position: relative;
+  
+  &__text {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $colorGold;
+      transition: width $transitionBase;
+    }
+  }
+
+  &:hover &__text::after {
+    width: 100%;
+  }
+  
+  &__arrow {
+    width: 2rem;
+    height: 2rem;
+    transition: transform $transitionBase;
+  }
+  
+  &:hover &__arrow {
+    transform: translateX(4px);
+  }
+  
+  &:hover &__text::after {
+    width: 100%;
+  }
+}
+
+// ========================================
+// Icon Button
+// ========================================
+
+.icon-btn {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.8rem;
+  height: 4.8rem;
+  border-radius: $radiusFull;
+  border: $borderThin;
+  color: $colorCream;
+  transition: all $transitionBase;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $colorGold;
+    outline-offset: 2px;
+  }
+  
+  &:hover {
+    border-color: $colorGold;
+    color: $colorGold;
+  }
+  
+  &--sm {
+    width: 3.6rem;
+    height: 3.6rem;
+  }
+  
+  &--lg {
+    width: 6rem;
+    height: 6rem;
+  }
+  
+  svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+// ========================================
+// Scroll Indicator Button
+// ========================================
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spaceSm;
+  cursor: pointer;
+  
+  &__text {
+    font-family: $fontSecondary;
+    font-size: $fsCaption;
+    letter-spacing: $lsWidest;
+    text-transform: uppercase;
+    color: $colorTextMuted;
+  }
+  
+  &__line {
+    width: 1px;
+    height: 6rem;
+    background: linear-gradient(
+      to bottom,
+      $colorGold,
+      transparent
+    );
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scaleY(0.8);
+  }
+}
+
