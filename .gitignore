@@ -1,0 +1,13 @@
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+
+# SASS compiled files should not be in scss folder
+assets/scss/*.css
+assets/scss/*.css.map
+
+# Keep compiled CSS in css folder (tracked)
+!assets/css/*.css
+!assets/css/*.css.map

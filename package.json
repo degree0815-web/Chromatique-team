@@ -1,0 +1,13 @@
+{
+  "name": "chromatique-team",
+  "version": "1.0.0",
+  "description": "Chromatique team project with SASS",
+  "scripts": {
+    "sass": "sass assets/scss:assets/css --watch",
+    "sass:build": "sass assets/scss:assets/css --style=compressed",
+    "sass:dev": "sass assets/scss:assets/css --watch --style=expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
