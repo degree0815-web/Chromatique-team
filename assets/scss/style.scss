@@ -18,18 +18,18 @@
 @use 'base/typography'; // Typography system & Google Fonts
 
 // ========================================
-// 2. Layout - Structural components
-// ========================================
-
-@use 'layout/header'; // Site header & navigation
-@use 'layout/footer'; // Site footer
-
-// ========================================
-// 3. Components - Reusable UI elements
+// 2. Components - Reusable UI elements (must come before layout)
 // ========================================
 
 @use 'components/extends'; // Shared utility classes (container, etc.)
 @use 'components/button'; // Button variants
+
+// ========================================
+// 3. Layout - Structural components
+// ========================================
+
+@use 'layout/header'; // Site header & navigation
+@use 'layout/footer'; // Site footer
 
 // ========================================
 // 4. Pages - Page-specific styles
