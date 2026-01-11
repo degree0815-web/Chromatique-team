@@ -1,3 +1,38 @@
-body {
-    background-color: #fff;
-}
+// ==========================================================================
+// Main Stylesheet - Chromatique Perfume Brand
+// ==========================================================================
+// 
+// This is the main entry point for all SCSS files.
+// Import order matters for proper cascade and specificity.
+// Only this file uses @use - all other files are standalone.
+//
+// ==========================================================================
+
+// ========================================
+// 1. Base - Foundation styles
+// ========================================
+
+@use 'base/variables' as *; // SCSS variables & design tokens
+@use 'base/mixins' as *; // SCSS mixins & functions
+@use 'base/reset'; // CSS reset & normalize
+@use 'base/typography'; // Typography system & Google Fonts
+
+// ========================================
+// 2. Layout - Structural components
+// ========================================
+
+@use 'layout/header'; // Site header & navigation
+@use 'layout/footer'; // Site footer
+
+// ========================================
+// 3. Components - Reusable UI elements
+// ========================================
+
+@use 'components/extends'; // Shared utility classes (container, etc.)
+@use 'components/button'; // Button variants
+
+// ========================================
+// 4. Pages - Page-specific styles
+// ========================================
+
+@use 'pages/main'; // Main page styles & utilities

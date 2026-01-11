@@ -2,31 +2,31 @@
 // Footer Component
 // ==========================================================================
 
-@use '../base/variables' as *;
 @use '../base/mixins' as *;
 
 .footer {
   position: relative;
-  padding: $space4xl 0 $spaceXl;
-  background-color: $colorCharcoal;
-  border-top: $borderThin;
+  // padding: will be set separately
+  background-color: #161616;
+  // border-top: will be set separately
   
   &__inner {
     width: 100%;
-    max-width: $containerMax;
-    margin-inline: auto;
-    padding-inline: $containerPadding;
+    max-width: 1644px;
+    margin: 0 auto;
+    padding-left: rem(30);
+    padding-right: rem(30);
   }
   
   &__top {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $space3xl;
-    margin-bottom: $space3xl;
+    // gap: will be set separately
+    // margin-bottom: will be set separately
     
     @media (min-width: 768px) {
       grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: $spaceXl;
+      // gap: will be set separately
     }
   }
   
@@ -35,46 +35,41 @@
   }
   
   &__logo {
-    font-family: $fontPrimary;
-    font-size: $fsH3;
-    font-weight: $fwLight;
-    letter-spacing: $lsWider;
-    color: $colorCream;
+    font-family: 'Cormorant Garamond', serif;
+    // font-weight: will be set separately
+    // letter-spacing: will be set separately
+    color: #ffffff;
     text-transform: uppercase;
-    margin-bottom: $spaceMd;
+    // margin-bottom: will be set separately
   }
   
   &__description {
-    font-family: $fontSecondary;
-    font-size: $fsSmall;
-    color: $colorTextMuted;
-    line-height: $lhRelaxed;
-    margin-bottom: $spaceLg;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #BABABA;
+    // line-height: will be set separately
+    // margin-bottom: will be set separately
   }
   
   &__social {
-    display: flex;
-    gap: $spaceMd;
+    @include flex(center, center);
   }
   
   &__social-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex(center, center);
     width: 4rem;
     height: 4rem;
-    border: $borderThin;
-    border-radius: $radiusFull;
-    color: $colorTextMuted;
-    transition: all $transitionBase;
+    // border: will be set separately
+    // border-radius: will be set separately
+    color: #BABABA;
+    // transition: will be set separately
     
     &:hover {
-      border-color: $colorGold;
-      color: $colorGold;
+      border-color: #4A4540;
+      color: #4A4540;
     }
 
     &:focus-visible {
-      outline: 2px solid $colorGold;
+      outline: 2px solid #4A4540;
       outline-offset: 2px;
     }
     
@@ -89,33 +84,31 @@
   }
   
   &__title {
-    font-family: $fontSecondary;
-    font-size: $fsCaption;
-    font-weight: $fwSemibold;
-    letter-spacing: $lsWidest;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    // font-weight: will be set separately
+    // letter-spacing: will be set separately
     text-transform: uppercase;
-    color: $colorGold;
-    margin-bottom: $spaceLg;
+    color: #4A4540;
+    // margin-bottom: will be set separately
   }
   
   &__list {
     display: flex;
     flex-direction: column;
-    gap: $spaceSm;
+    // gap: will be set separately
   }
   
   &__link {
-    font-family: $fontSecondary;
-    font-size: $fsSmall;
-    color: $colorTextMuted;
-    transition: all $transitionBase;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #BABABA;
+    // transition: will be set separately
     
     &:hover {
-      color: $colorCream;
+      color: #ffffff;
     }
 
     &:focus-visible {
-      outline: 2px solid $colorGold;
+      outline: 2px solid #4A4540;
       outline-offset: 2px;
     }
   }
@@ -124,9 +117,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: $spaceMd;
-    padding-top: $spaceXl;
-    border-top: $borderThin;
+    // gap: will be set separately
+    // padding-top: will be set separately
+    // border-top: will be set separately
     
     @media (min-width: 768px) {
       flex-direction: row;
@@ -135,51 +128,46 @@
   }
   
   &__copyright {
-    font-family: $fontSecondary;
-    font-size: $fsCaption;
-    color: $colorTextMuted;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #BABABA;
   }
   
   &__legal {
-    display: flex;
-    gap: $spaceMd;
+    @include flex(center, center);
   }
   
   &__legal-link {
-    font-family: $fontSecondary;
-    font-size: $fsCaption;
-    color: $colorTextMuted;
-    transition: all $transitionBase;
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #BABABA;
+    // transition: will be set separately
     
     &:hover {
-      color: $colorCream;
+      color: #ffffff;
     }
   }
 }
 
 // Newsletter Section (optional in footer)
 .footer-newsletter {
-  padding: $space3xl 0;
-  background-color: $colorBlack;
+  // padding: will be set separately
+  background-color: #161616;
   text-align: center;
   
   &__title {
-    font-family: $fontPrimary;
-    font-size: $fsH3;
-    font-weight: $fwLight;
-    margin-bottom: $spaceSm;
+    font-family: 'Cormorant Garamond', serif;
+    // font-weight: will be set separately
+    // margin-bottom: will be set separately
   }
   
   &__text {
-    font-size: $fsBody;
-    color: $colorTextMuted;
-    margin-bottom: $spaceLg;
+    color: #BABABA;
+    // margin-bottom: will be set separately
   }
   
   &__form {
     display: flex;
     flex-direction: column;
-    gap: $spaceSm;
+    // gap: will be set separately
     max-width: 50rem;
     margin: 0 auto;
     
@@ -190,20 +178,18 @@
   
   &__input {
     flex: 1;
-    padding: $spaceMd;
+    // padding: will be set separately
     background: transparent;
-    border: $borderThin;
-    color: $colorCream;
-    font-size: $fsBody;
+    // border: will be set separately
+    color: #ffffff;
     
     &::placeholder {
-      color: $colorGray;
+      color: #BABABA;
     }
     
     &:focus {
       outline: none;
-      border-color: $colorGold;
+      border-color: #4A4540;
     }
   }
 }
-

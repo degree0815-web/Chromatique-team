@@ -2,18 +2,27 @@
 // Header Component
 // ==========================================================================
 
-@use '../base/variables' as *;
 @use '../base/mixins' as *;
+
+// Container styles for header__inner
+%container {
+  width: 100%;
+  max-width: 1644px;
+  margin: 0 auto;
+  padding-left: rem(30);
+  padding-right: rem(30);
+}
 
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: $headerHeight;
-    z-index: $zFixed;
-    transition: background-color $transitionSlow,
-        backdrop-filter $transitionSlow;
+    padding-top: rem(20);
+    padding-bottom: rem(20);
+    background-color: #161616;
+    // z-index: will be set separately
+    // transition: will be set separately
 
     // Scrolled state
     &.is-scrolled {
@@ -28,32 +37,29 @@
 
     &__inner {
         width: 100%;
-        max-width: $containerMax;
-        margin-inline: auto;
-        padding-inline: $containerPadding;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        max-width: 1644px;
+        margin: 0 auto;
+        padding-left: rem(164);
+        padding-right: rem(164);
+        @include flex(space-between, center);
         height: 100%;
     }
 
     &__logo {
         position: relative;
-        z-index: $zFixed;
+        // z-index: will be set separately
     }
 
     &__logo-link {
-        display: flex;
-        align-items: center;
-        gap: $spaceSm;
+        @include flex(center, center);
     }
 
     &__logo-text {
-        font-family: $fontPrimary;
+        font-family: 'Cormorant Garamond', serif;
         font-size: clamp(2rem, 2.5vw, 2.8rem);
-        font-weight: $fwLight;
-        letter-spacing: $lsWider;
-        color: $colorCream;
+        // font-weight: will be set separately
+        // letter-spacing: will be set separately
+        color: #ffffff;
         text-transform: uppercase;
     }
 
@@ -61,13 +67,11 @@
         @media (max-width: 1023px) {
             position: fixed;
             inset: 0;
-            background: $colorBlack;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #161616;
+            @include flex(center, center);
             opacity: 0;
             visibility: hidden;
-            transition: opacity $transitionBase, visibility $transitionBase;
+            // transition: will be set separately
 
             &.is-open {
                 opacity: 1;
@@ -77,30 +81,51 @@
     }
 
     &__nav-list {
-        display: flex;
-        align-items: center;
-        gap: $spaceXl;
-
-        @media (max-width: 1023px) {
-            flex-direction: column;
-            gap: $spaceLg;
-        }
+        @include flex(center, center);
     }
 
     &__nav-item {
         overflow: hidden;
+        position: relative;
+
+        &:not(:last-child) {
+            padding-right: rem(40);
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 1px;
+                height: 1em;
+                background-color: #ffffff;
+            }
+        }
+
+        &:not(:first-child) {
+            padding-left: rem(40);
+        }
+
+        @media (max-width: 1023px) {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+
+            &::after {
+                display: none;
+            }
+        }
     }
 
     &__nav-link {
         display: inline-block;
-        font-family: $fontSecondary;
-        font-size: $fsSmall;
-        font-weight: $fwMedium;
-        letter-spacing: $lsWider;
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+        // font-weight: will be set separately
+        // letter-spacing: will be set separately
         text-transform: uppercase;
-        color: $colorCream;
+        color: #ffffff;
         position: relative;
-        padding: $spaceXs 0;
+        // padding: will be set separately
 
         &::after {
             content: '';
@@ -109,8 +134,8 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: $colorGold;
-            transition: width $transitionBase;
+            background-color: #4A4540;
+            // transition: will be set separately
         }
 
         &:hover::after {
@@ -118,19 +143,17 @@
         }
 
         &:focus-visible {
-            outline: 2px solid $colorGold;
+            outline: 2px solid #4A4540;
             outline-offset: 2px;
         }
 
         @media (max-width: 1023px) {
-            font-size: $fsH4;
+            // Font size handled separately
         }
     }
 
     &__actions {
-        display: flex;
-        align-items: center;
-        gap: $spaceMd;
+        @include flex(center, center);
     }
 
     &__cta {
@@ -149,7 +172,7 @@
         position: relative;
         width: 3.2rem;
         height: 2.4rem;
-        z-index: $zFixed;
+        // z-index: will be set separately
 
         @media (min-width: 1024px) {
             display: none;
@@ -161,8 +184,8 @@
         left: 0;
         width: 100%;
         height: 1px;
-        background-color: $colorCream;
-        transition: transform $transitionBase, opacity $transitionBase;
+        background-color: #ffffff;
+        // transition: will be set separately
 
         &:nth-child(1) {
             top: 0;
@@ -191,4 +214,5 @@
             }
         }
     }
+
 }

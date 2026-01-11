@@ -157,12 +157,17 @@ function hideLoadingScreen() {
   const loadingScreen = document.querySelector('.loading-screen');
   if (!loadingScreen) return;
   
+  // Prevent body scroll while loading
+  document.body.style.overflow = 'hidden';
+  
   // Animate loading progress
   const progressBar = loadingScreen.querySelector('.loading-screen__progress-bar');
   const counter = loadingScreen.querySelector('.loading-screen__counter');
   
   const tl = gsap.timeline({
     onComplete: () => {
+      // Restore body scroll
+      document.body.style.overflow = '';
       loadingScreen.remove();
     },
   });

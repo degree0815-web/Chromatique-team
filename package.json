@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Chromatique - Premium Perfume Brand Website with SCSS, GSAP & Swiper",
   "scripts": {
-    "sass": "sass assets/scss/main.scss:assets/css/main.css --watch",
-    "sass:build": "sass assets/scss/main.scss:assets/css/main.css --style=compressed --source-map",
-    "sass:dev": "sass assets/scss/main.scss:assets/css/main.css --watch --style=expanded --source-map",
+    "sass": "sass assets/scss/style.scss:assets/css/style.css --watch",
+    "sass:build": "sass assets/scss/style.scss:assets/css/style.css --style=compressed",
+    "sass:dev": "sass assets/scss/style.scss:assets/css/style.css --watch --style=expanded",
     "build": "npm run sass:build"
   },
   "keywords": [
