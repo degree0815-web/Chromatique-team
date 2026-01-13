@@ -1,6 +1,23 @@
 // ==========================================================================
 // Button Components
 // ==========================================================================
-//
-// Button styles will be defined separately
-//
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// ========================================
+// Button Base
+// ========================================
+
+.btn {
+    font-size: rem(24);
+    font-weight: 500;
+    color: $colorPrimary50;
+    padding: rem(12) rem(60);
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    transition: all 0.3s ease;
+}
