@@ -23,13 +23,13 @@
 <body>
 
     <!-- Loading Screen -->
-    <div class="loading-screen">
+    <!-- <div class="loading-screen">
         <div class="loading-screen__logo">Chromatique</div>
         <div class="loading-screen__progress">
             <div class="loading-screen__progress-bar"></div>
         </div>
         <div class="loading-screen__counter">0%</div>
-    </div>
+    </div> -->
 
     <!-- Header -->
     <header class="header">
@@ -57,8 +57,161 @@
 
     <!-- Main Content -->
     <main class="main">
+        <section class="kvSec">
+            <img src="./assets/images/main/kv-cloud.png" alt="kv-cloud" class="kvSec__cloud">
+            <img src="./assets/images/main/kv-city.png" alt="kv-city" class="kvSec__city">
+            <img src="./assets/images/main/kv-bt.png" alt="kv-bt" class="kvSec__bt">
+            <img src="./assets/images/main/kv-mount.png" alt="kv-mount" class="kvSec__mount">
+            <div class="container">
+                <div class="kvSec_content__wrap">
+                    <h2 class="kvSec__title point">CHROMATIQUE</h2>
+                    <div class="btn">GALLERY 보러가기기</div>
+                </div>
+            </div>
+        </section>
+        <section class="introSec">
+            <div class="container">
+                <div class="introSec__content">
+                    <h2 class="point">Chromatique</h2>
+                    <p>‘크로마티크’는 <br>
+                        예술 작품의 색채와 감정을 후각으로 번역하는 <br>
+                        아트 퍼퓸 하우스입니다. </p>
+                    <p>
+                        화가의 감정, 색의 온도, 빛의 움직임을 <br>
+                        향이라는 새로운 언어로 다시 창조합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section class="artGallerySec" id="gallery">
+            <div class="secGradient"></div>
+            <div class="container">
+                <div class="artGallerySec__header">
+                    <h2 class="artGallerySec__subtitle">향수 갤러리</h2>
+                    <h3 class="artGallerySec__title">PERFUME GALLERY</h3>
+                </div>
+
+                <div class="artGallerySec__slider">
+                    <!-- Swiper Navigation -->
+                    <button class="artGallerySec__nav artGallerySec__nav--prev" aria-label="Previous slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 18l-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button class="artGallerySec__nav artGallerySec__nav--next" aria-label="Next slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 18l6-6-6-6" />
+                        </svg>
+                    </button>
+
+                    <!-- Swiper Container -->
+                    <div class="swiper artGallerySec__swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide artGallerySec__slide" data-perfume="01" data-slide="01">
+                                <img src="./assets/images/main/slide01.png" alt="Artwork 01"
+                                    class="artGallerySec__artwork">
+                            </div>
+                            <div class="swiper-slide artGallerySec__slide" data-perfume="02" data-slide="02">
+                                <img src="./assets/images/main/slide02.png" alt="Artwork 02"
+                                    class="artGallerySec__artwork">
+                            </div>
+                            <div class="swiper-slide artGallerySec__slide" data-perfume="03" data-slide="03">
+                                <img src="./assets/images/main/slide03.png" alt="Artwork 03"
+                                    class="artGallerySec__artwork">
+                            </div>
+                            <div class="swiper-slide artGallerySec__slide" data-perfume="04" data-slide="04">
+                                <img src="./assets/images/main/slide04.png" alt="Artwork 04"
+                                    class="artGallerySec__artwork">
+                            </div>
+                            <div class="swiper-slide artGallerySec__slide" data-perfume="05" data-slide="05">
+                                <img src="./assets/images/main/slide05.png" alt="Artwork 05"
+                                    class="artGallerySec__artwork">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Artwork Info -->
+                    <div class="artGallerySec__info">
+                        <h4 class="artGallerySec__info-title" id="artworkTitle">별이 빛나는 밤 (The Starry Night)</h4>
+                        <p class="artGallerySec__info-artist" id="artworkArtist">빈센트 반 고흐 (Vincent van Gogh)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
 
+        <section class="aboutSec">
+            <div class="container">
+                <div class="aboutSec__content">
+                    <h3>왜 명화와 향수인가?</h3>
+                    <h2 class="point">Why masterpieces and perfume?</h2>
+                    <p>크로마티크는 명화를 향기로 번역하며 작품이 전달하던 정서를 더욱 입체적으로 <br> 경험하게 하고 향은 시간 위에서 변화하고 그 변화는 작품이 가진 서사를 한 층 더 <br>
+                        고급스럽게 확장합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="descSec">
+            <div class="container">
+                <div class="descSec__item" data-desc-item="1">
+                    <div class="descSec__title__wrap">
+                        <h3>명화와 향수의 세계관</h3>
+                        <h2>Art & Perfume Universe</h2>
+                    </div>
+                    <div class="descSec__content__wrap">
+                        <img src="./assets/images/main/desc01.jpg" alt="perfume desc img">
+                        <div class="descSec__txt__wrap">
+                            <p>모든 명화에는 눈으로 볼 수 없는 또 하나의 층이 있습니다. <br>
+                                그곳에서는 색이 향을 지니고 작가의 숨결이 아주 희미한 <br>
+                                기류처럼 떠돌고 있습니다.</p>
+                            <p>크로마티크는 이 미세한 층에 스며들어 <br>
+                                작품 속에 봉인된 감정을 향으로 해방합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="descSec__item" data-desc-item="2">
+                    <div class="descSec__title__wrap">
+                        <h3>예술적 영감의 원천</h3>
+                        <h2>Source of Artistic Inspiration</h2>
+                    </div>
+                    <div class="descSec__content__wrap">
+                        <img src="./assets/images/main/desc02.jpg" alt="perfume desc img">
+                        <div class="descSec__txt__wrap">
+                            <p>각 작품은 고유한 색채와 감정의 언어를 가지고 있습니다. <br>
+                                우리는 그 언어를 해석하여 향이라는 새로운 형태로 <br>
+                                재창조합니다.</p>
+                            <p>화가의 붓터치, 색의 깊이, 빛의 움직임을 <br>
+                                후각의 경험으로 전환합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="descSec__item" data-desc-item="3">
+                    <div class="descSec__title__wrap">
+                        <h3>시간을 초월한 향기</h3>
+                        <h2>Timeless Fragrance</h2>
+                    </div>
+                    <div class="descSec__content__wrap">
+                        <img src="./assets/images/main/desc03.jpg" alt="perfume desc img">
+                        <div class="descSec__txt__wrap">
+                            <p>과거와 현재를 잇는 다리, 예술과 향수의 만남. <br>
+                                크로마티크는 시대를 초월하여 작품의 본질을 <br>
+                                향기로 표현합니다.</p>
+                            <p>각 향수는 하나의 예술 작품이며, <br>
+                                당신만의 감성적 여정을 시작합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="ctaSec">
+            <div class="container">
+                <div class="ctaSec_content__wrap">
+                    <p>시간의 틈 사이로 스며드는 향기는 <br>
+                        오래된 명화의 귓속말이다</p>
+                    <div class="btn">GALLERY 보러가기</div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->

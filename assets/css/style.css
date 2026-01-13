@@ -8,17 +8,12 @@
 }
 
 html {
-  font-size: 62.5%;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  color: #D9D9D9;
-  background-color: #ffffff;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
@@ -144,6 +139,7 @@ body {
   border: none;
   background: transparent;
   transition: all 0.3s ease;
+  border-radius: 1.875rem;
 }
 
 .header {
@@ -154,6 +150,7 @@ body {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   background-color: #161616;
+  z-index: 100;
 }
 .header.is-scrolled {
   background: rgba(10, 10, 10, 0.9);
@@ -492,6 +489,464 @@ body {
   text-transform: uppercase;
 }
 
-.main {
+.kvSec {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  background-image: url("../../assets/images/main/kv-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 5.5rem;
+  position: relative;
+}
+.kvSec .kvSec_content__wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+.kvSec__title {
+  font-size: 7.625rem/16rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 7.625rem;
+  font-style: oblique;
+}
+.kvSec__cloud, .kvSec__bt, .kvSec__city, .kvSec__mount {
+  position: absolute;
+  object-fit: cotain;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.kvSec__mount {
+  z-index: 4;
+  top: 8%;
+}
+.kvSec__cloud {
+  z-index: 5;
+  top: 35%;
+  width: 100%;
+}
+.kvSec__city {
+  z-index: 3;
+}
+.kvSec__bt {
+  z-index: 2;
+  width: 100%;
+}
+.kvSec .btn {
+  background-color: #161616;
+  color: #ffffff;
+}
+
+.introSec {
+  width: 100%;
+  height: 75rem;
+  padding-top: 6.25rem;
+  padding-bottom: 6.25rem;
+  position: relative;
+  background: #080F16;
+}
+.introSec__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.875rem;
+  flex-direction: column;
+}
+.introSec__content h2 {
+  font-size: 4rem/16rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 4rem;
+  font-style: oblique;
+}
+.introSec__content p {
+  font-size: 1.75rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 1.75rem;
+}
+
+.artGallerySec {
+  width: 100%;
   min-height: 100vh;
+  padding: 7.5rem 0;
+  background-image: url("../../assets/images/main/artGallery-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+.artGallerySec .secGradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(10.25rem / 67.5rem * 100%);
+  background: linear-gradient(to bottom, #080F16, rgba(8, 15, 22, 0));
+  pointer-events: none;
+  z-index: 1;
+}
+.artGallerySec::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+.artGallerySec .container {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.artGallerySec__header {
+  text-align: center;
+  margin-bottom: 5rem;
+  color: #ffffff;
+}
+.artGallerySec__title {
+  font-size: 3rem/16rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 3rem;
+}
+.artGallerySec__subtitle {
+  font-size: 1.75rem/16rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 1.75rem;
+  text-transform: uppercase;
+  color: #BABABA;
+  letter-spacing: 0.1em;
+}
+.artGallerySec__slider {
+  position: relative;
+  width: 100%;
+  max-width: 87.5rem;
+  margin: 0 auto;
+}
+.artGallerySec__swiper {
+  width: 100%;
+  padding: 2.5rem 0 2.5rem;
+  overflow: visible;
+}
+.artGallerySec__slide {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, z-index 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+.artGallerySec__slide.swiper-slide-active {
+  z-index: 10;
+  position: relative;
+}
+.artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+  transform: scale(1.5);
+}
+.artGallerySec__slide:not(.swiper-slide-active) {
+  opacity: 0.6;
+  transform: scale(1);
+  z-index: 1;
+}
+.artGallerySec__artwork {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  will-change: transform, opacity;
+}
+.artGallerySec__slide:hover .artGallerySec__artwork {
+  transform: scale(1.3);
+}
+.artGallerySec__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  border: 0.125rem solid #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+.artGallerySec__nav svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 2;
+}
+.artGallerySec__nav:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
+}
+.artGallerySec__nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+.artGallerySec__nav--prev {
+  left: -5rem;
+}
+.artGallerySec__nav--next {
+  right: -5rem;
+}
+.artGallerySec__info {
+  text-align: center;
+  margin-top: 2.5rem;
+  color: #ffffff;
+}
+.artGallerySec__info-title {
+  font-size: 2.25rem/16rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 2.25rem;
+  margin-bottom: 0.3125rem;
+  transition: opacity 0.4s ease;
+}
+.artGallerySec__info-artist {
+  font-size: 1.75rem/16rem;
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 1.75rem;
+  color: #BABABA;
+  transition: opacity 0.4s ease;
+}
+.artGallerySec .swiper-slide {
+  transition: opacity 0.6s ease;
+}
+@media (max-width: 1024px) {
+  .artGallerySec__nav {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .artGallerySec__nav--prev {
+    left: -3.75rem;
+  }
+  .artGallerySec__nav--next {
+    right: -3.75rem;
+  }
+}
+@media (max-width: 768px) {
+  .artGallerySec {
+    padding: 5rem 0;
+  }
+  .artGallerySec__header {
+    margin-bottom: 3.75rem;
+  }
+  .artGallerySec__title {
+    font-size: 2.25rem;
+  }
+  .artGallerySec__subtitle {
+    font-size: 1.25rem;
+  }
+  .artGallerySec__nav {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+  .artGallerySec__nav--prev {
+    left: 0.625rem;
+  }
+  .artGallerySec__nav--next {
+    right: 0.625rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 1.5rem;
+  }
+  .artGallerySec__info-artist {
+    font-size: 1rem;
+  }
+}
+
+.aboutSec {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/images/main/about-bg01.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+}
+.aboutSec__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.875rem;
+}
+.aboutSec__content h3 {
+  font-size: 2.25rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 2.25rem;
+}
+.aboutSec__content h2 {
+  font-size: 4rem/16rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 4rem;
+  width: max-content;
+}
+.aboutSec__content p {
+  font-size: 1.75rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 1.75rem;
+}
+
+.descSec {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+.descSec::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../assets/images/main/desc-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+.descSec .container {
+  position: relative;
+  height: 100%;
+  z-index: 1;
+}
+.descSec__title__wrap h3 {
+  font-size: 2.25rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 2.25rem;
+}
+.descSec__title__wrap h2 {
+  font-size: 3rem/16rem;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 3rem;
+}
+.descSec__item {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.875rem;
+  flex-direction: column;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(100px) scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.descSec__item[data-desc-item="1"] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.descSec__content__wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: space-between;
+  justify-content: space-between;
+}
+.descSec__content__wrap img {
+  max-width: 48.75rem;
+}
+.descSec__txt__wrap {
+  font-size: 1.75rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 1.75rem;
+  align-self: center;
+}
+.descSec__txt__wrap p:first-child {
+  margin-bottom: 1.875rem;
+}
+
+.ctaSec {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-image: url("../../assets/images/main/ctaSec-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffffff;
+}
+.ctaSec_content__wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  flex-direction: column;
+}
+.ctaSec_content__wrap p {
+  font-size: 2rem/16rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+.ctaSec_content__wrap .btn {
+  background: #27170C;
+  color: #ffffff;
 }

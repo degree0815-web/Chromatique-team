@@ -17,6 +17,7 @@ import { initGSAP, refreshScrollTriggers } from './core/gsap.config.js';
 import { initSwipers } from './core/swiper.config.js';
 import { initHeader } from './components/header.js';
 import { createProductSwiper } from './components/productSwiper.js';
+import { createArtGallery } from './components/artGallery.js';
 import { initHeroMotion } from './animations/hero.motion.js';
 import { initScrollMotion, initScrollProgress } from './animations/scroll.motion.js';
 
@@ -30,6 +31,7 @@ const App = {
   instances: {
     header: null,
     productSwiper: null,
+    artGallery: null,
     heroMotion: null,
     scrollMotion: null,
   },
@@ -75,6 +77,11 @@ function initComponents() {
   // Product Swiper
   if (document.querySelector('.product-swiper')) {
     App.instances.productSwiper = createProductSwiper('.product-swiper');
+  }
+  
+  // Art Gallery
+  if (document.querySelector('.artGallerySec')) {
+    App.instances.artGallery = createArtGallery('.artGallerySec');
   }
 }
 

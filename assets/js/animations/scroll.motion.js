@@ -30,6 +30,7 @@ class ScrollMotion {
     this.initCounterAnimations();
     this.initRevealAnimations();
     this.initMarquee();
+    this.initDescSecAnimation();
     
     console.log('📜 Scroll animations initialized');
   }
@@ -206,6 +207,83 @@ class ScrollMotion {
     });
   }
   
+  /**
+   * Initialize descSec scroll animation
+   * Items fade out upward and next item fades in
+   */
+  initDescSecAnimation() {
+    const descSec = document.querySelector('.descSec');
+    if (!descSec) return;
+
+    const items = descSec.querySelectorAll('.descSec__item');
+    if (items.length < 2) return;
+
+    // Set initial states
+    items.forEach((item, index) => {
+      if (index === 0) {
+        // First item starts visible
+        gsap.set(item, { opacity: 1, y: 0, scale: 1 });
+      } else {
+        // Other items start hidden below
+        gsap.set(item, { opacity: 0, y: 100, scale: 0.95 });
+      }
+    });
+
+    // Create master timeline with ScrollTrigger
+    // Each item has display time + transition time
+    const itemDisplayTime = 1.5; // 아이템이 표시되는 시간
+    const transitionDuration = 1; // 전환 애니메이션 시간
+    
+    // 총 타임라인 길이 계산: (표시시간 + 전환시간) * (아이템수 - 1) + 마지막 아이템 표시시간
+    const totalTimelineDuration = (itemDisplayTime + transitionDuration) * (items.length - 1) + itemDisplayTime;
+    const totalScrollHeight = window.innerHeight * totalTimelineDuration / itemDisplayTime;
+
+    const masterTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: descSec,
+        start: 'top top',
+        end: `+=${totalScrollHeight}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      },
+    });
+
+    // Create transitions for each item pair
+    items.forEach((item, index) => {
+      if (index < items.length - 1) {
+        const nextItem = items[index + 1];
+        // 각 아이템이 표시되는 시간 + 이전 전환 시간
+        // 첫 번째 아이템: 0부터 시작
+        // 두 번째 아이템: itemDisplayTime + transitionDuration 후 시작
+        // 세 번째 아이템: (itemDisplayTime + transitionDuration) * 2 후 시작
+        const timelinePosition = index * (itemDisplayTime + transitionDuration) + itemDisplayTime;
+
+        // Fade out current item (move up) and fade in next item simultaneously
+        masterTl.to(item, {
+          opacity: 0,
+          y: -100,
+          scale: 0.95,
+          duration: transitionDuration,
+          ease: 'power2.inOut',
+        }, timelinePosition)
+        .fromTo(nextItem,
+          { opacity: 0, y: 100, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: transitionDuration,
+            ease: 'power2.inOut',
+          },
+          timelinePosition
+        );
+      }
+    });
+
+    this.animations.push(masterTl);
+  }
+
   /**
    * Initialize marquee/infinite scroll text
    */

@@ -36,7 +36,7 @@ export function registerGSAPPlugins() {
  */
 export function setGSAPDefaults() {
   gsap.defaults({
-    duration: 1,
+    duration: 0.5,
     ease: 'power3.out',
   });
 
@@ -44,8 +44,8 @@ export function setGSAPDefaults() {
   if (typeof ScrollTrigger !== 'undefined') {
     ScrollTrigger.defaults({
       toggleActions: 'play none none reverse',
-      start: 'top 80%',
-      end: 'bottom 20%',
+      start: 'top 70%',
+      end: 'bottom 30%',
     });
   }
 }
@@ -58,19 +58,19 @@ export const easings = {
   // Standard easings
   smooth: 'power2.out',
   smoothInOut: 'power2.inOut',
-  
+
   // Dramatic easings
   dramatic: 'power3.out',
   dramaticInOut: 'power3.inOut',
-  
+
   // Bounce & Elastic
   bounce: 'bounce.out',
   elastic: 'elastic.out(1, 0.5)',
-  
+
   // Custom cubic bezier (luxury feel)
   luxury: 'cubic-bezier(0.16, 1, 0.3, 1)',
   luxuryInOut: 'cubic-bezier(0.65, 0, 0.35, 1)',
-  
+
   // Expo for dramatic reveals
   expoOut: 'expo.out',
   expoInOut: 'expo.inOut',
@@ -273,7 +273,7 @@ export function refreshScrollTriggers() {
 export function initGSAP() {
   registerGSAPPlugins();
   setGSAPDefaults();
-  
+
   console.log('✨ GSAP initialized');
 }
 

@@ -11,17 +11,12 @@
 }
 
 html {
-  font-size: 62.5%; // 1rem = 10px
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  color: #D9D9D9;
-  background-color: #ffffff;
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
 }
