@@ -23,6 +23,7 @@
   display: flex;
   justify-content: $justifyContent;
   align-items: $alignItems;
+
   @if $gap {
     gap: $gap;
   }
@@ -33,6 +34,7 @@
   @if $size {
     font-size: rem($size);
   }
+
   font-weight: $weight;
   line-height: $lineHeight;
   letter-spacing: $letterSpacing;
