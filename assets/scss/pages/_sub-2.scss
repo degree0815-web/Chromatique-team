@@ -1,0 +1,326 @@
+// ==========================================================================
+// Sub-2 Page Styles - Chromatique Perfume Brand
+// ==========================================================================
+// 
+// Page-specific styles for the sub-2 page.
+// This file is imported by style.scss and will not compile to CSS directly.
+//
+// ==========================================================================
+
+@use '../base/variables' as *;
+@use '../base/mixins' as *;
+
+// ========================================
+// KV Section
+// ========================================
+
+.sub-2__kv {
+    padding-top: rem(88);
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('../../assets/images/sub-2/kv-image.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .kv-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: $colorText50;
+        z-index: 10;
+
+        .kv__title {
+            font-size: rem(122);
+        }
+
+        .kv__description {
+            padding-top: rem(30);
+            font-size: rem(24);
+        }
+
+    }
+}
+
+// ========================================
+// Product Description Section
+// ========================================
+
+.product-description {
+    width: 100%;
+    height: 100vh;
+    background-color: $colorBlack;
+
+    &__inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__main {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+
+        >.swiper-wrapper>.swiper-slide {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                z-index: 0;
+            }
+        }
+
+        .swiper-slide {
+            .container {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                max-width: 1644px;
+                height: 100%;
+                padding: 0 rem(30);
+                z-index: 10;
+                pointer-events: none;
+            }
+
+            .product-description__content {
+                position: absolute;
+                top: calc(rem(172) + rem(40) + rem(100));
+                bottom: rem(100);
+                left: 50%;
+                transform: translateX(-50%);
+                width: 100%;
+                max-width: rem(1048);
+                display: flex;
+                align-items: center;
+                gap: rem(158);
+                z-index: 11;
+                box-sizing: border-box;
+            }
+
+            .product-description__image {
+                flex: 0 0 auto;
+                width: rem(378);
+                height: 100%;
+                background-image: url('../../assets/images/sub-2/perfume1.png');
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+
+            .product-description__text {
+                // flex: 1;
+                color: $colorText50;
+                font-size: rem(24);
+                line-height: 1.6;
+
+                p {
+                    margin-bottom: rem(20);
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                &-image {
+                    width: rem(317);
+                    height: rem(144);
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+
+        // 각 슬라이드별 이미지 설정
+        .swiper-slide:nth-child(1) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-1.png');
+        }
+
+        .swiper-slide:nth-child(2) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-2.png');
+        }
+
+        .swiper-slide:nth-child(3) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-3.png');
+        }
+
+        .swiper-slide:nth-child(4) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-4.png');
+        }
+
+        .swiper-slide:nth-child(5) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-5.png');
+        }
+
+        .swiper-slide:nth-child(6) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-6.png');
+        }
+
+        .swiper-slide:nth-child(7) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-7.png');
+        }
+
+        .swiper-slide:nth-child(8) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-8.png');
+        }
+
+        .swiper-slide:nth-child(9) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-9.png');
+        }
+
+        .swiper-slide:nth-child(10) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-10.png');
+        }
+
+        .swiper-slide:nth-child(11) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-11.png');
+        }
+
+        .swiper-slide:nth-child(12) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-12.png');
+        }
+
+        .swiper-slide:nth-child(13) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-13.png');
+        }
+
+        .swiper-slide:nth-child(14) .product-description__text-image {
+            background-image: url('../../assets/images/sub-2/product-14.png');
+        }
+
+        >.container {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1644px;
+            height: 100%;
+            padding: 0 rem(30);
+            z-index: 20;
+            pointer-events: none;
+
+            .swiper-button-next,
+            .swiper-button-prev {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: auto;
+            }
+
+            .swiper-button-next {
+                right: rem(30);
+            }
+
+            .swiper-button-prev {
+                left: rem(30);
+            }
+        }
+    }
+
+    &__thumbs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: rem(172);
+        box-sizing: border-box;
+        padding-top: rem(40);
+        z-index: 30;
+
+        .swiper-slide {
+            width: calc((100% - 30px) / 4);
+            height: 100%;
+            opacity: 0.4;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+    }
+}
+
+// ========================================
+// Direct Section
+// ========================================
+
+.direct {
+    width: 100%;
+    height: 80vh;
+    background-image: url('../../assets/images/sub-2/direct.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    &__inner {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+    }
+
+    &__title {
+        font-size: rem(32);
+        color: $colorText50;
+        margin-bottom: rem(30);
+    }
+}

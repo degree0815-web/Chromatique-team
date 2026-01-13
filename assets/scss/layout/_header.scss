@@ -13,7 +13,8 @@
     padding-top: rem(20);
     padding-bottom: rem(20);
     background-color: $colorBlack;
-    z-index: 100; // transition: will be set separately
+    z-index: 100;
+    // transition: will be set separately
 
     // Scrolled state
     &.is-scrolled {
