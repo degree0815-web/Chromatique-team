@@ -12,12 +12,19 @@
 .btn {
     font-size: rem(24);
     font-weight: 500;
-    color: $colorPrimary50;
+    color: $colorText50;
     padding: rem(12) rem(60);
     display: inline-block;
     text-align: center;
     cursor: pointer;
     border: none;
-    background: transparent;
+    background: $colorPrimary50;
+    border-radius: rem(30);
     transition: all 0.3s ease;
+    box-sizing: border-box;
+
+    &:hover {
+        border: 1px solid $colorText50;
+        background: $colorPrimary100;
+    }
 }
