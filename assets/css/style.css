@@ -133,13 +133,13 @@ body {
   font-weight: 500;
   color: #ffffff;
   padding: 0.75rem 3.75rem;
-  display: inline-block;
   text-align: center;
   cursor: pointer;
   border: none;
   background: #27170C;
   border-radius: 1.875rem;
   transition: all 0.3s ease;
+  border-radius: 1.875rem;
   box-sizing: border-box;
 }
 .btn:hover {
@@ -516,6 +516,11 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  flex-direction: column;
 }
 .kvSec__title {
   font-size: 7.625rem/16rem;
@@ -552,6 +557,7 @@ body {
 .kvSec .btn {
   background-color: #161616;
   color: #ffffff;
+  width: max-content;
 }
 
 .introSec {
@@ -613,20 +619,6 @@ body {
   z-index: 1;
 }
 .artGallerySec::before {
-  background-color: #161616;
-}
-
-.sub-2__kv {
-  padding-top: 5.5rem;
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  background-image: url("../../assets/images/sub-2/kv-image.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.sub-2__kv::after {
   content: "";
   position: absolute;
   top: 0;
@@ -968,6 +960,25 @@ body {
 .ctaSec_content__wrap .btn {
   background: #27170C;
   color: #ffffff;
+}
+
+.sub-2__kv {
+  padding-top: 5.5rem;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../assets/images/sub-2/kv-image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.sub-2__kv::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 1;
   pointer-events: none;

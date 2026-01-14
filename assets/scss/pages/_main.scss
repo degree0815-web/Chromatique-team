@@ -94,6 +94,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
+    @include flex(center, center, rem(20));
+    flex-direction: column;
   }
 
   &__title {
@@ -139,6 +141,7 @@
   .btn {
     background-color: $colorBlack;
     color: $colorText50;
+    width: max-content;
   }
 
 
