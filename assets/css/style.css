@@ -241,6 +241,7 @@ body {
 .header__nav-link {
   display: inline-block;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
   text-transform: uppercase;
   color: #BABABA;
   position: relative;
