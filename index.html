@@ -47,7 +47,7 @@
             <nav class="header__nav" role="navigation" aria-label="Main navigation">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
-                        <a href="#brand" class="header__nav-link">Brand & Philosophy</a>
+                        <a href="BrandPhilosophy.html" class="header__nav-link">Brand & Philosophy</a>
                     </li>
                     <li class="header__nav-item">
                         <a href="Perfume Gallery.html" class="header__nav-link">Perfume Gallery</a>
@@ -57,9 +57,17 @@
 
             <!-- Mobile Menu Toggle -->
             <button class="header__menu-toggle" aria-label="Toggle mobile menu">
-                <span class="header__menu-line"></span>
-                <span class="header__menu-line"></span>
-                <span class="header__menu-line"></span>
+                <!-- Menu Icon (Heroicons: bars-3) -->
+                <svg class="header__menu-icon header__menu-icon--open" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                <!-- Close Icon (Heroicons: x-mark) -->
+                <svg class="header__menu-icon header__menu-icon--close" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
             </button>
         </div>
     </header>
@@ -249,9 +257,14 @@
                         </a>
                     </div>
                     <nav class="footer__nav">
-                        <a href="#brand" class="footer__nav-link">Brand & Philosophy</a>
-                        <span class="footer__nav-divider">|</span>
-                        <a href="Perfume Gallery.html" class="footer__nav-link">Perfume Gallery</a>
+                        <ul class="footer__nav-list">
+                            <li class="footer__nav-item">
+                                <a href="BrandPhilosophy.html" class="footer__nav-link">Brand & Philosophy</a>
+                            </li>
+                            <li class="footer__nav-item">
+                                <a href="Perfume Gallery.html" class="footer__nav-link">Perfume Gallery</a>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
             </div>

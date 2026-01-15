@@ -31,6 +31,7 @@ class Header {
     this.handleButtonMouseEnter = this.handleButtonMouseEnter.bind(this);
     this.handleButtonMouseLeave = this.handleButtonMouseLeave.bind(this);
     this.handleHeaderMouseEnter = this.handleHeaderMouseEnter.bind(this);
+    this.setActiveLink = this.setActiveLink.bind(this);
   }
 
   /**
@@ -44,6 +45,7 @@ class Header {
 
     this.bindEvents();
     this.handleScroll(); // Initial check
+    this.setActiveLink(); // Set active navigation link
 
     console.log('📌 Header initialized');
   }
@@ -80,6 +82,9 @@ class Header {
 
     // Resize handler
     window.addEventListener('resize', this.handleResize);
+
+    // Hash change handler for active link updates
+    window.addEventListener('hashchange', this.setActiveLink);
   }
 
   /**
@@ -198,6 +203,60 @@ class Header {
         }
       );
     }
+  }
+
+  /**
+   * Set active navigation link based on current URL
+   */
+  setActiveLink() {
+    if (!this.header) return;
+
+    const navLinks = this.header.querySelectorAll('.header__nav-link');
+    const currentPath = window.location.pathname;
+    const currentHash = window.location.hash;
+    const currentHref = window.location.href;
+    const currentFileName = currentPath.split('/').pop() || '';
+
+    navLinks.forEach(link => {
+      link.classList.remove('is-active');
+
+      const linkHref = link.getAttribute('href');
+
+      // Check if link matches current page
+      if (linkHref.startsWith('#')) {
+        // Anchor link - check if current hash matches
+        if (currentHash === linkHref) {
+          link.classList.add('is-active');
+        }
+      } else {
+        // External link - normalize both URLs for comparison
+        const linkUrl = new URL(linkHref, window.location.origin);
+        const linkPath = linkUrl.pathname;
+        const linkFileName = linkPath.split('/').pop() || '';
+
+        // Direct filename match
+        if (linkFileName && currentFileName && linkFileName === currentFileName) {
+          link.classList.add('is-active');
+        }
+        // Check if current page contains the link filename
+        else if (linkFileName && currentHref.includes(linkFileName)) {
+          link.classList.add('is-active');
+        }
+        // For relative paths like "./Perfume Gallery.html" or "Perfume Gallery.html"
+        else if (linkHref.includes('Perfume Gallery.html') && currentHref.includes('Perfume Gallery.html')) {
+          link.classList.add('is-active');
+        }
+        // For BrandPhilosophy.html
+        else if (linkHref.includes('BrandPhilosophy.html') && currentHref.includes('BrandPhilosophy.html')) {
+          link.classList.add('is-active');
+        }
+        // For index.html or root
+        else if ((linkHref.includes('index.html') || linkHref === './' || linkHref === '/' || linkHref === 'index.html') &&
+          (currentFileName === 'index.html' || currentFileName === '' || currentHref.endsWith('/'))) {
+          link.classList.add('is-active');
+        }
+      }
+    });
   }
 
   /**

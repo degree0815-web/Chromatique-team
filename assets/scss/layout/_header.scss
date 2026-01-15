@@ -38,49 +38,8 @@
         height: 100%;
     }
 
-    &__logo {
-        position: relative;
-        // z-index: will be set separately
-    }
-
-    &__logo-link {
-        @include flex(center, center);
-    }
-
-    &__logo-text {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: clamp(2rem, 2.5vw, 2.8rem);
-        // font-weight: will be set separately
-        // letter-spacing: will be set separately
-        color: $colorText150;
-        text-transform: uppercase;
-    }
-
-    &__nav {
-        @media (max-width: 1023px) {
-            position: fixed;
-            inset: 0;
-            background: $colorBlack;
-            @include flex(center, center);
-            opacity: 0;
-            visibility: hidden;
-            z-index: 99;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-
-            &.is-open {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
-    }
-
     &__nav-list {
         @include flex(center, center);
-
-        @media (max-width: 1023px) {
-            flex-direction: column;
-            gap: rem(30);
-        }
     }
 
     &__nav-item {
@@ -105,27 +64,15 @@
         &:not(:first-child) {
             padding-left: rem(40);
         }
-
-        @media (max-width: 1023px) {
-            padding-right: 0 !important;
-            padding-left: 0 !important;
-
-            &::after {
-                display: none;
-            }
-        }
     }
 
     &__nav-link {
         display: inline-block;
-        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
         font-size: rem(20);
-        // font-weight: will be set separately
-        // letter-spacing: will be set separately
         text-transform: uppercase;
         color: $colorText150;
         position: relative;
-        // padding: will be set separately
+        transition: color 0.3s ease;
 
         &::after {
             content: '';
@@ -134,30 +81,28 @@
             left: 0;
             width: 0;
             height: 1px;
-            background-color: $colorPrimary100;
-            // transition: will be set separately
+            background-color: $colorText50;
+            transition: width 0.3s ease, background-color 0.3s ease;
         }
 
-        &:hover::after {
-            width: 100%;
+        &:hover,
+        &.is-active {
+            color: $colorText50;
+
+            &::after {
+                width: 100%;
+            }
         }
 
         &:focus-visible {
             outline: 2px solid $colorPrimary100;
             outline-offset: 2px;
         }
+    }
 
+    // Navigation
+    &__nav {
         @media (max-width: 1023px) {
-            // Font size handled separately
-        }
-    }
-
-    &__actions {
-        @include flex(center, center);
-    }
-
-    &__cta {
-        @media (max-width: 767px) {
             display: none;
         }
     }
@@ -170,54 +115,99 @@
         cursor: pointer;
         font-family: inherit;
         position: relative;
-        width: 3.2rem;
-        height: 2.4rem;
+        width: rem(44);
+        height: rem(44);
         z-index: 101;
-        display: none;
+        display: none !important;
         padding: 0;
         margin: 0;
+        @include flex(center, center);
+        color: $colorText150;
+        transition: color 0.3s ease;
 
-        @media (max-width: 1023px) {
-            display: block;
+        &:hover {
+            color: $colorText50;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $colorPrimary100;
+            outline-offset: 2px;
+            border-radius: rem(4);
         }
     }
 
-    &__menu-line {
+    &__menu-icon {
         position: absolute;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: $colorText150;
-        transition: all 0.3s ease;
+        width: rem(28);
+        height: rem(28);
+        transition: opacity 0.3s ease, transform 0.3s ease;
 
-        &:nth-child(1) {
-            top: 0;
+        &--open {
+            opacity: 1;
+            transform: scale(1);
         }
 
-        &:nth-child(2) {
-            top: 50%;
-            transform: translateY(-50%);
+        &--close {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+    }
+
+    &__menu-toggle.is-active {
+        .header__menu-icon--open {
+            opacity: 0;
+            transform: scale(0.8);
         }
 
-        &:nth-child(3) {
-            bottom: 0;
+        .header__menu-icon--close {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    // ==========================================================================
+    // Media Queries
+    // ==========================================================================
+
+    @media (max-width: 1023px) {
+        &__inner {
+            padding-left: rem(30);
+            padding-right: rem(30);
         }
 
-        .header__menu-toggle.is-active & {
-            &:nth-child(1) {
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-            }
+        &__nav {
+            display: block;
+            position: fixed;
+            inset: 0;
+            background: $colorBlack;
+            @include flex(center, center);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 99;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
 
-            &:nth-child(2) {
-                opacity: 0;
-                transform: translateY(-50%);
+            &.is-open {
+                opacity: 1;
+                visibility: visible;
             }
+        }
 
-            &:nth-child(3) {
-                bottom: 50%;
-                transform: translateY(50%) rotate(-45deg);
+        &__nav-list {
+            flex-direction: column;
+            gap: rem(30);
+        }
+
+        &__nav-item {
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+
+            &::after {
+                display: none;
             }
+        }
+
+        &__menu-toggle {
+            display: flex !important;
         }
     }
 
