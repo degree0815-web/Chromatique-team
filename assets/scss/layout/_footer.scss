@@ -7,104 +7,67 @@
 
 .footer {
   position: relative;
-  padding-top: rem(50);
-  padding-bottom: rem(50);
+  padding-top: rem(40);
+  padding-bottom: rem(40);
   background-color: $colorBlack;
-  // border-top: will be set separately
-  
-  &__inner {
-    width: 100%;
-    max-width: 1644px;
-    margin: 0 auto;
-    padding-left: rem(30);
-    padding-right: rem(30);
-  }
-  
-  &__top {
-    display: grid;
-    grid-template-columns: 1fr;
-    // gap: will be set separately
-    // margin-bottom: will be set separately
-    
-    @media (min-width: 768px) {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      // gap: will be set separately
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    @media (max-width: 1023px) {
+      flex-direction: column;
+      gap: rem(40);
     }
   }
-  
-  &__brand {
-    max-width: 40rem;
+
+  // Left Area
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
   }
-  
+
   &__logo {
-    font-family: 'Cormorant Garamond', serif;
-    // font-weight: will be set separately
-    // letter-spacing: will be set separately
-    color: $colorText50;
-    text-transform: uppercase;
-    // margin-bottom: will be set separately
+    img {
+      height: auto;
+      max-width: 100%;
+      display: block;
+    }
   }
-  
+
   &__description {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
     color: $colorText150;
-    // line-height: will be set separately
-    // margin-bottom: will be set separately
+    font-size: rem(16);
+    line-height: 1.6;
   }
-  
+
+  // Right Area
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    align-items: flex-end;
+
+    @media (max-width: 1023px) {
+      align-items: flex-start;
+    }
+  }
+
   &__social {
     @include flex(center, center);
+    gap: rem(20);
   }
-  
+
   &__social-link {
     @include flex(center, center);
-    width: 4rem;
-    height: 4rem;
-    // border: will be set separately
-    // border-radius: will be set separately
+    width: rem(40);
+    height: rem(40);
     color: $colorText150;
-    // transition: will be set separately
-    
-    &:hover {
-      border-color: $colorPrimary100;
-      color: $colorPrimary100;
-    }
+    transition: color 0.3s ease;
 
-    &:focus-visible {
-      outline: 2px solid $colorPrimary100;
-      outline-offset: 2px;
-    }
-    
-    svg {
-      width: 1.8rem;
-      height: 1.8rem;
-    }
-  }
-  
-  &__column {
-    // Column styling
-  }
-  
-  &__title {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    // font-weight: will be set separately
-    // letter-spacing: will be set separately
-    text-transform: uppercase;
-    color: $colorPrimary100;
-    // margin-bottom: will be set separately
-  }
-  
-  &__list {
-    display: flex;
-    flex-direction: column;
-    // gap: will be set separately
-  }
-  
-  &__link {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: $colorText150;
-    // transition: will be set separately
-    
     &:hover {
       color: $colorText50;
     }
@@ -113,85 +76,67 @@
       outline: 2px solid $colorPrimary100;
       outline-offset: 2px;
     }
-  }
-  
-  &__bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // gap: will be set separately
-    // padding-top: will be set separately
-    // border-top: will be set separately
-    
-    @media (min-width: 768px) {
-      flex-direction: row;
-      justify-content: space-between;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   }
-  
-  &__copyright {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: $colorText150;
-  }
-  
-  &__legal {
+
+  // Navigation (Header style)
+  &__nav {
     @include flex(center, center);
+    gap: rem(20);
+
+    @media (max-width: 1023px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: rem(10);
+    }
   }
-  
-  &__legal-link {
+
+  &__nav-link {
+    display: inline-block;
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: rem(16);
+    text-transform: uppercase;
     color: $colorText150;
-    // transition: will be set separately
-    
+    position: relative;
+    transition: color 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $colorPrimary100;
+      transition: width 0.3s ease;
+    }
+
     &:hover {
       color: $colorText50;
-    }
-  }
-}
 
-// Newsletter Section (optional in footer)
-.footer-newsletter {
-  // padding: will be set separately
-  background-color: $colorBlack;
-  text-align: center;
-  
-  &__title {
-    font-family: 'Cormorant Garamond', serif;
-    // font-weight: will be set separately
-    // margin-bottom: will be set separately
+      &::after {
+        width: 100%;
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $colorPrimary100;
+      outline-offset: 2px;
+    }
   }
-  
-  &__text {
+
+  &__nav-divider {
     color: $colorText150;
-    // margin-bottom: will be set separately
-  }
-  
-  &__form {
-    display: flex;
-    flex-direction: column;
-    // gap: will be set separately
-    max-width: 50rem;
-    margin: 0 auto;
-    
-    @media (min-width: 768px) {
-      flex-direction: row;
+    font-size: rem(16);
+
+    @media (max-width: 1023px) {
+      display: none;
     }
   }
-  
-  &__input {
-    flex: 1;
-    // padding: will be set separately
-    background: transparent;
-    // border: will be set separately
-    color: $colorText50;
-    
-    &::placeholder {
-      color: $colorText150;
-    }
-    
-    &:focus {
-      outline: none;
-      border-color: $colorPrimary100;
-    }
-  }
+
 }
