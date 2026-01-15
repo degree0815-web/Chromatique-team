@@ -140,7 +140,7 @@ body {
   border-radius: 1.875rem;
   transition: all 0.3s ease;
   border-radius: 1.875rem;
-  box-sizing: border-box;
+  border: 1px solid #27170C;
 }
 .btn:hover {
   border: 1px solid #ffffff;
