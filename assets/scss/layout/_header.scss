@@ -73,6 +73,7 @@
         color: $colorText150;
         position: relative;
         transition: color 0.3s ease;
+        padding-bottom: rem(4);
 
         &::after {
             content: '';

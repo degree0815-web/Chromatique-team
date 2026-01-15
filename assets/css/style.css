@@ -208,6 +208,7 @@ body {
   color: #BABABA;
   position: relative;
   transition: color 0.3s ease;
+  padding-bottom: 0.25rem;
 }
 .header__nav-link::after {
   content: "";
