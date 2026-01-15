@@ -230,29 +230,44 @@ class Header {
         }
       } else {
         // External link - normalize both URLs for comparison
-        const linkUrl = new URL(linkHref, window.location.origin);
-        const linkPath = linkUrl.pathname;
-        const linkFileName = linkPath.split('/').pop() || '';
+        let linkFileName = '';
+        try {
+          const linkUrl = new URL(linkHref, window.location.origin);
+          const linkPath = linkUrl.pathname;
+          linkFileName = linkPath.split('/').pop() || '';
+        } catch (e) {
+          // If URL constructor fails, try simple string extraction
+          linkFileName = linkHref.split('/').pop() || linkHref;
+        }
 
-        // Direct filename match
-        if (linkFileName && currentFileName && linkFileName === currentFileName) {
+        // Direct filename match (case-insensitive for better compatibility)
+        const normalizedLinkFile = linkFileName.toLowerCase();
+        const normalizedCurrentFile = currentFileName.toLowerCase();
+        
+        if (normalizedLinkFile && normalizedCurrentFile && normalizedLinkFile === normalizedCurrentFile) {
           link.classList.add('is-active');
         }
-        // Check if current page contains the link filename
-        else if (linkFileName && currentHref.includes(linkFileName)) {
+        // Check if current page URL contains the link filename
+        else if (linkFileName && currentHref.toLowerCase().includes(linkFileName.toLowerCase())) {
+          link.classList.add('is-active');
+        }
+        // Check if link href contains current filename
+        else if (linkHref.toLowerCase().includes(currentFileName.toLowerCase()) && currentFileName) {
+          link.classList.add('is-active');
+        }
+        // For BrandPhilosophy.html (case-insensitive)
+        else if (linkHref.toLowerCase().includes('brandphilosophy.html') && 
+                 currentHref.toLowerCase().includes('brandphilosophy.html')) {
           link.classList.add('is-active');
         }
         // For relative paths like "./Perfume Gallery.html" or "Perfume Gallery.html"
-        else if (linkHref.includes('Perfume Gallery.html') && currentHref.includes('Perfume Gallery.html')) {
-          link.classList.add('is-active');
-        }
-        // For BrandPhilosophy.html
-        else if (linkHref.includes('BrandPhilosophy.html') && currentHref.includes('BrandPhilosophy.html')) {
+        else if (linkHref.toLowerCase().includes('perfume gallery.html') && 
+                 currentHref.toLowerCase().includes('perfume gallery.html')) {
           link.classList.add('is-active');
         }
         // For index.html or root
-        else if ((linkHref.includes('index.html') || linkHref === './' || linkHref === '/' || linkHref === 'index.html') &&
-          (currentFileName === 'index.html' || currentFileName === '' || currentHref.endsWith('/'))) {
+        else if ((linkHref.toLowerCase().includes('index.html') || linkHref === './' || linkHref === '/' || linkHref === 'index.html') &&
+          (currentFileName.toLowerCase() === 'index.html' || currentFileName === '' || currentHref.endsWith('/'))) {
           link.classList.add('is-active');
         }
       }
