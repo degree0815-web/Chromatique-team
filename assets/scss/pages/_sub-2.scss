@@ -4,14 +4,16 @@
 // 
 // Page-specific styles for the sub-2 page.
 // This file is imported by style.scss and will not compile to CSS directly.
+// Responsive: Desktop-first (max-width based)
 //
 // ==========================================================================
 
 @use '../base/variables' as *;
 @use '../base/mixins' as *;
+@use '../components/extends' as *;
 
 // ========================================
-// KV Section
+// Desktop-L Styles (Default - 1720px+)
 // ========================================
 
 .sub-2__kv {
@@ -43,6 +45,7 @@
         text-align: center;
         color: $colorText50;
         z-index: 10;
+        width: 90%;
 
         .kv__title {
             font-size: rem(122);
@@ -51,14 +54,13 @@
         .kv__description {
             padding-top: rem(30);
             font-size: rem(24);
-        }
 
+            br {
+                display: block;
+            }
+        }
     }
 }
-
-// ========================================
-// Product Description Section
-// ========================================
 
 .product-description {
     width: 100%;
@@ -110,42 +112,44 @@
                 left: 50%;
                 transform: translateX(-50%);
                 width: 100%;
-                max-width: 1644px;
                 height: 100%;
-                padding: 0 rem(30);
                 z-index: 10;
                 pointer-events: none;
+                max-width: $container-desktop-l;
+                padding: 0 $padding-desktop-l;
             }
 
             .product-description__content {
                 position: absolute;
-                top: calc(rem(172) + rem(40) + rem(100));
-                bottom: rem(100);
                 left: 50%;
                 transform: translateX(-50%);
                 width: 100%;
-                max-width: rem(1048);
+                max-width: 100%;
                 display: flex;
                 align-items: center;
-                gap: rem(158);
                 z-index: 11;
                 box-sizing: border-box;
+                top: calc(rem(172) + rem(40) + rem(100));
+                bottom: rem(100);
+                padding: 0 $padding-desktop-l;
+                flex-direction: row;
+                gap: rem(158);
             }
 
             .product-description__image {
                 flex: 0 0 auto;
-                width: rem(378);
-                height: 100%;
                 background-image: url('../../assets/images/sub-2/perfume1.png');
                 background-size: contain;
                 background-position: center;
                 background-repeat: no-repeat;
+                width: rem(378);
+                height: 100%;
             }
 
             .product-description__text {
-                // flex: 1;
                 color: $colorText50;
                 font-size: rem(24);
+                text-align: left;
 
                 p {
                     margin-bottom: rem(20);
@@ -156,8 +160,6 @@
                 }
 
                 &-image {
-                    width: rem(317);
-                    height: rem(144);
                     background-size: cover;
                     background-position: center;
                     background-repeat: no-repeat;
@@ -166,6 +168,9 @@
                     cursor: pointer;
                     pointer-events: auto;
                     z-index: 12;
+                    width: rem(317);
+                    height: rem(144);
+                    margin: 0;
 
                     &::before {
                         content: '';
@@ -198,13 +203,10 @@
                         top: 50%;
                         left: 50%;
                         transform: translate(-50%, -50%) scale(0.9);
-                        padding: rem(12) rem(30);
                         background-color: rgba(255, 255, 255, 0.9) !important;
                         background: rgba(255, 255, 255, 0.9) !important;
                         color: #161616 !important;
                         border: none !important;
-                        border-radius: rem(30);
-                        font-size: rem(16);
                         font-weight: 500;
                         cursor: pointer;
                         opacity: 0;
@@ -215,6 +217,9 @@
                         white-space: nowrap;
                         pointer-events: auto;
                         font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+                        padding: rem(12) rem(30);
+                        border-radius: rem(30);
+                        font-size: rem(16);
 
                         &:hover {
                             background-color: rgba(255, 255, 255, 1) !important;
@@ -293,11 +298,11 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100%;
-            max-width: 1644px;
             height: 100%;
-            padding: 0 rem(30);
             z-index: 20;
             pointer-events: none;
+            max-width: $container-desktop-l;
+            padding: 0 $padding-desktop-l;
 
             .swiper-button-next,
             .swiper-button-prev {
@@ -305,14 +310,15 @@
                 top: 50%;
                 transform: translateY(-50%);
                 pointer-events: auto;
+                display: flex;
             }
 
             .swiper-button-next {
-                right: rem(30);
+                right: $padding-desktop-l;
             }
 
             .swiper-button-prev {
-                left: rem(30);
+                left: $padding-desktop-l;
             }
         }
     }
@@ -322,17 +328,17 @@
         top: 0;
         left: 0;
         width: 100%;
-        height: rem(172);
         box-sizing: border-box;
-        padding-top: rem(40);
         z-index: 30;
+        height: rem(172);
+        padding-top: rem(40);
 
         .swiper-slide {
-            width: calc((100% - 30px) / 4);
             height: 100%;
             opacity: 0.4;
             cursor: pointer;
             transition: opacity 0.3s ease;
+            width: calc((100% - 30px) / 4);
 
             img {
                 display: block;
@@ -348,13 +354,8 @@
     }
 }
 
-// ========================================
-// Direct Section
-// ========================================
-
 .direct {
     width: 100%;
-    height: 80vh;
     background-image: url('../../assets/images/sub-2/direct.png');
     background-size: cover;
     background-position: center;
@@ -363,6 +364,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 80vh;
 
     &::after {
         content: '';
@@ -380,18 +382,15 @@
         position: relative;
         z-index: 10;
         text-align: center;
+        padding: 0 $padding-desktop-l;
     }
 
     &__title {
-        font-size: rem(32);
         color: $colorText50;
+        font-size: rem(32);
         margin-bottom: rem(30);
     }
 }
-
-// ========================================
-// Image Modal
-// ========================================
 
 .image-modal {
     position: fixed;
@@ -424,12 +423,12 @@
 
     &__content {
         position: relative;
-        max-width: 90%;
-        max-height: 90%;
         z-index: 10001;
         display: flex;
         align-items: center;
         justify-content: center;
+        max-width: 90%;
+        max-height: 90%;
     }
 
     &__close {
@@ -439,10 +438,7 @@
         background: none;
         border: none;
         color: $colorText50;
-        font-size: rem(48);
         cursor: pointer;
-        width: rem(50);
-        height: rem(50);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -450,6 +446,9 @@
         z-index: 10002;
         line-height: 1;
         padding: 0;
+        font-size: rem(48);
+        width: rem(50);
+        height: rem(50);
         margin: rem(10);
 
         &:hover {
@@ -459,10 +458,600 @@
 
     &__image {
         max-width: 100%;
-        max-height: 90vh;
         width: auto;
         height: auto;
         object-fit: contain;
         display: block;
+        max-height: 90vh;
+    }
+}
+
+// ========================================
+// Desktop-S Styles (min-width: 1470px and max-width: 1719px)
+// ========================================
+
+@media (min-width: $breakpoint-desktop-s) and (max-width: 1719px) {
+    .sub-2__kv {
+        .kv-text {
+            .kv__title {
+                font-size: rem(100);
+            }
+
+            .kv__description {
+                padding-top: rem(28);
+                font-size: rem(22);
+            }
+        }
+    }
+
+    .product-description {
+        &__main {
+            .swiper-slide {
+                .container {
+                    max-width: $container-desktop-s;
+                    padding: 0 $padding-desktop-s;
+                }
+
+                .product-description__content {
+                    top: calc(rem(164) + rem(38) + rem(95));
+                    bottom: rem(95);
+                    padding: 0 $padding-desktop-s;
+                    gap: rem(130);
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                .product-description__image {
+                    width: rem(340);
+                    height: 100%;
+                }
+
+                .product-description__text {
+                    font-size: rem(22);
+                    text-align: left;
+
+                    p {
+                        margin-bottom: rem(18);
+                    }
+
+                    &-image {
+                        width: rem(300);
+                        height: rem(136);
+
+                        .product-description__view-btn {
+                            padding: rem(11) rem(28);
+                            border-radius: rem(28);
+                            font-size: rem(15);
+                        }
+                    }
+                }
+            }
+
+            >.container {
+                max-width: $container-desktop-s;
+                padding: 0 $padding-desktop-s;
+
+                .swiper-button-next {
+                    right: $padding-desktop-s;
+                }
+
+                .swiper-button-prev {
+                    left: $padding-desktop-s;
+                }
+            }
+        }
+
+        &__thumbs {
+            height: rem(164);
+            padding-top: rem(38);
+
+            .swiper-slide {
+                width: calc((100% - #{$gap-desktop-s * 3}) / 4);
+            }
+        }
+    }
+
+    .direct {
+        height: 78vh;
+
+        &__inner {
+            padding: 0 $padding-desktop-s;
+        }
+
+        &__title {
+            font-size: rem(30);
+            margin-bottom: rem(28);
+        }
+    }
+}
+
+// ========================================
+// Laptop Styles (min-width: 1200px and max-width: 1469px)
+// ========================================
+
+@media (min-width: $breakpoint-laptop) and (max-width: 1469px) {
+    .sub-2__kv {
+        .kv-text {
+            .kv__title {
+                font-size: rem(80);
+            }
+
+            .kv__description {
+                padding-top: rem(26);
+                font-size: rem(20);
+            }
+        }
+    }
+
+    .product-description {
+        &__main {
+            .swiper-slide {
+                .container {
+                    max-width: $container-laptop;
+                    padding: 0 $padding-laptop;
+                }
+
+                .product-description__content {
+                    top: calc(rem(156) + rem(35) + rem(90));
+                    bottom: rem(90);
+                    padding: 0 $padding-laptop;
+                    gap: rem(100);
+                    flex-direction: row;
+                    align-items: center;
+                }
+
+                .product-description__image {
+                    width: rem(300);
+                    height: 100%;
+                }
+
+                .product-description__text {
+                    font-size: rem(20);
+                    text-align: left;
+
+                    p {
+                        margin-bottom: rem(16);
+                    }
+
+                    &-image {
+                        width: rem(280);
+                        height: rem(128);
+
+                        .product-description__view-btn {
+                            padding: rem(11) rem(28);
+                            border-radius: rem(28);
+                            font-size: rem(15);
+                        }
+                    }
+                }
+            }
+
+            >.container {
+                max-width: $container-laptop;
+                padding: 0 $padding-laptop;
+
+                .swiper-button-next {
+                    right: $padding-laptop;
+                }
+
+                .swiper-button-prev {
+                    left: $padding-laptop;
+                }
+            }
+        }
+
+        &__thumbs {
+            height: rem(156);
+            padding-top: rem(35);
+
+            .swiper-slide {
+                width: calc((100% - #{$gap-laptop * 3}) / 4);
+            }
+        }
+    }
+
+    .direct {
+        height: 75vh;
+
+        &__inner {
+            padding: 0 $padding-laptop;
+        }
+
+        &__title {
+            font-size: rem(28);
+            margin-bottom: rem(26);
+        }
+    }
+}
+
+// ========================================
+// Tablet-L Styles (min-width: 768px and max-width: 1199px)
+// ========================================
+
+@media (min-width: $breakpoint-tablet-l) and (max-width: 1199px) {
+    .sub-2__kv {
+        .kv-text {
+            .kv__title {
+                font-size: rem(64);
+            }
+
+            .kv__description {
+                padding-top: rem(22);
+                font-size: rem(18);
+
+                br {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .product-description {
+        min-height: 100vh;
+
+        &__main {
+            min-height: 100vh;
+
+            .swiper-slide {
+                .container {
+                    max-width: $container-tablet-l;
+                    padding: 0 $padding-tablet-l;
+                }
+
+                .product-description__content {
+                    top: calc(rem(140) + rem(30) + rem(80));
+                    bottom: rem(80);
+                    padding: 0 $padding-tablet-l;
+                    flex-direction: row;
+                    gap: rem(60);
+                    align-items: center;
+                }
+
+                .product-description__image {
+                    width: rem(240);
+                    height: 100%;
+                    flex-shrink: 0;
+                }
+
+                .product-description__text {
+                    font-size: rem(18);
+                    text-align: left;
+                    flex: 1;
+
+                    p {
+                        margin-bottom: rem(16);
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &-image {
+                        width: rem(260);
+                        height: rem(118);
+                        margin: 0;
+
+                        .product-description__view-btn {
+                            padding: rem(10) rem(26);
+                            border-radius: rem(26);
+                            font-size: rem(14);
+                        }
+                    }
+                }
+            }
+
+            >.container {
+                max-width: $container-tablet-l;
+                padding: 0 $padding-tablet-l;
+
+                .swiper-button-next,
+                .swiper-button-prev {
+                    display: flex;
+                }
+
+                .swiper-button-next {
+                    right: $padding-tablet-l;
+                }
+
+                .swiper-button-prev {
+                    left: $padding-tablet-l;
+                }
+            }
+        }
+
+        &__thumbs {
+            height: rem(140);
+            padding-top: rem(30);
+
+            .swiper-slide {
+                width: calc((100% - #{$gap-tablet-l * 3}) / 4);
+            }
+        }
+    }
+
+    .direct {
+        height: 70vh;
+
+        &__inner {
+            padding: 0 $padding-tablet-l;
+        }
+
+        &__title {
+            font-size: rem(24);
+            margin-bottom: rem(22);
+        }
+    }
+
+    .image-modal {
+        &__content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        &__close {
+            font-size: rem(44);
+            width: rem(48);
+            height: rem(48);
+            margin: rem(10);
+        }
+
+        &__image {
+            max-height: 90vh;
+        }
+    }
+}
+
+// ========================================
+// Tablet-S Styles (min-width: 480px and max-width: 767px)
+// ========================================
+
+@media (min-width: $breakpoint-tablet-s) and (max-width: 767px) {
+    .sub-2__kv {
+        .kv-text {
+            .kv__title {
+                font-size: rem(48);
+            }
+
+            .kv__description {
+                padding-top: rem(20);
+                font-size: rem(16);
+            }
+        }
+    }
+
+    .product-description {
+        &__main {
+            .swiper-slide {
+                .container {
+                    max-width: $container-tablet-s;
+                    padding: 0 $padding-tablet-s;
+                }
+
+                .product-description__content {
+                    top: calc(rem(120) + rem(25) + rem(70));
+                    bottom: rem(70);
+                    padding: 0 $padding-tablet-s;
+                    flex-direction: column;
+                    gap: rem(30);
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .product-description__image {
+                    width: rem(200);
+                    height: rem(350);
+                    flex-shrink: 0;
+                }
+
+                .product-description__text {
+                    font-size: rem(16);
+                    text-align: center;
+                    width: 100%;
+
+                    p {
+                        margin-bottom: rem(14);
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &-image {
+                        width: rem(240);
+                        height: rem(108);
+                        margin: 0 auto;
+
+                        .product-description__view-btn {
+                            padding: rem(10) rem(24);
+                            border-radius: rem(24);
+                            font-size: rem(14);
+                        }
+                    }
+                }
+            }
+
+            >.container {
+                max-width: $container-tablet-s;
+                padding: 0 $padding-tablet-s;
+
+                .swiper-button-next {
+                    right: $padding-tablet-s;
+                }
+
+                .swiper-button-prev {
+                    left: $padding-tablet-s;
+                }
+            }
+        }
+
+        &__thumbs {
+            height: rem(120);
+            padding-top: rem(25);
+
+            .swiper-slide {
+                width: calc((100% - #{$gap-tablet-s * 2}) / 3);
+            }
+        }
+    }
+
+    .direct {
+        height: 65vh;
+
+        &__inner {
+            padding: 0 $padding-tablet-s;
+        }
+
+        &__title {
+            font-size: rem(22);
+            margin-bottom: rem(20);
+        }
+    }
+
+    .image-modal {
+        &__content {
+            max-width: 92%;
+            max-height: 88%;
+        }
+
+        &__close {
+            font-size: rem(40);
+            width: rem(44);
+            height: rem(44);
+            margin: rem(8);
+        }
+    }
+}
+
+// ========================================
+// Mobile Styles (min-width: 320px and max-width: 479px)
+// ========================================
+
+@media (min-width: $breakpoint-mobile) and (max-width: 479px) {
+    .sub-2__kv {
+        .kv-text {
+            .kv__title {
+                font-size: rem(36);
+            }
+
+            .kv__description {
+                padding-top: rem(16);
+                font-size: rem(14);
+
+                br {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .product-description {
+        &__main {
+            .swiper-slide {
+                .container {
+                    max-width: $container-mobile;
+                    padding: 0 $padding-mobile;
+                }
+
+                .product-description__content {
+                    top: calc(rem(100) + rem(20) + rem(60));
+                    bottom: rem(60);
+                    padding: 0 $padding-mobile;
+                    flex-direction: column;
+                    gap: rem(20);
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .product-description__image {
+                    width: rem(160);
+                    height: rem(280);
+                    flex-shrink: 0;
+                }
+
+                .product-description__text {
+                    font-size: rem(14);
+                    text-align: center;
+                    width: 100%;
+
+                    p {
+                        margin-bottom: rem(12);
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    &-image {
+                        width: rem(200);
+                        height: rem(90);
+                        margin: 0 auto;
+
+                        .product-description__view-btn {
+                            padding: rem(8) rem(20);
+                            border-radius: rem(20);
+                            font-size: rem(12);
+                        }
+                    }
+                }
+            }
+
+            >.container {
+                max-width: $container-mobile;
+                padding: 0 $padding-mobile;
+
+                .swiper-button-next,
+                .swiper-button-prev {
+                    display: none;
+                }
+
+                .swiper-button-next {
+                    right: $padding-mobile;
+                }
+
+                .swiper-button-prev {
+                    left: $padding-mobile;
+                }
+            }
+        }
+
+        &__thumbs {
+            height: rem(100);
+            padding-top: rem(20);
+
+            .swiper-slide {
+                width: calc((100% - #{$gap-mobile}) / 2);
+            }
+        }
+    }
+
+    .direct {
+        height: 60vh;
+
+        &__inner {
+            padding: 0 $padding-mobile;
+        }
+
+        &__title {
+            font-size: rem(18);
+            margin-bottom: rem(16);
+        }
+    }
+
+    .image-modal {
+        &__content {
+            max-width: 95%;
+            max-height: 85%;
+        }
+
+        &__close {
+            font-size: rem(32);
+            width: rem(36);
+            height: rem(36);
+            margin: rem(6);
+        }
+
+        &__image {
+            max-height: 80vh;
+        }
     }
 }

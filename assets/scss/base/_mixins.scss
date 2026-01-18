@@ -3,6 +3,8 @@
 // ==========================================================================
 
 @use 'sass:math'; // math.div 사용 시 필요.
+@use 'variables' as *;
+@use '../components/extends' as *;
 
 // ========================================
 // Functions
@@ -38,4 +40,124 @@
   font-weight: $weight;
   line-height: $lineHeight;
   letter-spacing: $letterSpacing;
+}
+
+// ========================================
+// Responsive Mixins (min-width based)
+// ========================================
+
+// Mobile: 320px ~ 479px
+@mixin mobile {
+  @media (min-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+// Tablet-S: 480px ~ 767px
+@mixin tablet-s {
+  @media (min-width: $breakpoint-tablet-s) {
+    @content;
+  }
+}
+
+// Tablet-L: 768px ~ 1199px
+@mixin tablet-l {
+  @media (min-width: $breakpoint-tablet-l) {
+    @content;
+  }
+}
+
+// Laptop: 1200px ~ 1469px
+@mixin laptop {
+  @media (min-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+// Desktop-S: 1470px ~ 1719px
+@mixin desktop-s {
+  @media (min-width: $breakpoint-desktop-s) {
+    @content;
+  }
+}
+
+// Desktop-L: 1720px ~ 1920px
+@mixin desktop-l {
+  @media (min-width: $breakpoint-desktop-l) {
+    @content;
+  }
+}
+
+// ========================================
+// Main Container Mixin (Responsive)
+// ========================================
+
+@mixin main-container {
+  width: 100%;
+  margin: 0 auto;
+  
+  // Mobile (default - 320px 기준)
+  max-width: $container-mobile;
+  padding-left: $padding-mobile;
+  padding-right: $padding-mobile;
+  
+  // Tablet-S (480px ~)
+  @include tablet-s {
+    max-width: $container-tablet-s;
+    padding-left: $padding-tablet-s;
+    padding-right: $padding-tablet-s;
+  }
+  
+  // Tablet-L (768px ~)
+  @include tablet-l {
+    max-width: $container-tablet-l;
+    padding-left: $padding-tablet-l;
+    padding-right: $padding-tablet-l;
+  }
+  
+  // Laptop (1200px ~)
+  @include laptop {
+    max-width: $container-laptop;
+    padding-left: $padding-laptop;
+    padding-right: $padding-laptop;
+  }
+  
+  // Desktop-S (1470px ~)
+  @include desktop-s {
+    max-width: $container-desktop-s;
+    padding-left: $padding-desktop-s;
+    padding-right: $padding-desktop-s;
+  }
+  
+  // Desktop-L (1720px ~)
+  @include desktop-l {
+    max-width: $container-desktop-l;
+    padding-left: $padding-desktop-l;
+    padding-right: $padding-desktop-l;
+  }
+}
+
+// Gap Mixin (Responsive)
+@mixin responsive-gap {
+  gap: $gap-mobile;
+  
+  @include tablet-s {
+    gap: $gap-tablet-s;
+  }
+  
+  @include tablet-l {
+    gap: $gap-tablet-l;
+  }
+  
+  @include laptop {
+    gap: $gap-laptop;
+  }
+  
+  @include desktop-s {
+    gap: $gap-desktop-s;
+  }
+  
+  @include desktop-l {
+    gap: $gap-desktop-l;
+  }
 }

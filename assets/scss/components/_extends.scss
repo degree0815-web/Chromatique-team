@@ -2,16 +2,83 @@
 // Extends - Shared utility classes
 // ==========================================================================
 
-@use '../base/mixins' as *;
-
 // ========================================
-// Container
+// Container Variables per Breakpoint
 // ========================================
 
-.container {
-  width: 100%;
-  max-width: 1644px;
-  margin: 0 auto;
-  padding-left: rem(30);
-  padding-right: rem(30);
-}
+// Container configuration map by breakpoint
+$container-config: (
+  mobile: (
+    container: 320px,
+    padding: 16px,
+    gap: 12px,
+    inner: 288px
+  ),
+  tablet-s: (
+    container: 440px,
+    padding: 20px,
+    gap: 16px,
+    inner: 400px
+  ),
+  tablet-l: (
+    container: 720px,
+    padding: 24px,
+    gap: 16px,
+    inner: 672px
+  ),
+  laptop: (
+    container: 1140px,
+    padding: 22px,
+    gap: 20px,
+    inner: 1096px
+  ),
+  desktop-s: (
+    container: 1400px,
+    padding: 28px,
+    gap: 24px,
+    inner: 1344px
+  ),
+  desktop-l: (
+    container: 1644px,
+    padding: 30px,
+    gap: 24px,
+    inner: 1584px
+  )
+);
+
+// Legacy variable names (for backward compatibility)
+// Mobile (320px 기준)
+$container-mobile: map-get(map-get($container-config, mobile), container);
+$padding-mobile: map-get(map-get($container-config, mobile), padding);
+$gap-mobile: map-get(map-get($container-config, mobile), gap);
+$inner-mobile: map-get(map-get($container-config, mobile), inner);
+
+// Tablet-S (480px 기준)
+$container-tablet-s: map-get(map-get($container-config, tablet-s), container);
+$padding-tablet-s: map-get(map-get($container-config, tablet-s), padding);
+$gap-tablet-s: map-get(map-get($container-config, tablet-s), gap);
+$inner-tablet-s: map-get(map-get($container-config, tablet-s), inner);
+
+// Tablet-L (768px 기준)
+$container-tablet-l: map-get(map-get($container-config, tablet-l), container);
+$padding-tablet-l: map-get(map-get($container-config, tablet-l), padding);
+$gap-tablet-l: map-get(map-get($container-config, tablet-l), gap);
+$inner-tablet-l: map-get(map-get($container-config, tablet-l), inner);
+
+// Laptop (1200px 기준)
+$container-laptop: map-get(map-get($container-config, laptop), container);
+$padding-laptop: map-get(map-get($container-config, laptop), padding);
+$gap-laptop: map-get(map-get($container-config, laptop), gap);
+$inner-laptop: map-get(map-get($container-config, laptop), inner);
+
+// Desktop-S (1470px 기준)
+$container-desktop-s: map-get(map-get($container-config, desktop-s), container);
+$padding-desktop-s: map-get(map-get($container-config, desktop-s), padding);
+$gap-desktop-s: map-get(map-get($container-config, desktop-s), gap);
+$inner-desktop-s: map-get(map-get($container-config, desktop-s), inner);
+
+// Desktop-L (1720px ~ 1920px 기준)
+$container-desktop-l: map-get(map-get($container-config, desktop-l), container);
+$padding-desktop-l: map-get(map-get($container-config, desktop-l), padding);
+$gap-desktop-l: map-get(map-get($container-config, desktop-l), gap);
+$inner-desktop-l: map-get(map-get($container-config, desktop-l), inner);
