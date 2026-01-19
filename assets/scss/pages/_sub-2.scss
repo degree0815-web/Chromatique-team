@@ -143,6 +143,7 @@
                 padding: 0 $padding-desktop-l;
                 flex-direction: row;
                 gap: rem(158);
+                pointer-events: auto;
                 transition: gap 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-direction 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 will-change: transform, width, gap, padding, top, bottom;
             }
@@ -166,6 +167,9 @@
                 font-size: rem(24);
                 text-align: left;
                 width: auto;
+                position: relative;
+                z-index: 12;
+                pointer-events: auto;
                 transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), text-align 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 will-change: font-size, text-align, width;
 
@@ -191,6 +195,9 @@
                     transition: all 0.3s ease;
                     margin-top: rem(20);
                     display: inline-block;
+                    position: relative;
+                    z-index: 100;
+                    pointer-events: auto;
 
                     &:hover {
                         background-color: $colorText100;
@@ -603,6 +610,121 @@
     }
 }
 
+.artwork-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &.is-open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
+    }
+
+    &__content {
+        position: relative;
+        z-index: 10001;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-width: 90%;
+        max-height: 90vh;
+        background-color: $colorBlack;
+        border-radius: rem(20);
+        padding: rem(40);
+        gap: rem(30);
+        overflow-y: auto;
+        transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    &__close {
+        position: absolute;
+        top: rem(20);
+        right: rem(20);
+        background: none;
+        border: none;
+        color: $colorText50;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+        z-index: 10002;
+        line-height: 1;
+        padding: 0;
+        font-size: rem(48);
+        width: rem(50);
+        height: rem(50);
+        margin: 0;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__image-wrapper {
+        width: 100%;
+        max-width: rem(800);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__image {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        max-height: 60vh;
+        object-fit: contain;
+        display: block;
+    }
+
+    &__text {
+        width: 100%;
+        max-width: rem(800);
+        text-align: center;
+        color: $colorText50;
+    }
+
+    &__title {
+        font-size: rem(36);
+        font-weight: 600;
+        margin-bottom: rem(10);
+        color: $colorText50;
+    }
+
+    &__artist {
+        font-size: rem(24);
+        color: $colorText150;
+        margin-bottom: rem(20);
+    }
+
+    &__description {
+        font-size: rem(18);
+        line-height: 1.6;
+        color: $colorText100;
+    }
+}
+
 // ========================================
 // Desktop-S Styles (min-width: 1470px and max-width: 1719px)
 // ========================================
@@ -636,6 +758,7 @@
                     gap: rem(130);
                     flex-direction: row;
                     align-items: center;
+                    pointer-events: auto;
                 }
 
                 .product-description__image {
@@ -650,6 +773,9 @@
                 .product-description__text {
                     font-size: rem(22);
                     text-align: left;
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 12;
 
                     p {
                         margin-bottom: rem(18);
@@ -739,6 +865,7 @@
                     gap: rem(100);
                     flex-direction: row;
                     align-items: center;
+                    pointer-events: auto;
                 }
 
                 .product-description__image {
@@ -753,6 +880,9 @@
                 .product-description__text {
                     font-size: rem(20);
                     text-align: left;
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 12;
 
                     p {
                         margin-bottom: rem(16);
@@ -850,6 +980,7 @@
                     flex-direction: row;
                     gap: rem(60);
                     align-items: center;
+                    pointer-events: auto;
                 }
 
                 .product-description__image {
@@ -866,6 +997,9 @@
                     font-size: rem(18);
                     text-align: left;
                     flex: 1;
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 12;
 
                     p {
                         margin-bottom: rem(16);
@@ -948,6 +1082,34 @@
             max-height: 90vh;
         }
     }
+
+    .artwork-modal {
+        &__content {
+            max-width: 95%;
+            padding: rem(30);
+            gap: rem(20);
+        }
+
+        &__close {
+            top: rem(15);
+            right: rem(15);
+            font-size: rem(40);
+            width: rem(44);
+            height: rem(44);
+        }
+
+        &__title {
+            font-size: rem(28);
+        }
+
+        &__artist {
+            font-size: rem(20);
+        }
+
+        &__description {
+            font-size: rem(16);
+        }
+    }
 }
 
 // ========================================
@@ -984,6 +1146,7 @@
                     gap: rem(30);
                     align-items: center;
                     justify-content: center;
+                    pointer-events: auto;
                 }
 
                 .product-description__image {
@@ -999,6 +1162,9 @@
                     font-size: rem(16);
                     text-align: center;
                     width: 100%;
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 12;
 
                     p {
                         margin-bottom: rem(14);
@@ -1072,6 +1238,34 @@
             margin: rem(8);
         }
     }
+
+    .artwork-modal {
+        &__content {
+            max-width: 95%;
+            padding: rem(25);
+            gap: rem(18);
+        }
+
+        &__close {
+            top: rem(12);
+            right: rem(12);
+            font-size: rem(36);
+            width: rem(40);
+            height: rem(40);
+        }
+
+        &__title {
+            font-size: rem(24);
+        }
+
+        &__artist {
+            font-size: rem(18);
+        }
+
+        &__description {
+            font-size: rem(15);
+        }
+    }
 }
 
 // ========================================
@@ -1112,6 +1306,7 @@
                     gap: rem(20);
                     align-items: center;
                     justify-content: center;
+                    pointer-events: auto;
                 }
 
                 .product-description__image {
@@ -1127,6 +1322,9 @@
                     font-size: rem(14);
                     text-align: center;
                     width: 100%;
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 12;
 
                     p {
                         margin-bottom: rem(12);
@@ -1207,6 +1405,43 @@
 
         &__image {
             max-height: 80vh;
+        }
+    }
+
+    .artwork-modal {
+        &__content {
+            max-width: 98%;
+            padding: rem(20);
+            gap: rem(15);
+            max-height: 85vh;
+        }
+
+        &__close {
+            top: rem(10);
+            right: rem(10);
+            font-size: rem(32);
+            width: rem(36);
+            height: rem(36);
+        }
+
+        &__image-wrapper {
+            max-width: 100%;
+        }
+
+        &__image {
+            max-height: 40vh;
+        }
+
+        &__title {
+            font-size: rem(20);
+        }
+
+        &__artist {
+            font-size: rem(16);
+        }
+
+        &__description {
+            font-size: rem(14);
         }
     }
 }
