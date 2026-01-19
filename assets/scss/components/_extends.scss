@@ -6,44 +6,40 @@
 // Container Variables per Breakpoint
 // ========================================
 
+.container {
+  width: 100%;
+  max-width: 1644px;
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 // Container configuration map by breakpoint
 $container-config: (
-  mobile: (
-    container: 320px,
+  mobile: (container: 320px,
     padding: 16px,
     gap: 12px,
-    inner: 288px
-  ),
-  tablet-s: (
-    container: 440px,
+    inner: 288px),
+  tablet-s: (container: 440px,
     padding: 20px,
     gap: 16px,
-    inner: 400px
-  ),
-  tablet-l: (
-    container: 720px,
+    inner: 400px),
+  tablet-l: (container: 720px,
     padding: 24px,
     gap: 16px,
-    inner: 672px
-  ),
-  laptop: (
-    container: 1140px,
+    inner: 672px),
+  laptop: (container: 1140px,
     padding: 22px,
     gap: 20px,
-    inner: 1096px
-  ),
-  desktop-s: (
-    container: 1400px,
+    inner: 1096px),
+  desktop-s: (container: 1400px,
     padding: 28px,
     gap: 24px,
-    inner: 1344px
-  ),
-  desktop-l: (
-    container: 1644px,
+    inner: 1344px),
+  desktop-l: (container: 1644px,
     padding: 30px,
     gap: 24px,
-    inner: 1584px
-  )
+    inner: 1584px)
 );
 
 // Legacy variable names (for backward compatibility)
