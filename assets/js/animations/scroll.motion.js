@@ -150,7 +150,7 @@ class ScrollMotion {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: counter,
-          start: 'top 80%',
+          start: 'top 60%',
           toggleActions: 'play none none none',
         },
         onUpdate: () => {
@@ -207,6 +207,8 @@ class ScrollMotion {
       this.animations.push(tl);
     });
   }
+
+
 
   /**
    * Initialize descSec scroll animation
@@ -301,43 +303,124 @@ class ScrollMotion {
 
     // Get images in HTML order from kvSec__contents
     const images = [
-      kvSecContents.querySelector('.kvSec__city'),
-      kvSecContents.querySelector('.kvSec__mount'),
       kvSecContents.querySelector('.kvSec__bt'),
+      kvSecContents.querySelector('.kvSec__mount'),
+      kvSecContents.querySelector('.kvSec__city'),
       kvSecContents.querySelector('.kvSec__cloud'),
     ].filter(Boolean); // Remove null elements
 
     if (images.length === 0) return;
 
-    // Total scroll distance for all animations (300vh = 3 viewport heights)
-    // kvSec has min-height: 300vh, so animation occurs over this scroll distance
-    const totalScrollDistance = window.innerHeight * 3;
+    // Total scroll distance for all animations
+    // 4 images + 1 second pause after last image (approximately 1 viewport height)
+    // kvSec has min-height: 400vh, but we add extra space for the pause
+    const pauseDistance = window.innerHeight * 1; // 1 second pause (approximately 1 viewport height)
+    const totalScrollDistance = window.innerHeight * 4 + pauseDistance;
     // Each image gets an equal portion of the scroll distance for sequential animation
-    // Each image animates over 75vh (300vh / 4 images)
-    const scrollPerImage = totalScrollDistance / images.length;
+    // Last image gets extra space for the pause
+    const scrollPerImage = window.innerHeight * 1; // Each image animates over 100vh
     const viewportHeight = window.innerHeight;
+
+    // Set initial state: kvSec__contents is fixed
+    gsap.set(kvSecContents, { position: 'fixed' });
+
+    // Change kvSec__contents from fixed to sticky when next section (introSec) is detected
+    const introSec = document.querySelector('.introSec');
+    if (introSec) {
+      ScrollTrigger.create({
+        trigger: introSec,
+        start: 'top bottom',
+        end: 'top top',
+        onEnter: () => {
+          // When introSec reaches the top, change position to sticky
+          gsap.set(kvSecContents, { position: 'sticky' });
+        },
+        onLeaveBack: () => {
+          // When scrolling back up before introSec, change back to fixed
+          gsap.set(kvSecContents, { position: 'fixed' });
+        },
+        invalidateOnRefresh: true,
+      });
+    }
 
     images.forEach((image, index) => {
       // Each image animates in its own sequential scroll section
       // Calculate the start and end scroll positions for this specific image
       const sectionStart = index * scrollPerImage;
-      const sectionEnd = (index + 1) * scrollPerImage;
+      const isLastImage = index === images.length - 1;
 
-      // Create separate ScrollTrigger for each image with different start/end positions
-      // Each image moves up by viewport height (maintaining same ratio)
-      const anim = gsap.to(image, {
-        y: `-=${viewportHeight}px`, // Move up by viewport height
-        ease: 'none',
+      // Last image gets extra space for pause after animation completes
+      // Animation completes in first 80% of section, then pause for remaining 20%
+      const sectionEnd = isLastImage
+        ? (index + 1) * scrollPerImage + pauseDistance // Last image: animation + pause
+        : (index + 1) * scrollPerImage; // Other images: normal animation
+
+      // Set initial state: image starts above (moved up) and invisible
+      gsap.set(image, {
+        opacity: 0,
+        y: `-=${viewportHeight}px`, // Start position: above viewport
+      });
+
+      // Create timeline for this image with both movement and fade in
+      const tl = gsap.timeline({
         scrollTrigger: {
           trigger: kvSec,
           start: () => `top+=${sectionStart}px top`,
           end: () => `top+=${sectionEnd}px top`,
           scrub: 1, // Smooth scrubbing tied to scroll position
           invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            if (isLastImage) {
+              const progress = self.progress;
+              // Last image: animation completes at 80% progress, then pause
+              const animationEndProgress = 0.8;
+
+              if (progress <= animationEndProgress) {
+                // Animation phase (0% to 80%)
+                const animationProgress = progress / animationEndProgress;
+                const currentY = -viewportHeight * (1 - animationProgress);
+                const currentOpacity = animationProgress;
+                gsap.set(image, {
+                  y: `${currentY}px`,
+                  opacity: currentOpacity,
+                });
+              } else {
+                // Pause phase (80% to 100%) - image stays at final position
+                gsap.set(image, {
+                  y: '0px',
+                  opacity: 1,
+                });
+              }
+            }
+          },
         },
       });
 
-      this.animations.push(anim);
+      // For non-last images, use normal animation
+      if (!isLastImage) {
+        // Move down animation (full duration) - image comes down to original position
+        tl.to(image, {
+          y: '0px', // Move down to original position
+          ease: 'none',
+        });
+
+        // Fade in animation (starts from beginning)
+        // opacity goes from 0 to 1 as image moves down
+        tl.to(image, {
+          opacity: 1,
+          ease: 'none',
+        }, '-=98%'); // Overlap with movement animation
+      } else {
+        // Last image: animation happens in onUpdate callback
+        // Set initial values for timeline (timeline still needed for ScrollTrigger)
+        tl.to(image, {
+          y: '0px',
+          opacity: 1,
+          ease: 'none',
+        });
+      }
+
+      this.animations.push(tl);
     });
   }
 

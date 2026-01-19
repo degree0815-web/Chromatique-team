@@ -69,42 +69,39 @@
   }
 }
 
-// ========================================
-// 7. Page-specific overrides (if needed)
-// ========================================
-
-
 // kvSec
 .kvSec {
   width: 100%;
-  min-height: 400vh;
-  @include flex(center, center, rem(20));
+  min-height: 600vh;
+  // @include flex(center, center, rem(20));
   text-align: center;
   color: $colorText50;
-  // padding-top: rem(70);
   position: relative;
+
+  padding-top: rem(70);
 
   &__contents {
     position: fixed;
     width: 100%;
     height: 100vh;
-    bottom: 0;
+    top: 0;
     left: 0;
+    z-index: 10;
   }
 
   &__bg {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     object-fit: cover;
   }
 
-  .kvSec_content__wrap {
+  .kvSec__content__wrap {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    @include flex(center, center, rem(20));
+    @include flex(center, center, rem(6));
     flex-direction: column;
   }
 
@@ -161,7 +158,7 @@
 // introSec
 .introSec {
   width: 100%;
-  height: rem(1200);
+  height: 100vh;
   padding-top: rem(100);
   padding-bottom: rem(100);
   position: relative;
@@ -579,4 +576,109 @@
       color: $colorText50;
     }
   }
+}
+
+
+
+
+
+
+// 반응형
+@media (min-width:320px) and (max-width: 479px) {
+
+  // ++++++++++++++++++++++++++++++++++MainPage++++++++++++++++++++++++++++++
+  //kvSec
+  .kvSec {
+
+    &__title {
+      font-size: rem(36);
+    }
+
+    &__cloud,
+    &__bt,
+    &__city,
+    &__mount {
+      height: auto;
+      width: 100%;
+      object-fit: contain;
+      top: auto;
+      bottom: 0%;
+    }
+
+    &__cloud {
+      bottom: -10%;
+    }
+
+    &__mount {
+      bottom: 0%;
+    }
+  }
+
+  // introSec
+  .introSec {
+    &__content {
+      h2 {
+        font-size: rem(24);
+      }
+
+      p {
+        font-size: rem(14);
+      }
+    }
+  }
+
+
+}
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+@media (min-width:480px) and (max-width: 767px) {
+
+  //++++++++++++++++++++++++++++++++++MainPage++++++++++++++++++++++++++++++
+  // kvSec
+  .kvSec {
+    &__title {
+      font-size: rem(64);
+    }
+
+    &__cloud,
+    &__bt,
+    &__city,
+    &__mount {
+      height: 70%;
+      width: 100%;
+      object-fit: fill;
+      top: auto;
+      bottom: 0%;
+    }
+
+    &__cloud {
+      bottom: -20%;
+    }
+  }
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:768px) and (max-width: 1199px) {
+
+  //++++++++++++++++++++++++++++++++++MainPage++++++++++++++++++++++++++++++
+  .kvSec {
+    &__title {
+      font-size: rem(88);
+    }
+  }
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:1200px) and (max-width: 1469px) {
+
+  // ++++++++++++++++++++++++++++++++++MainPage++++++++++++++++++++++++++++++
+  .kvSec {
+    &__title {
+      font-size: rem(104);
+    }
+  }
+
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 }
