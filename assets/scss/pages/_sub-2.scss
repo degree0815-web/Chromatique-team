@@ -132,8 +132,8 @@
                 position: absolute;
                 left: 50%;
                 transform: translateX(-50%);
-                width: 100%;
-                max-width: 100%;
+                width: 80%;
+                max-width: 80%;
                 display: flex;
                 align-items: center;
                 z-index: 11;
@@ -143,7 +143,7 @@
                 padding: 0 $padding-desktop-l;
                 flex-direction: row;
                 gap: rem(158);
-                transition: gap 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-direction 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                transition: gap 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-direction 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 will-change: transform, width, gap, padding, top, bottom;
             }
 
@@ -154,10 +154,11 @@
                 background-repeat: no-repeat;
                 width: rem(378);
                 height: auto;
-                max-height: calc(100vh - rem(172) - rem(40) - rem(200));
                 min-height: rem(400);
-                transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), min-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-image 0.3s ease;
-                will-change: width, height, max-height, min-height;
+                max-width: rem(378);
+                max-height: calc(100vh - rem(172) - rem(40) - rem(200));
+                transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), min-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-image 0.3s ease;
+                will-change: width, height, max-height, min-height, max-width, background-image;
             }
 
             .product-description__text {
@@ -174,6 +175,30 @@
 
                     &:last-child {
                         margin-bottom: 0;
+                    }
+                }
+
+                .product-description__artwork-btn {
+                    padding: rem(10) rem(40);
+                    border-radius: rem(30);
+                    color: $colorBlack;
+                    background-color: $colorText150;
+                    border: none;
+                    cursor: pointer;
+                    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+                    font-size: rem(16);
+                    font-weight: 500;
+                    transition: all 0.3s ease;
+                    margin-top: rem(20);
+                    display: inline-block;
+
+                    &:hover {
+                        background-color: $colorText100;
+                        color: $colorBlack;
+                    }
+
+                    &:active {
+                        transform: scale(0.98);
                     }
                 }
 
@@ -410,20 +435,21 @@
 
             .swiper-button-next,
             .swiper-button-prev {
-                position: absolute;
+                position: fixed;
                 top: 50%;
                 transform: translateY(-50%);
                 pointer-events: auto;
                 display: flex;
+                z-index: 21;
                 transition: right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             }
 
             .swiper-button-next {
-                right: $padding-desktop-l;
+                right: 0;
             }
 
             .swiper-button-prev {
-                left: $padding-desktop-l;
+                left: 0;
             }
         }
     }
@@ -613,10 +639,12 @@
                 }
 
                 .product-description__image {
+                    background-size: contain;
                     width: rem(340);
                     height: auto;
-                    max-height: calc(100vh - rem(164) - rem(38) - rem(190));
                     min-height: rem(380);
+                    max-width: rem(340);
+                    max-height: calc(100vh - rem(164) - rem(38) - rem(190));
                 }
 
                 .product-description__text {
@@ -645,11 +673,11 @@
                 padding: 0 $padding-desktop-s;
 
                 .swiper-button-next {
-                    right: $padding-desktop-s;
+                    right: 0;
                 }
 
                 .swiper-button-prev {
-                    left: $padding-desktop-s;
+                    left: 0;
                 }
             }
         }
@@ -659,7 +687,7 @@
             padding-top: rem(38);
 
             .swiper-slide {
-                width: calc((100% - #{$gap-desktop-s * 3}) / 4);
+                width: calc((100% - 72px) / 4);
             }
         }
     }
@@ -714,8 +742,10 @@
                 }
 
                 .product-description__image {
+                    background-size: contain;
                     width: rem(300);
                     height: auto;
+                    max-width: rem(300);
                     max-height: calc(100vh - rem(156) - rem(35) - rem(180));
                     min-height: rem(360);
                 }
@@ -746,11 +776,11 @@
                 padding: 0 $padding-laptop;
 
                 .swiper-button-next {
-                    right: $padding-laptop;
+                    right: 0;
                 }
 
                 .swiper-button-prev {
-                    left: $padding-laptop;
+                    left: 0;
                 }
             }
         }
@@ -760,7 +790,7 @@
             padding-top: rem(35);
 
             .swiper-slide {
-                width: calc((100% - #{$gap-laptop * 3}) / 4);
+                width: calc((100% - 60px) / 4);
             }
         }
     }
@@ -823,8 +853,10 @@
                 }
 
                 .product-description__image {
+                    background-size: contain;
                     width: rem(240);
                     height: auto;
+                    max-width: rem(240);
                     max-height: calc(100vh - rem(140) - rem(30) - rem(160));
                     min-height: rem(340);
                     flex-shrink: 0;
@@ -867,11 +899,11 @@
                 }
 
                 .swiper-button-next {
-                    right: $padding-tablet-l;
+                    right: 0;
                 }
 
                 .swiper-button-prev {
-                    left: $padding-tablet-l;
+                    left: 0;
                 }
             }
         }
@@ -881,7 +913,7 @@
             padding-top: rem(30);
 
             .swiper-slide {
-                width: calc((100% - #{$gap-tablet-l * 3}) / 4);
+                width: calc((100% - 48px) / 4);
             }
         }
     }
@@ -955,8 +987,11 @@
                 }
 
                 .product-description__image {
+                    background-size: contain;
                     width: rem(200);
                     height: rem(350);
+                    max-width: 100%;
+                    max-height: 50vh;
                     flex-shrink: 0;
                 }
 
@@ -992,11 +1027,11 @@
                 padding: 0 $padding-tablet-s;
 
                 .swiper-button-next {
-                    right: $padding-tablet-s;
+                    right: 0;
                 }
 
                 .swiper-button-prev {
-                    left: $padding-tablet-s;
+                    left: 0;
                 }
             }
         }
@@ -1006,7 +1041,7 @@
             padding-top: rem(25);
 
             .swiper-slide {
-                width: calc((100% - #{$gap-tablet-s * 2}) / 3);
+                width: calc((100% - 32px) / 3);
             }
         }
     }
@@ -1080,8 +1115,11 @@
                 }
 
                 .product-description__image {
+                    background-size: contain;
                     width: rem(160);
                     height: rem(280);
+                    max-width: 100%;
+                    max-height: 40vh;
                     flex-shrink: 0;
                 }
 
@@ -1122,11 +1160,11 @@
                 }
 
                 .swiper-button-next {
-                    right: $padding-mobile;
+                    right: 0;
                 }
 
                 .swiper-button-prev {
-                    left: $padding-mobile;
+                    left: 0;
                 }
             }
         }
@@ -1136,7 +1174,7 @@
             padding-top: rem(20);
 
             .swiper-slide {
-                width: calc((100% - #{$gap-mobile}) / 2);
+                width: calc((100% - 12px) / 2);
             }
         }
     }
