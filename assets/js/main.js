@@ -110,6 +110,8 @@ function setupEventListeners() {
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
+      // Force recalculation of all ScrollTriggers
+      ScrollTrigger.refresh();
       refreshScrollTriggers();
     }, 250);
   });

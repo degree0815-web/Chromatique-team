@@ -1,6 +1,3 @@
-@use '../base/mixins' as *;
-@use '../base/variables' as *;
-
 // Mobile (320px 기준)
 $container-mobile: 320px;
 $padding-mobile: 16px;
@@ -26,6 +23,7 @@ $container-desktop-l: 1644px;
 $padding-desktop-l: 30px;
 
 .container {
+    width: 100%;
     max-width: $container-desktop-l;
     padding: 0 $padding-desktop-l;
     margin: 0 auto;

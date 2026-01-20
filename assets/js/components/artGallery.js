@@ -161,12 +161,18 @@ class ArtGallery {
 
   /**
    * Setup click events on slides
+   * Only active slide is clickable
    */
   setupClickEvents() {
     if (!this.swiper) return;
 
     this.swiper.slides.forEach((slide) => {
       slide.addEventListener('click', () => {
+        // Only allow clicks on active slide
+        if (!slide.classList.contains('swiper-slide-active')) {
+          return;
+        }
+
         const perfumeNumber = slide.getAttribute('data-perfume');
         const slideNumber = slide.getAttribute('data-slide');
         const artworkImg = slide.querySelector('.artGallerySec__artwork');

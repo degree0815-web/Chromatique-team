@@ -181,16 +181,17 @@ class ScrollMotion {
 
       if (isImgReveal) {
         // Image reveal animation
+        // Set initial scale to 1 to prevent scale changes
+        const img = el.querySelector('img');
+        if (img) {
+          gsap.set(img, { scale: 1 });
+        }
+
         tl.to(el, {
           '--reveal-progress': 1,
           duration: durations.slower,
           ease: easings.expoInOut,
-        })
-          .to(el.querySelector('img'), {
-            scale: 1,
-            duration: durations.slower,
-            ease: easings.expoOut,
-          }, '-=0.8');
+        });
       } else {
         // Mask reveal animation
         const cover = el.querySelector('.reveal-mask__cover');
@@ -221,70 +222,116 @@ class ScrollMotion {
     const items = descSec.querySelectorAll('.descSec__item');
     if (items.length < 2) return;
 
-    // Set initial states
-    items.forEach((item, index) => {
-      if (index === 0) {
-        // First item starts visible
-        gsap.set(item, { opacity: 1, y: 0, scale: 1 });
-      } else {
-        // Other items start hidden below
-        gsap.set(item, { opacity: 0, y: 100, scale: 0.95 });
+    // Wait for layout to be ready before initializing
+    // This prevents white screen on refresh/resize
+    const initAnimation = () => {
+      // Ensure descSec is visible and has dimensions
+      if (descSec.offsetHeight === 0) {
+        // Retry after a short delay if element is not ready
+        setTimeout(initAnimation, 100);
+        return;
       }
-    });
 
-    // Create master timeline with ScrollTrigger
-    // Each item has display time + transition time
-    const itemDisplayTime = 1.5; // 아이템이 표시되는 시간
-    const transitionDuration = 1; // 전환 애니메이션 시간
+      // Set initial states with force3D for better performance
+      items.forEach((item, index) => {
+        if (index === 0) {
+          // First item starts visible
+          gsap.set(item, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            visibility: 'visible',
+            display: 'flex', // Ensure display is set
+            force3D: true
+          });
+        } else {
+          // Other items start hidden below
+          gsap.set(item, {
+            opacity: 0,
+            y: 100,
+            scale: 1,
+            visibility: 'visible', // Keep visible for layout but transparent
+            display: 'flex', // Ensure display is set
+            force3D: true
+          });
+        }
+      });
 
-    // 총 타임라인 길이 계산: (표시시간 + 전환시간) * (아이템수 - 1) + 마지막 아이템 표시시간
-    const totalTimelineDuration = (itemDisplayTime + transitionDuration) * (items.length - 1) + itemDisplayTime;
-    const totalScrollHeight = window.innerHeight * totalTimelineDuration / itemDisplayTime;
+      // Create master timeline with ScrollTrigger
+      // Each item has display time + transition time
+      const itemDisplayTime = 1.5; // 아이템이 표시되는 시간
+      const transitionDuration = 1; // 전환 애니메이션 시간
 
-    const masterTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: descSec,
-        start: 'top top',
-        end: `+=${totalScrollHeight}`,
-        scrub: 1,
-        pin: true,
-        anticipatePin: 1,
-      },
-    });
+      // 총 타임라인 길이 계산: (표시시간 + 전환시간) * (아이템수 - 1) + 마지막 아이템 표시시간
+      const totalTimelineDuration = (itemDisplayTime + transitionDuration) * (items.length - 1) + itemDisplayTime;
+      const totalScrollHeight = window.innerHeight * totalTimelineDuration / itemDisplayTime;
 
-    // Create transitions for each item pair
-    items.forEach((item, index) => {
-      if (index < items.length - 1) {
-        const nextItem = items[index + 1];
-        // 각 아이템이 표시되는 시간 + 이전 전환 시간
-        // 첫 번째 아이템: 0부터 시작
-        // 두 번째 아이템: itemDisplayTime + transitionDuration 후 시작
-        // 세 번째 아이템: (itemDisplayTime + transitionDuration) * 2 후 시작
-        const timelinePosition = index * (itemDisplayTime + transitionDuration) + itemDisplayTime;
+      // Kill any existing ScrollTrigger for this section
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.vars && trigger.vars.trigger === descSec) {
+          trigger.kill();
+        }
+      });
 
-        // Fade out current item (move up) and fade in next item simultaneously
-        masterTl.to(item, {
-          opacity: 0,
-          y: -100,
-          scale: 0.95,
-          duration: transitionDuration,
-          ease: 'power2.inOut',
-        }, timelinePosition)
-          .fromTo(nextItem,
-            { opacity: 0, y: 100, scale: 0.95 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: transitionDuration,
-              ease: 'power2.inOut',
-            },
-            timelinePosition
-          );
-      }
-    });
+      const masterTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: descSec,
+          start: 'top top',
+          end: `+=${totalScrollHeight}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true, // Recalculate on resize
+          refreshPriority: 1, // Higher priority for refresh
+        },
+      });
 
-    this.animations.push(masterTl);
+      // Create transitions for each item pair
+      items.forEach((item, index) => {
+        if (index < items.length - 1) {
+          const nextItem = items[index + 1];
+          // 각 아이템이 표시되는 시간 + 이전 전환 시간
+          // 첫 번째 아이템: 0부터 시작
+          // 두 번째 아이템: itemDisplayTime + transitionDuration 후 시작
+          // 세 번째 아이템: (itemDisplayTime + transitionDuration) * 2 후 시작
+          const timelinePosition = index * (itemDisplayTime + transitionDuration) + itemDisplayTime;
+
+          // Fade out current item (move up) and fade in next item simultaneously
+          masterTl.to(item, {
+            opacity: 0,
+            y: -100,
+            scale: 1, // Keep scale at 1
+            duration: transitionDuration,
+            ease: 'power2.inOut',
+            force3D: true,
+          }, timelinePosition)
+            .fromTo(nextItem,
+              { opacity: 0, y: 100, scale: 1, force3D: true }, // Set initial scale to 1
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1, // Keep scale at 1
+                duration: transitionDuration,
+                ease: 'power2.inOut',
+                force3D: true,
+              },
+              timelinePosition
+            );
+        }
+      });
+
+      this.animations.push(masterTl);
+    };
+
+    // Initialize immediately if DOM is ready, otherwise wait
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimation);
+    } else {
+      // Use requestAnimationFrame to ensure layout is calculated
+      requestAnimationFrame(() => {
+        setTimeout(initAnimation, 0);
+      });
+    }
   }
 
   /**
