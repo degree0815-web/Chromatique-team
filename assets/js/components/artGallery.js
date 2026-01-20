@@ -215,7 +215,7 @@ class ArtGallery {
     if (typeof gsap !== 'undefined') {
       gsap.to(imgElement, {
         opacity: 0,
-        scale: isActive ? 1.45 : 0.95,
+        scale: isActive ? 1.1 : 0.95,
         duration: 0.3,
         ease: 'power2.in',
         onComplete: () => {

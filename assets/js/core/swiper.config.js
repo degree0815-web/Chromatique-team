@@ -21,19 +21,19 @@ export const swiperDefaults = {
     firstSlideMessage: 'This is the first slide',
     lastSlideMessage: 'This is the last slide',
   },
-  
+
   // Keyboard control
   keyboard: {
     enabled: true,
     onlyInViewport: true,
   },
-  
+
   // Grab cursor
   grabCursor: true,
-  
+
   // Speed
   speed: 800,
-  
+
   // Effect
   effect: 'slide',
 };
@@ -60,19 +60,19 @@ export const breakpoints = {
  */
 export const productSwiperConfig = {
   ...swiperDefaults,
-  
+
   // Slides
   slidesPerView: 1.2,
   spaceBetween: 20,
   centeredSlides: true,
-  
+
   // Loop
   loop: true,
   loopAdditionalSlides: 2,
-  
+
   // Speed
   speed: 1000,
-  
+
   // Breakpoints
   breakpoints: {
     [breakpoints.sm]: {
@@ -92,13 +92,13 @@ export const productSwiperConfig = {
       spaceBetween: 50,
     },
   },
-  
+
   // Navigation
   navigation: {
     nextEl: '.swiper-nav__btn--next',
     prevEl: '.swiper-nav__btn--prev',
   },
-  
+
   // Pagination
   pagination: {
     el: '.swiper-pagination',
@@ -112,28 +112,28 @@ export const productSwiperConfig = {
  */
 export const testimonialSwiperConfig = {
   ...swiperDefaults,
-  
+
   // Slides
   slidesPerView: 1,
   spaceBetween: 40,
   centeredSlides: true,
-  
+
   // Loop
   loop: true,
-  
+
   // Autoplay
   autoplay: {
     delay: 5000,
     disableOnInteraction: false,
     pauseOnMouseEnter: true,
   },
-  
+
   // Effect
   effect: 'fade',
   fadeEffect: {
     crossFade: true,
   },
-  
+
   // Pagination
   pagination: {
     el: '.swiper-pagination',
@@ -146,11 +146,11 @@ export const testimonialSwiperConfig = {
  */
 export const gallerySwiperConfig = {
   ...swiperDefaults,
-  
+
   // Slides
   slidesPerView: 1.5,
   spaceBetween: 16,
-  
+
   // Freemode
   freeMode: {
     enabled: true,
@@ -158,7 +158,7 @@ export const gallerySwiperConfig = {
     momentum: true,
     momentumRatio: 0.5,
   },
-  
+
   // Breakpoints
   breakpoints: {
     [breakpoints.md]: {
@@ -170,7 +170,7 @@ export const gallerySwiperConfig = {
       spaceBetween: 32,
     },
   },
-  
+
   // Scrollbar
   scrollbar: {
     el: '.swiper-scrollbar',
@@ -185,28 +185,28 @@ export const gallerySwiperConfig = {
  */
 export const heroSwiperConfig = {
   ...swiperDefaults,
-  
+
   // Slides
   slidesPerView: 1,
-  
+
   // Loop
   loop: true,
-  
+
   // Speed
   speed: 1200,
-  
+
   // Effect
   effect: 'fade',
   fadeEffect: {
     crossFade: true,
   },
-  
+
   // Autoplay
   autoplay: {
     delay: 6000,
     disableOnInteraction: false,
   },
-  
+
   // Pagination
   pagination: {
     el: '.swiper-pagination',
@@ -240,10 +240,10 @@ export function createProductSwiper(selector, customConfig = {}) {
   };
 
   const swiper = new Swiper(selector, config);
-  
+
   // Add slide counter update
   updateSlideCounter(swiper, '.swiper-nav__counter');
-  
+
   return swiper;
 }
 
@@ -305,7 +305,7 @@ function updateSlideCounter(swiper, counterSelector) {
   const updateCounter = () => {
     const current = swiper.realIndex + 1;
     const total = swiper.slides.length - (swiper.loopedSlides ? swiper.loopedSlides * 2 : 0);
-    
+
     counter.innerHTML = `
       <span class="current">${String(current).padStart(2, '0')}</span>
       <span class="separator">/</span>
