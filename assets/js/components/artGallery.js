@@ -32,8 +32,8 @@ class ArtGallery {
     // Artwork data
     this.artworkData = [
       {
-        title: '별이 빛나는 밤 (The Starry Night)',
-        artist: '빈센트 반 고흐 (Vincent van Gogh)',
+        title: '골콘다 (Golconda)',
+        artist: '르네 마그리트 (René Magritte)',
         perfume: '01'
       },
       {
@@ -42,18 +42,18 @@ class ArtGallery {
         perfume: '02'
       },
       {
-        title: '라 그랑드 자트 섬의 일요일 오후 (A Sunday Afternoon on the Island of La Grande Jatte)',
-        artist: '조르주 쇠라 (Georges Seurat)',
+        title: '별이 빛나는 밤 (The Starry Night)',
+        artist: '빈센트 반 고흐 (Vincent van Gogh)',
         perfume: '03'
       },
       {
-        title: '기억의 지속 (The Persistence of Memory)',
-        artist: '살바도르 달리 (Salvador Dalí)',
+        title: '키스(The Kiss)',
+        artist: '구스타프 클림트 (Gustav Klimt)',
         perfume: '04'
       },
       {
-        title: '해바라기 (Sunflowers)',
-        artist: '빈센트 반 고흐 (Vincent van Gogh)',
+        title: '발레수업 (Dance Class)',
+        artist: '에드가 드가 (Edgar De Gas)',
         perfume: '05'
       }
     ];
@@ -93,8 +93,7 @@ class ArtGallery {
       ...swiperDefaults,
 
       // Slides configuration
-      slidesPerView: 1.5,
-      spaceBetween: 40,
+      slidesPerView: 1,
       centeredSlides: true,
 
       // Speed
@@ -111,21 +110,18 @@ class ArtGallery {
 
       // Breakpoints
       breakpoints: {
-        [breakpoints.sm]: {
-          slidesPerView: 3,
-          spaceBetween: 30,
-        },
+
         [breakpoints.md]: {
           slidesPerView: 3,
-          spaceBetween: 40,
+          spaceBetween: -20,
         },
         [breakpoints.lg]: {
           slidesPerView: 3,
-          spaceBetween: 40,
+          spaceBetween: -20,
         },
         [breakpoints.xl]: {
           slidesPerView: 3,
-          spaceBetween: 60,
+          spaceBetween: -20,
         },
       },
 
@@ -206,27 +202,26 @@ class ArtGallery {
     // Store original source (always update to current src)
     imgElement.dataset.original = originalSrc;
 
-    // Check if this slide is active
-    const slide = imgElement.closest('.swiper-slide');
-    const isActive = slide && slide.classList.contains('swiper-slide-active');
-    const targetScale = isActive ? 1.5 : 1.0;
-
-    // Fade out and change image
+    // Fade out and change image (use opacity only, let CSS handle scale)
     if (typeof gsap !== 'undefined') {
       gsap.to(imgElement, {
         opacity: 0,
-        scale: isActive ? 1.1 : 0.95,
         duration: 0.3,
         ease: 'power2.in',
         onComplete: () => {
           imgElement.src = newSrc;
           imgElement.alt = `Perfume ${perfumeNumber}`;
 
+          // Add class to indicate this is a perfume image (no scale on active)
+          imgElement.classList.add('is-perfume');
+
+          // Clear any GSAP transform to allow CSS to control scale
+          gsap.set(imgElement, { clearProps: 'transform' });
+
           gsap.fromTo(imgElement,
-            { opacity: 0, scale: isActive ? 1.45 : 0.95 },
+            { opacity: 0 },
             {
               opacity: 1,
-              scale: targetScale,
               duration: 0.4,
               ease: 'power2.out',
             }
@@ -236,12 +231,13 @@ class ArtGallery {
     } else {
       // Fallback without GSAP
       imgElement.style.opacity = '0';
-      imgElement.style.transform = `scale(${isActive ? 1.45 : 0.95})`;
       setTimeout(() => {
         imgElement.src = newSrc;
         imgElement.alt = `Perfume ${perfumeNumber}`;
+        imgElement.classList.add('is-perfume');
         imgElement.style.opacity = '1';
-        imgElement.style.transform = `scale(${targetScale})`;
+        // Remove inline transform to allow CSS to control
+        imgElement.style.transform = '';
       }, 300);
     }
   }
@@ -263,27 +259,26 @@ class ArtGallery {
       originalSrc = `./assets/images/main/slide${slideNumber}.png`;
     }
 
-    // Check if this slide is active
-    const slide = imgElement.closest('.swiper-slide');
-    const isActive = slide && slide.classList.contains('swiper-slide-active');
-    const targetScale = isActive ? 1.5 : 1.0;
-
-    // Fade out and change image
+    // Fade out and change image (use opacity only, let CSS handle scale)
     if (typeof gsap !== 'undefined') {
       gsap.to(imgElement, {
         opacity: 0,
-        scale: isActive ? 1.45 : 0.95,
         duration: 0.3,
         ease: 'power2.in',
         onComplete: () => {
           imgElement.src = originalSrc;
           imgElement.alt = `Artwork ${slideNumber}`;
 
+          // Remove perfume class to restore normal scale behavior
+          imgElement.classList.remove('is-perfume');
+
+          // Clear any GSAP transform to allow CSS to control scale
+          gsap.set(imgElement, { clearProps: 'transform' });
+
           gsap.fromTo(imgElement,
-            { opacity: 0, scale: isActive ? 1.45 : 0.95 },
+            { opacity: 0 },
             {
               opacity: 1,
-              scale: targetScale,
               duration: 0.4,
               ease: 'power2.out',
             }
@@ -293,12 +288,13 @@ class ArtGallery {
     } else {
       // Fallback without GSAP
       imgElement.style.opacity = '0';
-      imgElement.style.transform = `scale(${isActive ? 1.45 : 0.95})`;
       setTimeout(() => {
         imgElement.src = originalSrc;
         imgElement.alt = `Artwork ${slideNumber}`;
+        imgElement.classList.remove('is-perfume');
         imgElement.style.opacity = '1';
-        imgElement.style.transform = `scale(${targetScale})`;
+        // Remove inline transform to allow CSS to control
+        imgElement.style.transform = '';
       }, 300);
     }
   }

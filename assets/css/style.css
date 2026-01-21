@@ -712,6 +712,9 @@ body {
   letter-spacing: 0;
   font-size: 3rem;
 }
+.artGallerySec__title br {
+  display: none;
+}
 .artGallerySec__subtitle {
   font-size: 1.75rem/16rem;
   font-weight: 600;
@@ -719,8 +722,8 @@ body {
   letter-spacing: 0;
   font-size: 1.75rem;
   text-transform: uppercase;
-  color: #BABABA;
-  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin-bottom: 0.375rem;
 }
 .artGallerySec__slider {
   position: relative;
@@ -730,8 +733,10 @@ body {
 }
 .artGallerySec__swiper {
   width: 100%;
-  padding: 2.5rem 0 2.5rem;
   overflow: hidden;
+}
+.artGallerySec .swiper-wrapper {
+  align-items: center;
 }
 .artGallerySec__slide {
   display: flex;
@@ -740,25 +745,41 @@ body {
   transition: transform 0.3s ease, z-index 0.3s ease;
   position: relative;
   z-index: 1;
-}
-.artGallerySec__slide img {
-  max-width: 41.6875rem;
-  max-height: 29.75rem;
+  width: 41.6875rem;
+  height: 29.75rem;
 }
 .artGallerySec__slide.swiper-slide-active {
   cursor: pointer;
   z-index: 10;
   position: relative;
 }
+.artGallerySec__slide.swiper-slide-active::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 80%;
+  background: radial-gradient(circle, transparent 5%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.7) 60%, transparent 95%);
+  pointer-events: none;
+  z-index: -1;
+}
 .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
   transform: scale(1.5);
 }
+.artGallerySec__slide.swiper-slide-active .artGallerySec__artwork.is-perfume {
+  transform: scale(1);
+}
 .artGallerySec__slide:not(.swiper-slide-active) {
   cursor: default;
-  opacity: 0.6;
-  transform: scale(1);
+  opacity: 0.8;
+  transform: scale(1.2);
   z-index: 1;
   pointer-events: none;
+}
+.artGallerySec__slide:not(.swiper-slide-active) .is-perfume {
+  transform: scale(0.7);
 }
 .artGallerySec__artwork {
   width: 100%;
@@ -767,9 +788,6 @@ body {
   display: block;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
   will-change: transform, opacity;
-}
-.artGallerySec__slide:hover .artGallerySec__artwork {
-  transform: scale(1.5);
 }
 .artGallerySec__nav {
   position: absolute;
@@ -826,7 +844,7 @@ body {
   line-height: 1.3;
   letter-spacing: 0;
   font-size: 1.75rem;
-  color: #BABABA;
+  color: #ffffff;
   transition: opacity 0.4s ease;
 }
 .artGallerySec .swiper-slide {
@@ -1041,6 +1059,42 @@ body {
   .introSec__content p {
     font-size: 0.875rem;
   }
+  .artGallerySec__slide {
+    width: 7.5rem;
+    height: 8.625rem;
+  }
+  .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+    transform: scale(1);
+  }
+  .artGallerySec__slide.swiper-slide-active::before {
+    display: none;
+  }
+  .artGallerySec__nav {
+    display: none;
+  }
+  .artGallerySec__header {
+    text-align: center;
+    margin-bottom: 1.875rem;
+    color: #ffffff;
+  }
+  .artGallerySec__title {
+    font-size: 1.25rem;
+  }
+  .artGallerySec__title br {
+    display: block;
+  }
+  .artGallerySec__subtitle {
+    font-size: 0.875rem;
+  }
+  .artGallerySec__info {
+    margin-top: 1.25rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 1rem;
+  }
+  .artGallerySec__info-artist {
+    font-size: 0.875rem;
+  }
   .aboutSec__content h3 {
     font-size: 1rem;
   }
@@ -1107,6 +1161,43 @@ body {
   }
   .introSec__content p {
     font-size: 1.125rem;
+  }
+  .artGallerySec__slide {
+    width: 100%;
+    height: 25rem;
+  }
+  .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+    transform: scale(1);
+    object-fit: contain;
+  }
+  .artGallerySec__slide.swiper-slide-active::before {
+    display: none;
+  }
+  .artGallerySec__nav {
+    display: none;
+  }
+  .artGallerySec__header {
+    text-align: center;
+    margin-bottom: 1.875rem;
+    color: #ffffff;
+  }
+  .artGallerySec__title {
+    font-size: 1.25rem;
+  }
+  .artGallerySec__title br {
+    display: block;
+  }
+  .artGallerySec__subtitle {
+    font-size: 0.875rem;
+  }
+  .artGallerySec__info {
+    margin-top: 1.25rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 1rem;
+  }
+  .artGallerySec__info-artist {
+    font-size: 0.875rem;
   }
   .aboutSec__content h3 {
     font-size: 1.625rem;

@@ -247,14 +247,18 @@
   &__title {
     @include defineFont(rem(48), 600, 1.3);
     font-size: rem(48);
+
+    br {
+      display: none;
+    }
   }
 
   &__subtitle {
     @include defineFont(rem(28), 600, 1.3);
     font-size: rem(28);
     text-transform: uppercase;
-    color: $colorText150;
-    letter-spacing: 0.1em;
+    color: $colorText50;
+    margin-bottom: rem(6);
   }
 
   &__slider {
@@ -267,9 +271,11 @@
 
   &__swiper {
     width: 100%;
-    padding: rem(40) 0 rem(40);
     overflow: hidden;
+  }
 
+  .swiper-wrapper {
+    align-items: center;
   }
 
   &__slide {
@@ -279,31 +285,54 @@
     transition: transform 0.3s ease, z-index 0.3s ease;
     position: relative;
     z-index: 1;
-
-    img {
-      max-width: rem(667);
-      max-height: rem(476);
-    }
+    width: rem(667);
+    height: rem(476);
 
     &.swiper-slide-active {
       cursor: pointer;
       z-index: 10;
       position: relative;
 
+      // Circular black gradient around active slide
+      // Center is dark, fades to transparent at edges
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200%;
+        height: 80%;
+        background: radial-gradient(circle, transparent 5%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.7) 60%, transparent 95%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
       .artGallerySec__artwork {
         transform: scale(1.5);
+
+        // Perfume images should not scale
+        &.is-perfume {
+          transform: scale(1.0);
+        }
       }
 
     }
 
     &:not(.swiper-slide-active) {
       cursor: default;
-      opacity: 0.6;
-      transform: scale(1.0);
+      opacity: 0.8;
+      transform: scale(1.2);
       z-index: 1;
       pointer-events: none;
+
+      // Perfume images should not scale
+      .is-perfume {
+        transform: scale(0.7);
+      }
     }
   }
+
 
   &__artwork {
     width: 100%;
@@ -312,10 +341,6 @@
     display: block;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     will-change: transform, opacity;
-  }
-
-  &__slide:hover &__artwork {
-    transform: scale(1.5);
   }
 
   &__nav {
@@ -373,7 +398,7 @@
   &__info-artist {
     @include defineFont(rem(28), 300, 1.3, 0);
     font-size: rem(28);
-    color: $colorText150;
+    color: $colorText50;
     transition: opacity 0.4s ease;
   }
 
@@ -383,7 +408,7 @@
 
   }
 
-  // 반응형
+  //반응형
   @media (max-width: 1024px) {
     &__nav {
       width: rem(50);
@@ -628,6 +653,61 @@
     }
   }
 
+  // artGallerySec
+  .artGallerySec {
+    &__slide {
+      width: rem(120);
+      height: rem(138);
+
+
+      &.swiper-slide-active {
+
+
+        .artGallerySec__artwork {
+          transform: scale(1.0);
+        }
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__header {
+      text-align: center;
+      margin-bottom: rem(30);
+      color: $colorText50;
+    }
+
+    &__title {
+      font-size: rem(20);
+
+      br {
+        display: block;
+      }
+    }
+
+    &__subtitle {
+      font-size: rem(14);
+    }
+
+    &__info {
+      margin-top: rem(20);
+    }
+
+    &__info-title {
+      font-size: rem(16);
+    }
+
+    &__info-artist {
+      font-size: rem(14);
+    }
+  }
+
 
   //aboutSec
   .aboutSec {
@@ -740,6 +820,62 @@
       p {
         font-size: rem(18);
       }
+    }
+  }
+
+  // artGallerySec
+  .artGallerySec {
+    &__slide {
+      width: 100%;
+      height: rem(400);
+
+
+      &.swiper-slide-active {
+
+
+        .artGallerySec__artwork {
+          transform: scale(1);
+          object-fit: contain;
+        }
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    &__nav {
+      display: none;
+    }
+
+    &__header {
+      text-align: center;
+      margin-bottom: rem(30);
+      color: $colorText50;
+    }
+
+    &__title {
+      font-size: rem(20);
+
+      br {
+        display: block;
+      }
+    }
+
+    &__subtitle {
+      font-size: rem(14);
+    }
+
+    &__info {
+      margin-top: rem(20);
+    }
+
+    &__info-title {
+      font-size: rem(16);
+    }
+
+    &__info-artist {
+      font-size: rem(14);
     }
   }
 
