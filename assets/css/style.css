@@ -767,24 +767,27 @@ body {
 }
 .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
   transform: scale(1.5);
+  object-fit: fill;
 }
 .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork.is-perfume {
   transform: scale(1);
+  object-fit: contain;
 }
 .artGallerySec__slide:not(.swiper-slide-active) {
   cursor: default;
   opacity: 0.8;
-  transform: scale(1.2);
+  transform: scale(1);
   z-index: 1;
   pointer-events: none;
 }
 .artGallerySec__slide:not(.swiper-slide-active) .is-perfume {
   transform: scale(0.7);
+  object-fit: contain;
 }
 .artGallerySec__artwork {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill;
   display: block;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
   will-change: transform, opacity;
@@ -1060,11 +1063,15 @@ body {
     font-size: 0.875rem;
   }
   .artGallerySec__slide {
-    width: 7.5rem;
-    height: 8.625rem;
+    width: 8.625rem;
+    height: 7.5rem;
+  }
+  .artGallerySec__slide .artGallerySec__artwork {
+    object-fit: contain;
   }
   .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
     transform: scale(1);
+    object-fit: contain;
   }
   .artGallerySec__slide.swiper-slide-active::before {
     display: none;
@@ -1164,11 +1171,11 @@ body {
   }
   .artGallerySec__slide {
     width: 100%;
-    height: 25rem;
+    height: 21.5625rem;
   }
   .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
     transform: scale(1);
-    object-fit: contain;
+    object-fit: fill;
   }
   .artGallerySec__slide.swiper-slide-active::before {
     display: none;
@@ -1177,27 +1184,26 @@ body {
     display: none;
   }
   .artGallerySec__header {
-    text-align: center;
     margin-bottom: 1.875rem;
     color: #ffffff;
   }
   .artGallerySec__title {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
   .artGallerySec__title br {
     display: block;
   }
   .artGallerySec__subtitle {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
   }
   .artGallerySec__info {
-    margin-top: 1.25rem;
+    margin-top: 1.5625rem;
   }
   .artGallerySec__info-title {
-    font-size: 1rem;
+    font-size: 1.625rem;
   }
   .artGallerySec__info-artist {
-    font-size: 0.875rem;
+    font-size: 1.125rem;
   }
   .aboutSec__content h3 {
     font-size: 1.625rem;
@@ -1251,6 +1257,38 @@ body {
     font-size: 3rem;
   }
   .introSec__content p {
+    font-size: 1.375rem;
+  }
+  .artGallerySec__slide {
+    width: 20.5rem;
+    height: 17.625rem;
+  }
+  .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+    transform: scaleX(1.39538);
+  }
+  .artGallerySec__slide:not(.swiper-slide-active) .artGallerySec__artwork {
+    transform: scale(0.9);
+  }
+  .artGallerySec__nav {
+    display: none;
+  }
+  .artGallerySec__header {
+    margin-bottom: 1.875rem;
+    color: #ffffff;
+  }
+  .artGallerySec__title {
+    font-size: 2.5rem;
+  }
+  .artGallerySec__subtitle {
+    font-size: 1.375rem;
+  }
+  .artGallerySec__info {
+    margin-top: 1.25rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 1.875rem;
+  }
+  .artGallerySec__info-artist {
     font-size: 1.375rem;
   }
   .aboutSec__content h3 {

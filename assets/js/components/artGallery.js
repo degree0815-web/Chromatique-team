@@ -113,7 +113,7 @@ class ArtGallery {
 
         [breakpoints.md]: {
           slidesPerView: 3,
-          spaceBetween: -20,
+          spaceBetween: -8,
         },
         [breakpoints.lg]: {
           slidesPerView: 3,

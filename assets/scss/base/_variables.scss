@@ -12,3 +12,12 @@ $colorText100: #D9D9D9;
 $colorText150: #BABABA;
 $colorText50: #ffffff;
 $colorBlack: #161616;
+// ========================================
+// Responsive Breakpoints (min-width)
+// ========================================
+
+$breakpoint-mobile: 320px; // 320px ~ 479px
+$breakpoint-tablet-s: 480px; // 480px ~ 767px
+$breakpoint-tablet-l: 768px; // 768px ~ 1199px
+$breakpoint-laptop: 1200px; // 1200px ~ 1469px
+$breakpoint-desktop-s: 1470px; // 1470px ~ 1719px
