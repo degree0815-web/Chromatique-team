@@ -1416,344 +1416,133 @@ body {
   display: block;
 }
 
-.product-description {
-  width: 100%;
-  height: 100vh;
-  background-color: #161616;
-  transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.product-description__inner {
-  width: 100%;
-  height: 100%;
-}
-.product-description__main {
+.perfume-list {
   position: relative;
   width: 100%;
-  height: 100vh;
-  transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: height;
-}
-.product-description__main > .swiper-wrapper > .swiper-slide {
-  position: relative;
-  background-size: cover;
-  background-position: center;
-}
-.product-description__main > .swiper-wrapper > .swiper-slide::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1;
-  pointer-events: none;
-}
-.product-description__main > .swiper-wrapper > .swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  position: relative;
-  z-index: 0;
-  pointer-events: none;
-}
-.product-description__main .swiper-slide {
-  transition: opacity 0.3s ease;
-  will-change: contents;
-}
-.product-description__main .swiper-slide .container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  pointer-events: none;
-  max-width: 1644px;
-  padding: 0 30px;
-  transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.product-description__main .swiper-slide .product-description__content {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 80%;
-  display: flex;
-  align-items: center;
-  z-index: 11;
-  box-sizing: border-box;
-  top: calc(10.75rem + 2.5rem + 6.25rem);
-  bottom: 6.25rem;
-  padding: 0 30px;
-  flex-direction: row;
-  gap: 9.875rem;
-  pointer-events: auto;
-  transition: gap 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-direction 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: transform, width, gap, padding, top, bottom;
-}
-.product-description__main .swiper-slide .product-description__image {
-  flex: 0 0 auto;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  width: 23.625rem;
-  height: auto;
-  min-height: 25rem;
-  max-width: 23.625rem;
-  max-height: calc(100vh - 10.75rem - 2.5rem - 12.5rem);
-  transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), min-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-image 0.3s ease;
-  will-change: width, height, max-height, min-height, max-width, background-image;
-}
-.product-description__main .swiper-slide .product-description__text {
-  color: #ffffff;
-  font-size: 1.5rem;
-  text-align: left;
-  width: auto;
-  position: relative;
-  z-index: 12;
-  pointer-events: auto;
-  transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), text-align 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: font-size, text-align, width;
-}
-.product-description__main .swiper-slide .product-description__text p {
-  margin-bottom: 1.25rem;
-  transition: margin-bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.product-description__main .swiper-slide .product-description__text p:last-child {
-  margin-bottom: 0;
-}
-.product-description__main .swiper-slide .product-description__text .product-description__artwork-btn {
-  padding: 0.625rem 2.5rem;
-  border-radius: 1.875rem;
-  color: #161616;
-  background-color: #BABABA;
-  border: none;
-  cursor: pointer;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  margin-top: 1.25rem;
-  display: inline-block;
-  position: relative;
-  z-index: 100;
-  pointer-events: auto;
-}
-.product-description__main .swiper-slide .product-description__text .product-description__artwork-btn:hover {
-  background-color: #D9D9D9;
-  color: #161616;
-}
-.product-description__main .swiper-slide .product-description__text .product-description__artwork-btn:active {
-  transform: scale(0.98);
-}
-.product-description__main .swiper-slide .product-description__text-image {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  overflow: visible;
-  cursor: pointer;
-  pointer-events: auto;
-  z-index: 12;
-  width: 19.8125rem;
-  height: 9rem;
-  margin: 0;
-  transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.product-description__main .swiper-slide .product-description__text-image::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  transition: background-color 0.3s ease;
-  z-index: 1;
-  pointer-events: none;
-}
-.product-description__main .swiper-slide .product-description__text-image:hover::before {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.product-description__main .swiper-slide .product-description__text-image:hover .product-description__view-btn {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translate(-50%, -50%) scale(1) !important;
-  display: block !important;
-}
-.product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
-  background-color: rgba(255, 255, 255, 0.9) !important;
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #161616 !important;
-  border: none !important;
-  font-weight: 500;
-  cursor: pointer;
-  opacity: 0;
-  visibility: hidden;
-  display: block;
-  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-  z-index: 100;
-  white-space: nowrap;
-  pointer-events: auto;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
-  padding: 0.75rem 1.875rem;
-  border-radius: 1.875rem;
-  font-size: 1rem;
-}
-.product-description__main .swiper-slide .product-description__text-image .product-description__view-btn:hover {
-  background-color: rgb(255, 255, 255) !important;
-  background: rgb(255, 255, 255) !important;
-  transform: translate(-50%, -50%) scale(1.05) !important;
-}
-.product-description__main .swiper-slide .product-description__text-image .product-description__view-btn:active {
-  transform: translate(-50%, -50%) scale(0.95) !important;
-}
-.product-description__main .swiper-slide:nth-child(1) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume01.png");
-}
-.product-description__main .swiper-slide:nth-child(1) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-1.png");
-}
-.product-description__main .swiper-slide:nth-child(2) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume02.png");
-}
-.product-description__main .swiper-slide:nth-child(2) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-2.png");
-}
-.product-description__main .swiper-slide:nth-child(3) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume03.png");
-}
-.product-description__main .swiper-slide:nth-child(3) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-3.png");
-}
-.product-description__main .swiper-slide:nth-child(4) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume04.png");
-}
-.product-description__main .swiper-slide:nth-child(4) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-4.png");
-}
-.product-description__main .swiper-slide:nth-child(5) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume05.png");
-}
-.product-description__main .swiper-slide:nth-child(5) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-5.png");
-}
-.product-description__main .swiper-slide:nth-child(6) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume06.png");
-}
-.product-description__main .swiper-slide:nth-child(6) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-6.png");
-}
-.product-description__main .swiper-slide:nth-child(7) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume07.png");
-}
-.product-description__main .swiper-slide:nth-child(7) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-7.png");
-}
-.product-description__main .swiper-slide:nth-child(8) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume08.png");
-}
-.product-description__main .swiper-slide:nth-child(8) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-8.png");
-}
-.product-description__main .swiper-slide:nth-child(9) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume09.png");
-}
-.product-description__main .swiper-slide:nth-child(9) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-9.png");
-}
-.product-description__main .swiper-slide:nth-child(10) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume10.png");
-}
-.product-description__main .swiper-slide:nth-child(10) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-10.png");
-}
-.product-description__main .swiper-slide:nth-child(11) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume11.png");
-}
-.product-description__main .swiper-slide:nth-child(11) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-11.png");
-}
-.product-description__main .swiper-slide:nth-child(12) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume12.png");
-}
-.product-description__main .swiper-slide:nth-child(12) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-12.png");
-}
-.product-description__main .swiper-slide:nth-child(13) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume13.png");
-}
-.product-description__main .swiper-slide:nth-child(13) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-13.png");
-}
-.product-description__main .swiper-slide:nth-child(14) .product-description__image {
-  background-image: url("../../assets/images/sub-2/perfume14.png");
-}
-.product-description__main .swiper-slide:nth-child(14) .product-description__text-image {
-  background-image: url("../../assets/images/sub-2/product-14.png");
-}
-.product-description__main > .container {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 100%;
-  z-index: 20;
-  pointer-events: none;
-  max-width: 1644px;
-  padding: 0 30px;
-  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.product-description__main > .container .swiper-button-next,
-.product-description__main > .container .swiper-button-prev {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: auto;
-  display: flex;
-  z-index: 21;
-  transition: right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.product-description__main > .container .swiper-button-next {
-  right: 0;
-}
-.product-description__main > .container .swiper-button-prev {
-  left: 0;
-}
-.product-description__thumbs {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  box-sizing: border-box;
-  z-index: 30;
-  height: 10.75rem;
+  min-height: 100vh;
+  overflow: hidden;
   padding-top: 2.5rem;
-  transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding-bottom: 6.25rem;
 }
-.product-description__thumbs .swiper-slide {
+.perfume-list__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+  z-index: 1;
+}
+.perfume-list__bg .swiper-wrapper {
+  height: 100%;
+}
+.perfume-list__bg .swiper-slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.perfume-list__bg .swiper-slide::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+.perfume-list__thumbs {
+  position: relative;
+  width: 100%;
+  height: 8.25rem;
+  z-index: 10;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+  margin-bottom: 6.25rem;
+}
+.perfume-list__thumbs .swiper-slide {
   opacity: 0.4;
   cursor: pointer;
-  transition: opacity 0.3s ease, width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  width: calc((100% - 30px) / 4);
+  transition: opacity 0.3s ease;
 }
-.product-description__thumbs .swiper-slide img {
+.perfume-list__thumbs .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.product-description__thumbs .swiper-slide-thumb-active {
+.perfume-list__thumbs .swiper-slide-thumb-active {
   opacity: 1;
+}
+.perfume-list__nav {
+  width: 100%;
+}
+.perfume-list__nav .swiper-button-prev,
+.perfume-list__nav .swiper-button-next {
+  pointer-events: auto;
+  color: #ffffff;
+}
+.perfume-list__nav .swiper-button-prev::after {
+  padding-left: 10.5rem;
+}
+.perfume-list__nav .swiper-button-next::after {
+  padding-right: 10.5rem;
+}
+.perfume-list__info {
+  position: relative;
+  width: 62.5625rem;
+  max-width: 100%;
+  margin: 0 auto;
+  z-index: 15;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 30px;
+}
+.perfume-list__info-image {
+  flex-shrink: 0;
+}
+.perfume-list__info-image img {
+  display: block;
+  width: 22.5625rem;
+  height: auto;
+  object-fit: contain;
+}
+.perfume-list__info-text {
+  max-width: 30.125rem;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.perfume-list__info-top {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.perfume-list__info-title {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+.perfume-list__info-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.8;
+}
+.perfume-list__info-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.perfume-list__info-desc {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+.perfume-list__info-btn {
+  align-self: flex-start;
 }
 
 .direct {
@@ -1794,180 +1583,6 @@ body {
   transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), margin-bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.image-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.image-modal.is-open {
-  opacity: 1;
-  visibility: visible;
-}
-.image-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  cursor: pointer;
-}
-.image-modal__content {
-  position: relative;
-  z-index: 10001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 90%;
-  max-height: 90%;
-  transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.image-modal__close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease;
-  z-index: 10002;
-  line-height: 1;
-  padding: 0;
-  font-size: 3rem;
-  width: 3.125rem;
-  height: 3.125rem;
-  margin: 0.625rem;
-}
-.image-modal__close:hover {
-  opacity: 0.7;
-}
-.image-modal__image {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  display: block;
-  max-height: 90vh;
-  transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.artwork-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.artwork-modal.is-open {
-  opacity: 1;
-  visibility: visible;
-}
-.artwork-modal__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
-  cursor: pointer;
-}
-.artwork-modal__content {
-  position: relative;
-  z-index: 10001;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 90%;
-  max-height: 90vh;
-  background-color: #161616;
-  border-radius: 1.25rem;
-  padding: 2.5rem;
-  gap: 1.875rem;
-  overflow-y: auto;
-  transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-.artwork-modal__close {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background: none;
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.3s ease;
-  z-index: 10002;
-  line-height: 1;
-  padding: 0;
-  font-size: 3rem;
-  width: 3.125rem;
-  height: 3.125rem;
-  margin: 0;
-}
-.artwork-modal__close:hover {
-  opacity: 0.7;
-}
-.artwork-modal__image-wrapper {
-  width: 100%;
-  max-width: 50rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.artwork-modal__image {
-  max-width: 100%;
-  width: auto;
-  height: auto;
-  max-height: 60vh;
-  object-fit: contain;
-  display: block;
-}
-.artwork-modal__text {
-  width: 100%;
-  max-width: 50rem;
-  text-align: center;
-  color: #ffffff;
-}
-.artwork-modal__title {
-  font-size: 2.25rem;
-  font-weight: 600;
-  margin-bottom: 0.625rem;
-  color: #ffffff;
-}
-.artwork-modal__artist {
-  font-size: 1.5rem;
-  color: #BABABA;
-  margin-bottom: 1.25rem;
-}
-.artwork-modal__description {
-  font-size: 1.125rem;
-  line-height: 1.6;
-  color: #D9D9D9;
-}
-
 @media (min-width: 1470px) and (max-width: 1719px) {
   .sub-2__kv .kv-text .kv__title {
     font-size: 6.25rem;
@@ -1976,62 +1591,23 @@ body {
     padding-top: 1.75rem;
     font-size: 1.375rem;
   }
-  .product-description__main .swiper-slide .container {
+  .perfume-list__info {
+    width: 56.25rem;
+    padding: 0 28px;
+  }
+  .perfume-list__nav {
     max-width: 1400px;
+    margin: 0 auto 6.25rem;
     padding: 0 28px;
   }
-  .product-description__main .swiper-slide .product-description__content {
-    top: calc(10.25rem + 2.375rem + 5.9375rem);
-    bottom: 5.9375rem;
-    padding: 0 28px;
-    gap: 8.125rem;
-    flex-direction: row;
-    align-items: center;
-    pointer-events: auto;
+  .perfume-list__info-image img {
+    width: 20rem;
   }
-  .product-description__main .swiper-slide .product-description__image {
-    background-size: contain;
-    width: 21.25rem;
-    height: auto;
-    min-height: 23.75rem;
-    max-width: 21.25rem;
-    max-height: calc(100vh - 10.25rem - 2.375rem - 11.875rem);
+  .perfume-list__info-text {
+    max-width: 28.125rem;
   }
-  .product-description__main .swiper-slide .product-description__text {
-    font-size: 1.375rem;
-    text-align: left;
-    pointer-events: auto;
-    position: relative;
-    z-index: 12;
-  }
-  .product-description__main .swiper-slide .product-description__text p {
-    margin-bottom: 1.125rem;
-  }
-  .product-description__main .swiper-slide .product-description__text-image {
-    width: 18.75rem;
-    height: 8.5rem;
-  }
-  .product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-    padding: 0.6875rem 1.75rem;
-    border-radius: 1.75rem;
-    font-size: 0.9375rem;
-  }
-  .product-description__main > .container {
-    max-width: 1400px;
-    padding: 0 28px;
-  }
-  .product-description__main > .container .swiper-button-next {
-    right: 0;
-  }
-  .product-description__main > .container .swiper-button-prev {
-    left: 0;
-  }
-  .product-description__thumbs {
-    height: 10.25rem;
-    padding-top: 2.375rem;
-  }
-  .product-description__thumbs .swiper-slide {
-    width: calc((100% - 72px) / 4);
+  .perfume-list__info-title {
+    font-size: 2.625rem;
   }
   .direct {
     height: 78vh;
@@ -2052,62 +1628,33 @@ body {
     padding-top: 1.625rem;
     font-size: 1.25rem;
   }
-  .product-description__main .swiper-slide .container {
+  .perfume-list__thumbs {
+    height: 6.875rem;
+  }
+  .perfume-list__info {
+    width: 50rem;
+    padding: 0 22px;
+  }
+  .perfume-list__nav {
     max-width: 1140px;
+    margin: 0 auto 6.25rem;
     padding: 0 22px;
   }
-  .product-description__main .swiper-slide .product-description__content {
-    top: calc(9.75rem + 2.1875rem + 5.625rem);
-    bottom: 5.625rem;
-    padding: 0 22px;
-    gap: 6.25rem;
-    flex-direction: row;
-    align-items: center;
-    pointer-events: auto;
-  }
-  .product-description__main .swiper-slide .product-description__image {
-    background-size: contain;
-    width: 18.75rem;
-    height: auto;
-    max-width: 18.75rem;
-    max-height: calc(100vh - 9.75rem - 2.1875rem - 11.25rem);
-    min-height: 22.5rem;
-  }
-  .product-description__main .swiper-slide .product-description__text {
-    font-size: 1.25rem;
-    text-align: left;
-    pointer-events: auto;
-    position: relative;
-    z-index: 12;
-  }
-  .product-description__main .swiper-slide .product-description__text p {
-    margin-bottom: 1rem;
-  }
-  .product-description__main .swiper-slide .product-description__text-image {
+  .perfume-list__info-image img {
     width: 17.5rem;
-    height: 8rem;
   }
-  .product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-    padding: 0.6875rem 1.75rem;
-    border-radius: 1.75rem;
-    font-size: 0.9375rem;
+  .perfume-list__info-text {
+    max-width: 26.25rem;
+    gap: 2rem;
   }
-  .product-description__main > .container {
-    max-width: 1140px;
-    padding: 0 22px;
+  .perfume-list__info-title {
+    font-size: 2.25rem;
   }
-  .product-description__main > .container .swiper-button-next {
-    right: 0;
+  .perfume-list__info-subtitle {
+    font-size: 1.125rem;
   }
-  .product-description__main > .container .swiper-button-prev {
-    left: 0;
-  }
-  .product-description__thumbs {
-    height: 9.75rem;
-    padding-top: 2.1875rem;
-  }
-  .product-description__thumbs .swiper-slide {
-    width: calc((100% - 60px) / 4);
+  .perfume-list__info-desc {
+    font-size: 1rem;
   }
   .direct {
     height: 75vh;
@@ -2131,78 +1678,47 @@ body {
   .sub-2__kv .kv-text .kv__description br {
     display: block;
   }
-  .product-description {
-    min-height: 100vh;
-  }
-  .product-description__main {
-    min-height: 100vh;
-  }
-  .product-description__main .swiper-slide .container {
-    max-width: 720px;
-    padding: 0 24px;
-  }
-  .product-description__main .swiper-slide .product-description__content {
-    top: calc(8.75rem + 1.875rem + 5rem);
-    bottom: 5rem;
-    padding: 0 24px;
-    flex-direction: row;
-    gap: 3.75rem;
-    align-items: center;
-    pointer-events: auto;
-  }
-  .product-description__main .swiper-slide .product-description__image {
-    background-size: contain;
-    width: 15rem;
-    height: auto;
-    max-width: 15rem;
-    max-height: calc(100vh - 8.75rem - 1.875rem - 10rem);
-    min-height: 21.25rem;
-    flex-shrink: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text {
-    font-size: 1.125rem;
-    text-align: left;
-    flex: 1;
-    pointer-events: auto;
-    position: relative;
-    z-index: 12;
-  }
-  .product-description__main .swiper-slide .product-description__text p {
-    margin-bottom: 1rem;
-  }
-  .product-description__main .swiper-slide .product-description__text p:last-child {
-    margin-bottom: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text-image {
-    width: 16.25rem;
-    height: 7.375rem;
-    margin: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-    padding: 0.625rem 1.625rem;
-    border-radius: 1.625rem;
-    font-size: 0.875rem;
-  }
-  .product-description__main > .container {
-    max-width: 720px;
-    padding: 0 24px;
-  }
-  .product-description__main > .container .swiper-button-next,
-  .product-description__main > .container .swiper-button-prev {
-    display: flex;
-  }
-  .product-description__main > .container .swiper-button-next {
-    right: 0;
-  }
-  .product-description__main > .container .swiper-button-prev {
-    left: 0;
-  }
-  .product-description__thumbs {
-    height: 8.75rem;
+  .perfume-list {
     padding-top: 1.875rem;
+    padding-bottom: 3.75rem;
   }
-  .product-description__thumbs .swiper-slide {
-    width: calc((100% - 48px) / 4);
+  .perfume-list__thumbs {
+    height: 5.625rem;
+    margin-bottom: 3.75rem;
+  }
+  .perfume-list__nav {
+    width: 100%;
+    max-width: 37.5rem;
+    margin: 0 auto 3.75rem;
+  }
+  .perfume-list__info {
+    width: 100%;
+    max-width: 37.5rem;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0 24px;
+  }
+  .perfume-list__info-image img {
+    width: 15rem;
+  }
+  .perfume-list__info-text {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .perfume-list__info-title {
+    font-size: 2rem;
+  }
+  .perfume-list__info-subtitle {
+    font-size: 1rem;
+  }
+  .perfume-list__info-desc {
+    font-size: 0.9375rem;
+  }
+  .perfume-list__info-btn {
+    align-self: center;
   }
   .direct {
     height: 70vh;
@@ -2214,40 +1730,6 @@ body {
     font-size: 1.5rem;
     margin-bottom: 1.375rem;
   }
-  .image-modal__content {
-    max-width: 90%;
-    max-height: 90%;
-  }
-  .image-modal__close {
-    font-size: 2.75rem;
-    width: 3rem;
-    height: 3rem;
-    margin: 0.625rem;
-  }
-  .image-modal__image {
-    max-height: 90vh;
-  }
-  .artwork-modal__content {
-    max-width: 95%;
-    padding: 1.875rem;
-    gap: 1.25rem;
-  }
-  .artwork-modal__close {
-    top: 0.9375rem;
-    right: 0.9375rem;
-    font-size: 2.5rem;
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-  .artwork-modal__title {
-    font-size: 1.75rem;
-  }
-  .artwork-modal__artist {
-    font-size: 1.25rem;
-  }
-  .artwork-modal__description {
-    font-size: 1rem;
-  }
 }
 @media (min-width: 480px) and (max-width: 767px) {
   .sub-2__kv .kv-text .kv__title {
@@ -2257,68 +1739,51 @@ body {
     padding-top: 1.25rem;
     font-size: 1rem;
   }
-  .product-description__main .swiper-slide .container {
-    max-width: 440px;
-    padding: 0 20px;
+  .perfume-list {
+    padding-top: 1.875rem;
+    padding-bottom: 3.125rem;
   }
-  .product-description__main .swiper-slide .product-description__content {
-    top: calc(7.5rem + 1.5625rem + 4.375rem);
-    bottom: 4.375rem;
-    padding: 0 20px;
-    flex-direction: column;
-    gap: 1.875rem;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
+  .perfume-list__bg {
+    z-index: -2;
   }
-  .product-description__main .swiper-slide .product-description__image {
-    background-size: contain;
-    width: 12.5rem;
-    height: 21.875rem;
-    max-width: 100%;
-    max-height: 50vh;
-    flex-shrink: 0;
+  .perfume-list__thumbs {
+    height: 4.375rem;
+    margin-bottom: 3.125rem;
   }
-  .product-description__main .swiper-slide .product-description__text {
-    font-size: 1rem;
-    text-align: center;
+  .perfume-list__nav {
     width: 100%;
-    pointer-events: auto;
-    position: relative;
-    z-index: 12;
+    max-width: 37.5rem;
+    margin: 0 auto 3.75rem;
   }
-  .product-description__main .swiper-slide .product-description__text p {
-    margin-bottom: 0.875rem;
-  }
-  .product-description__main .swiper-slide .product-description__text p:last-child {
-    margin-bottom: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text-image {
-    width: 15rem;
-    height: 6.75rem;
+  .perfume-list__info {
+    width: 100%;
     margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.875rem;
+    padding: 0 20px;
+    z-index: -1;
   }
-  .product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-    padding: 0.625rem 1.5rem;
-    border-radius: 1.5rem;
+  .perfume-list__info-image img {
+    width: 12.5rem;
+  }
+  .perfume-list__info-text {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .perfume-list__info-title {
+    font-size: 1.75rem;
+  }
+  .perfume-list__info-subtitle {
     font-size: 0.875rem;
   }
-  .product-description__main > .container {
-    max-width: 440px;
-    padding: 0 20px;
+  .perfume-list__info-desc {
+    font-size: 0.875rem;
   }
-  .product-description__main > .container .swiper-button-next {
-    right: 0;
-  }
-  .product-description__main > .container .swiper-button-prev {
-    left: 0;
-  }
-  .product-description__thumbs {
-    height: 7.5rem;
-    padding-top: 1.5625rem;
-  }
-  .product-description__thumbs .swiper-slide {
-    width: calc((100% - 32px) / 3);
+  .perfume-list__info-btn {
+    align-self: center;
   }
   .direct {
     height: 65vh;
@@ -2329,37 +1794,6 @@ body {
   .direct__title {
     font-size: 1.375rem;
     margin-bottom: 1.25rem;
-  }
-  .image-modal__content {
-    max-width: 92%;
-    max-height: 88%;
-  }
-  .image-modal__close {
-    font-size: 2.5rem;
-    width: 2.75rem;
-    height: 2.75rem;
-    margin: 0.5rem;
-  }
-  .artwork-modal__content {
-    max-width: 95%;
-    padding: 1.5625rem;
-    gap: 1.125rem;
-  }
-  .artwork-modal__close {
-    top: 0.75rem;
-    right: 0.75rem;
-    font-size: 2.25rem;
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  .artwork-modal__title {
-    font-size: 1.5rem;
-  }
-  .artwork-modal__artist {
-    font-size: 1.125rem;
-  }
-  .artwork-modal__description {
-    font-size: 0.9375rem;
   }
 }
 @media (min-width: 320px) and (max-width: 479px) {
@@ -2373,72 +1807,49 @@ body {
   .sub-2__kv .kv-text .kv__description br {
     display: none;
   }
-  .product-description__main .swiper-slide .container {
-    max-width: 320px;
-    padding: 0 16px;
-  }
-  .product-description__main .swiper-slide .product-description__content {
-    top: calc(6.25rem + 1.25rem + 3.75rem);
-    bottom: 3.75rem;
-    padding: 0 16px;
-    flex-direction: column;
-    gap: 1.25rem;
-    align-items: center;
-    justify-content: center;
-    pointer-events: auto;
-  }
-  .product-description__main .swiper-slide .product-description__image {
-    background-size: contain;
-    width: 10rem;
-    height: 17.5rem;
-    max-width: 100%;
-    max-height: 40vh;
-    flex-shrink: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text {
-    font-size: 0.875rem;
-    text-align: center;
-    width: 100%;
-    pointer-events: auto;
-    position: relative;
-    z-index: 12;
-  }
-  .product-description__main .swiper-slide .product-description__text p {
-    margin-bottom: 0.75rem;
-  }
-  .product-description__main .swiper-slide .product-description__text p:last-child {
-    margin-bottom: 0;
-  }
-  .product-description__main .swiper-slide .product-description__text-image {
-    width: 12.5rem;
-    height: 5.625rem;
-    margin: 0 auto;
-  }
-  .product-description__main .swiper-slide .product-description__text-image .product-description__view-btn {
-    padding: 0.5rem 1.25rem;
-    border-radius: 1.25rem;
-    font-size: 0.75rem;
-  }
-  .product-description__main > .container {
-    max-width: 320px;
-    padding: 0 16px;
-  }
-  .product-description__main > .container .swiper-button-next,
-  .product-description__main > .container .swiper-button-prev {
-    display: none;
-  }
-  .product-description__main > .container .swiper-button-next {
-    right: 0;
-  }
-  .product-description__main > .container .swiper-button-prev {
-    left: 0;
-  }
-  .product-description__thumbs {
-    height: 6.25rem;
+  .perfume-list {
     padding-top: 1.25rem;
+    padding-bottom: 2.5rem;
   }
-  .product-description__thumbs .swiper-slide {
-    width: calc((100% - 12px) / 2);
+  .perfume-list__thumbs {
+    height: 3.75rem;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .perfume-list__nav {
+    width: 100%;
+  }
+  .perfume-list__info {
+    width: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 0 16px;
+  }
+  .perfume-list__info-image img {
+    width: 10rem;
+  }
+  .perfume-list__info-text {
+    max-width: 100%;
+    text-align: center;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  .perfume-list__info-top {
+    gap: 0.625rem;
+  }
+  .perfume-list__info-bottom {
+    gap: 1rem;
+  }
+  .perfume-list__info-title {
+    font-size: 1.5rem;
+  }
+  .perfume-list__info-subtitle {
+    font-size: 0.8125rem;
+  }
+  .perfume-list__info-desc {
+    font-size: 0.8125rem;
   }
   .direct {
     height: 60vh;
@@ -2449,46 +1860,5 @@ body {
   .direct__title {
     font-size: 1.125rem;
     margin-bottom: 1rem;
-  }
-  .image-modal__content {
-    max-width: 95%;
-    max-height: 85%;
-  }
-  .image-modal__close {
-    font-size: 2rem;
-    width: 2.25rem;
-    height: 2.25rem;
-    margin: 0.375rem;
-  }
-  .image-modal__image {
-    max-height: 80vh;
-  }
-  .artwork-modal__content {
-    max-width: 98%;
-    padding: 1.25rem;
-    gap: 0.9375rem;
-    max-height: 85vh;
-  }
-  .artwork-modal__close {
-    top: 0.625rem;
-    right: 0.625rem;
-    font-size: 2rem;
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-  .artwork-modal__image-wrapper {
-    max-width: 100%;
-  }
-  .artwork-modal__image {
-    max-height: 40vh;
-  }
-  .artwork-modal__title {
-    font-size: 1.25rem;
-  }
-  .artwork-modal__artist {
-    font-size: 1rem;
-  }
-  .artwork-modal__description {
-    font-size: 0.875rem;
   }
 }

@@ -64,28 +64,37 @@
     }
 }
 
-.product-description {
-    width: 100%;
-    height: 100vh;
-    background-color: $colorBlack;
-    transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+// ========================================
+// Perfume List Section
+// ========================================
 
-    &__inner {
+.perfume-list {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    padding-top: rem(40);
+    padding-bottom: rem(100);
+
+    // Background Swiper
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
-    }
+        z-index: 1;
 
-    &__main {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-        transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        will-change: height;
+        .swiper-wrapper {
+            height: 100%;
+        }
 
-        >.swiper-wrapper>.swiper-slide {
-            position: relative;
+        .swiper-slide {
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
 
             &::after {
                 content: '';
@@ -94,390 +103,26 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0, 0, 0, 0.8);
-                z-index: 1;
+                background-color: rgba(0, 0, 0, 0.6);
                 pointer-events: none;
-            }
-
-            img {
-                display: block;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                position: relative;
-                z-index: 0;
-                pointer-events: none;
-            }
-        }
-
-        .swiper-slide {
-            transition: opacity 0.3s ease;
-            will-change: contents;
-
-            .container {
-                position: absolute;
-                top: 0;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 100%;
-                height: 100%;
-                z-index: 10;
-                pointer-events: none;
-                max-width: $container-desktop-l;
-                padding: 0 $padding-desktop-l;
-                transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
-
-            .product-description__content {
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 80%;
-                max-width: 80%;
-                display: flex;
-                align-items: center;
-                z-index: 11;
-                box-sizing: border-box;
-                top: calc(rem(172) + rem(40) + rem(100));
-                bottom: rem(100);
-                padding: 0 $padding-desktop-l;
-                flex-direction: row;
-                gap: rem(158);
-                pointer-events: auto;
-                transition: gap 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), flex-direction 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                will-change: transform, width, gap, padding, top, bottom;
-            }
-
-            .product-description__image {
-                flex: 0 0 auto;
-                background-size: contain;
-                background-position: center;
-                background-repeat: no-repeat;
-                width: rem(378);
-                height: auto;
-                min-height: rem(400);
-                max-width: rem(378);
-                max-height: calc(100vh - rem(172) - rem(40) - rem(200));
-                transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), min-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-image 0.3s ease;
-                will-change: width, height, max-height, min-height, max-width, background-image;
-            }
-
-            .product-description__text {
-                color: $colorText50;
-                font-size: rem(24);
-                text-align: left;
-                width: auto;
-                position: relative;
-                z-index: 12;
-                pointer-events: auto;
-                transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), text-align 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                will-change: font-size, text-align, width;
-
-                p {
-                    margin-bottom: rem(20);
-                    transition: margin-bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                }
-
-                .product-description__artwork-btn {
-                    padding: rem(10) rem(40);
-                    border-radius: rem(30);
-                    color: $colorBlack;
-                    background-color: $colorText150;
-                    border: none;
-                    cursor: pointer;
-                    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-                    font-size: rem(16);
-                    font-weight: 500;
-                    transition: all 0.3s ease;
-                    margin-top: rem(20);
-                    display: inline-block;
-                    position: relative;
-                    z-index: 100;
-                    pointer-events: auto;
-
-                    &:hover {
-                        background-color: $colorText100;
-                        color: $colorBlack;
-                    }
-
-                    &:active {
-                        transform: scale(0.98);
-                    }
-                }
-
-                &-image {
-                    background-size: cover;
-                    background-position: center;
-                    background-repeat: no-repeat;
-                    position: relative;
-                    overflow: visible;
-                    cursor: pointer;
-                    pointer-events: auto;
-                    z-index: 12;
-                    width: rem(317);
-                    height: rem(144);
-                    margin: 0;
-                    transition: width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-                    &::before {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        background-color: rgba(0, 0, 0, 0);
-                        transition: background-color 0.3s ease;
-                        z-index: 1;
-                        pointer-events: none;
-                    }
-
-                    &:hover {
-                        &::before {
-                            background-color: rgba(0, 0, 0, 0.5);
-                        }
-
-                        .product-description__view-btn {
-                            opacity: 1 !important;
-                            visibility: visible !important;
-                            transform: translate(-50%, -50%) scale(1) !important;
-                            display: block !important;
-                        }
-                    }
-
-                    .product-description__view-btn {
-                        position: absolute;
-                        top: 50%;
-                        left: 50%;
-                        transform: translate(-50%, -50%) scale(0.9);
-                        background-color: rgba(255, 255, 255, 0.9) !important;
-                        background: rgba(255, 255, 255, 0.9) !important;
-                        color: #161616 !important;
-                        border: none !important;
-                        font-weight: 500;
-                        cursor: pointer;
-                        opacity: 0;
-                        visibility: hidden;
-                        display: block;
-                        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
-                        z-index: 100;
-                        white-space: nowrap;
-                        pointer-events: auto;
-                        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
-                        padding: rem(12) rem(30);
-                        border-radius: rem(30);
-                        font-size: rem(16);
-
-                        &:hover {
-                            background-color: rgba(255, 255, 255, 1) !important;
-                            background: rgba(255, 255, 255, 1) !important;
-                            transform: translate(-50%, -50%) scale(1.05) !important;
-                        }
-
-                        &:active {
-                            transform: translate(-50%, -50%) scale(0.95) !important;
-                        }
-                    }
-                }
-            }
-        }
-
-        // 각 슬라이드별 이미지 설정
-        .swiper-slide:nth-child(1) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume01.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-1.png');
-            }
-        }
-
-        .swiper-slide:nth-child(2) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume02.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-2.png');
-            }
-        }
-
-        .swiper-slide:nth-child(3) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume03.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-3.png');
-            }
-        }
-
-        .swiper-slide:nth-child(4) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume04.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-4.png');
-            }
-        }
-
-        .swiper-slide:nth-child(5) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume05.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-5.png');
-            }
-        }
-
-        .swiper-slide:nth-child(6) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume06.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-6.png');
-            }
-        }
-
-        .swiper-slide:nth-child(7) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume07.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-7.png');
-            }
-        }
-
-        .swiper-slide:nth-child(8) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume08.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-8.png');
-            }
-        }
-
-        .swiper-slide:nth-child(9) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume09.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-9.png');
-            }
-        }
-
-        .swiper-slide:nth-child(10) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume10.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-10.png');
-            }
-        }
-
-        .swiper-slide:nth-child(11) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume11.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-11.png');
-            }
-        }
-
-        .swiper-slide:nth-child(12) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume12.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-12.png');
-            }
-        }
-
-        .swiper-slide:nth-child(13) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume13.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-13.png');
-            }
-        }
-
-        .swiper-slide:nth-child(14) {
-            .product-description__image {
-                background-image: url('../../assets/images/sub-2/perfume14.png');
-            }
-
-            .product-description__text-image {
-                background-image: url('../../assets/images/sub-2/product-14.png');
-            }
-        }
-
-        >.container {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-            z-index: 20;
-            pointer-events: none;
-            max-width: $container-desktop-l;
-            padding: 0 $padding-desktop-l;
-            transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-            .swiper-button-next,
-            .swiper-button-prev {
-                position: fixed;
-                top: 50%;
-                transform: translateY(-50%);
-                pointer-events: auto;
-                display: flex;
-                z-index: 21;
-                transition: right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            }
-
-            .swiper-button-next {
-                right: 0;
-            }
-
-            .swiper-button-prev {
-                left: 0;
             }
         }
     }
 
+    // Thumbnail Swiper
     &__thumbs {
-        position: absolute;
-        top: 0;
-        left: 0;
+        position: relative;
         width: 100%;
+        height: rem(132);
+        z-index: 10;
+        padding: 0 rem(24);
         box-sizing: border-box;
-        z-index: 30;
-        height: rem(172);
-        padding-top: rem(40);
-        transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        margin-bottom: rem(100);
 
         .swiper-slide {
-            height: 100%;
             opacity: 0.4;
             cursor: pointer;
-            transition: opacity 0.3s ease, width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            width: calc((100% - 30px) / 4);
+            transition: opacity 0.3s ease;
 
             img {
                 display: block;
@@ -485,11 +130,102 @@
                 height: 100%;
                 object-fit: cover;
             }
+
+            &-thumb-active {
+                opacity: 1;
+            }
+        }
+    }
+
+    // Navigation (padded to match container start/end)
+    &__nav {
+        width: 100%;
+        // pointer-events: none;
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            pointer-events: auto;
+            color: $colorText50;
         }
 
-        .swiper-slide-thumb-active {
-            opacity: 1;
+        .swiper-button-prev {
+            &::after {
+                padding-left: rem(168);
+            }
         }
+
+        .swiper-button-next {
+            &::after {
+                padding-right: rem(168);
+            }
+        }
+    }
+
+    // Info Area
+    &__info {
+        position: relative;
+        width: rem(1001);
+        max-width: 100%;
+        margin: 0 auto;
+        z-index: 15;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 $padding-desktop-l;
+    }
+
+    &__info-image {
+        flex-shrink: 0;
+
+        img {
+            display: block;
+            width: rem(361);
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    &__info-text {
+        max-width: rem(482);
+        color: $colorText50;
+        display: flex;
+        flex-direction: column;
+        // justify-content: left;
+        gap: rem(40);
+    }
+
+    &__info-top {
+        display: flex;
+        flex-direction: column;
+        gap: rem(16);
+    }
+
+    &__info-title {
+        font-size: rem(48);
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    &__info-subtitle {
+        font-size: rem(20);
+        opacity: 0.8;
+    }
+
+    &__info-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: rem(24);
+    }
+
+    &__info-desc {
+        font-size: rem(18);
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    &__info-btn {
+        align-self: flex-start;
     }
 }
 
@@ -534,202 +270,12 @@
     }
 }
 
-.image-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-
-    &.is-open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    &__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        cursor: pointer;
-    }
-
-    &__content {
-        position: relative;
-        z-index: 10001;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 90%;
-        max-height: 90%;
-        transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    &__close {
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: none;
-        border: none;
-        color: $colorText50;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.3s ease;
-        z-index: 10002;
-        line-height: 1;
-        padding: 0;
-        font-size: rem(48);
-        width: rem(50);
-        height: rem(50);
-        margin: rem(10);
-
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-
-    &__image {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        display: block;
-        max-height: 90vh;
-        transition: max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-}
-
-.artwork-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-
-    &.is-open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    &__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.9);
-        cursor: pointer;
-    }
-
-    &__content {
-        position: relative;
-        z-index: 10001;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        max-width: 90%;
-        max-height: 90vh;
-        background-color: $colorBlack;
-        border-radius: rem(20);
-        padding: rem(40);
-        gap: rem(30);
-        overflow-y: auto;
-        transition: max-width 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), max-height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    &__close {
-        position: absolute;
-        top: rem(20);
-        right: rem(20);
-        background: none;
-        border: none;
-        color: $colorText50;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: opacity 0.3s ease;
-        z-index: 10002;
-        line-height: 1;
-        padding: 0;
-        font-size: rem(48);
-        width: rem(50);
-        height: rem(50);
-        margin: 0;
-
-        &:hover {
-            opacity: 0.7;
-        }
-    }
-
-    &__image-wrapper {
-        width: 100%;
-        max-width: rem(800);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &__image {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        max-height: 60vh;
-        object-fit: contain;
-        display: block;
-    }
-
-    &__text {
-        width: 100%;
-        max-width: rem(800);
-        text-align: center;
-        color: $colorText50;
-    }
-
-    &__title {
-        font-size: rem(36);
-        font-weight: 600;
-        margin-bottom: rem(10);
-        color: $colorText50;
-    }
-
-    &__artist {
-        font-size: rem(24);
-        color: $colorText150;
-        margin-bottom: rem(20);
-    }
-
-    &__description {
-        font-size: rem(18);
-        line-height: 1.6;
-        color: $colorText100;
-    }
-}
 
 // ========================================
 // Desktop-S Styles (min-width: 1470px and max-width: 1719px)
 // ========================================
 
-@media (min-width: $breakpoint-desktop-s) and (max-width: 1719px) {
+@media (min-width: 1470px) and (max-width: 1719px) {
     .sub-2__kv {
         .kv-text {
             .kv__title {
@@ -743,78 +289,28 @@
         }
     }
 
-    .product-description {
-        &__main {
-            .swiper-slide {
-                .container {
-                    max-width: $container-desktop-s;
-                    padding: 0 $padding-desktop-s;
-                }
-
-                .product-description__content {
-                    top: calc(rem(164) + rem(38) + rem(95));
-                    bottom: rem(95);
-                    padding: 0 $padding-desktop-s;
-                    gap: rem(130);
-                    flex-direction: row;
-                    align-items: center;
-                    pointer-events: auto;
-                }
-
-                .product-description__image {
-                    background-size: contain;
-                    width: rem(340);
-                    height: auto;
-                    min-height: rem(380);
-                    max-width: rem(340);
-                    max-height: calc(100vh - rem(164) - rem(38) - rem(190));
-                }
-
-                .product-description__text {
-                    font-size: rem(22);
-                    text-align: left;
-                    pointer-events: auto;
-                    position: relative;
-                    z-index: 12;
-
-                    p {
-                        margin-bottom: rem(18);
-                    }
-
-                    &-image {
-                        width: rem(300);
-                        height: rem(136);
-
-                        .product-description__view-btn {
-                            padding: rem(11) rem(28);
-                            border-radius: rem(28);
-                            font-size: rem(15);
-                        }
-                    }
-                }
-            }
-
-            >.container {
-                max-width: $container-desktop-s;
-                padding: 0 $padding-desktop-s;
-
-                .swiper-button-next {
-                    right: 0;
-                }
-
-                .swiper-button-prev {
-                    left: 0;
-                }
-            }
+    .perfume-list {
+        &__info {
+            width: rem(900);
+            padding: 0 $padding-desktop-s;
         }
 
-        &__thumbs {
-            height: rem(164);
-            padding-top: rem(38);
+        &__nav {
+            max-width: $container-desktop-s;
+            margin: 0 auto rem(100);
+            padding: 0 $padding-desktop-s;
+        }
 
-            .swiper-slide {
-                width: calc((100% - 72px) / 4);
-            }
+        &__info-image img {
+            width: rem(320);
+        }
+
+        &__info-text {
+            max-width: rem(450);
+        }
+
+        &__info-title {
+            font-size: rem(42);
         }
     }
 
@@ -836,7 +332,7 @@
 // Laptop Styles (min-width: 1200px and max-width: 1469px)
 // ========================================
 
-@media (min-width: $breakpoint-laptop) and (max-width: 1469px) {
+@media (min-width: 1200px) and (max-width: 1469px) {
     .sub-2__kv {
         .kv-text {
             .kv__title {
@@ -850,78 +346,41 @@
         }
     }
 
-    .product-description {
-        &__main {
-            .swiper-slide {
-                .container {
-                    max-width: $container-laptop;
-                    padding: 0 $padding-laptop;
-                }
-
-                .product-description__content {
-                    top: calc(rem(156) + rem(35) + rem(90));
-                    bottom: rem(90);
-                    padding: 0 $padding-laptop;
-                    gap: rem(100);
-                    flex-direction: row;
-                    align-items: center;
-                    pointer-events: auto;
-                }
-
-                .product-description__image {
-                    background-size: contain;
-                    width: rem(300);
-                    height: auto;
-                    max-width: rem(300);
-                    max-height: calc(100vh - rem(156) - rem(35) - rem(180));
-                    min-height: rem(360);
-                }
-
-                .product-description__text {
-                    font-size: rem(20);
-                    text-align: left;
-                    pointer-events: auto;
-                    position: relative;
-                    z-index: 12;
-
-                    p {
-                        margin-bottom: rem(16);
-                    }
-
-                    &-image {
-                        width: rem(280);
-                        height: rem(128);
-
-                        .product-description__view-btn {
-                            padding: rem(11) rem(28);
-                            border-radius: rem(28);
-                            font-size: rem(15);
-                        }
-                    }
-                }
-            }
-
-            >.container {
-                max-width: $container-laptop;
-                padding: 0 $padding-laptop;
-
-                .swiper-button-next {
-                    right: 0;
-                }
-
-                .swiper-button-prev {
-                    left: 0;
-                }
-            }
+    .perfume-list {
+        &__thumbs {
+            height: rem(110);
         }
 
-        &__thumbs {
-            height: rem(156);
-            padding-top: rem(35);
+        &__info {
+            width: rem(800);
+            padding: 0 $padding-laptop;
+        }
 
-            .swiper-slide {
-                width: calc((100% - 60px) / 4);
-            }
+        &__nav {
+            max-width: $container-laptop;
+            margin: 0 auto rem(100);
+            padding: 0 $padding-laptop;
+        }
+
+        &__info-image img {
+            width: rem(280);
+        }
+
+        &__info-text {
+            max-width: rem(420);
+            gap: rem(32);
+        }
+
+        &__info-title {
+            font-size: rem(36);
+        }
+
+        &__info-subtitle {
+            font-size: rem(18);
+        }
+
+        &__info-desc {
+            font-size: rem(16);
         }
     }
 
@@ -943,7 +402,7 @@
 // Tablet-L Styles (min-width: 768px and max-width: 1199px)
 // ========================================
 
-@media (min-width: $breakpoint-tablet-l) and (max-width: 1199px) {
+@media (min-width: 768px) and (max-width: 1199px) {
     .sub-2__kv {
         .kv-text {
             .kv__title {
@@ -961,94 +420,55 @@
         }
     }
 
-    .product-description {
-        min-height: 100vh;
-
-        &__main {
-            min-height: 100vh;
-
-            .swiper-slide {
-                .container {
-                    max-width: $container-tablet-l;
-                    padding: 0 $padding-tablet-l;
-                }
-
-                .product-description__content {
-                    top: calc(rem(140) + rem(30) + rem(80));
-                    bottom: rem(80);
-                    padding: 0 $padding-tablet-l;
-                    flex-direction: row;
-                    gap: rem(60);
-                    align-items: center;
-                    pointer-events: auto;
-                }
-
-                .product-description__image {
-                    background-size: contain;
-                    width: rem(240);
-                    height: auto;
-                    max-width: rem(240);
-                    max-height: calc(100vh - rem(140) - rem(30) - rem(160));
-                    min-height: rem(340);
-                    flex-shrink: 0;
-                }
-
-                .product-description__text {
-                    font-size: rem(18);
-                    text-align: left;
-                    flex: 1;
-                    pointer-events: auto;
-                    position: relative;
-                    z-index: 12;
-
-                    p {
-                        margin-bottom: rem(16);
-
-                        &:last-child {
-                            margin-bottom: 0;
-                        }
-                    }
-
-                    &-image {
-                        width: rem(260);
-                        height: rem(118);
-                        margin: 0;
-
-                        .product-description__view-btn {
-                            padding: rem(10) rem(26);
-                            border-radius: rem(26);
-                            font-size: rem(14);
-                        }
-                    }
-                }
-            }
-
-            >.container {
-                max-width: $container-tablet-l;
-                padding: 0 $padding-tablet-l;
-
-                .swiper-button-next,
-                .swiper-button-prev {
-                    display: flex;
-                }
-
-                .swiper-button-next {
-                    right: 0;
-                }
-
-                .swiper-button-prev {
-                    left: 0;
-                }
-            }
-        }
+    .perfume-list {
+        padding-top: rem(30);
+        padding-bottom: rem(60);
 
         &__thumbs {
-            height: rem(140);
-            padding-top: rem(30);
+            height: rem(90);
+            margin-bottom: rem(60);
+        }
 
-            .swiper-slide {
-                width: calc((100% - 48px) / 4);
-            }
+        &__nav {
+            width: 100%;
+            max-width: rem(600);
+            margin: 0 auto rem(60);
+        }
+
+        &__info {
+            width: 100%;
+            max-width: rem(600);
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            gap: rem(40);
+            padding: 0 $padding-tablet-l;
+        }
+
+        &__info-image img {
+            width: rem(240);
+        }
+
+        &__info-text {
+            max-width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        &__info-title {
+            font-size: rem(32);
+        }
+
+        &__info-subtitle {
+            font-size: rem(16);
+        }
+
+        &__info-desc {
+            font-size: rem(15);
+        }
+
+        &__info-btn {
+            align-self: center;
         }
     }
 
@@ -1064,59 +484,13 @@
             margin-bottom: rem(22);
         }
     }
-
-    .image-modal {
-        &__content {
-            max-width: 90%;
-            max-height: 90%;
-        }
-
-        &__close {
-            font-size: rem(44);
-            width: rem(48);
-            height: rem(48);
-            margin: rem(10);
-        }
-
-        &__image {
-            max-height: 90vh;
-        }
-    }
-
-    .artwork-modal {
-        &__content {
-            max-width: 95%;
-            padding: rem(30);
-            gap: rem(20);
-        }
-
-        &__close {
-            top: rem(15);
-            right: rem(15);
-            font-size: rem(40);
-            width: rem(44);
-            height: rem(44);
-        }
-
-        &__title {
-            font-size: rem(28);
-        }
-
-        &__artist {
-            font-size: rem(20);
-        }
-
-        &__description {
-            font-size: rem(16);
-        }
-    }
 }
 
 // ========================================
 // Tablet-S Styles (min-width: 480px and max-width: 767px)
 // ========================================
 
-@media (min-width: $breakpoint-tablet-s) and (max-width: 767px) {
+@media (min-width: 480px) and (max-width: 767px) {
     .sub-2__kv {
         .kv-text {
             .kv__title {
@@ -1130,85 +504,61 @@
         }
     }
 
-    .product-description {
-        &__main {
-            .swiper-slide {
-                .container {
-                    max-width: $container-tablet-s;
-                    padding: 0 $padding-tablet-s;
-                }
+    .perfume-list {
+        padding-top: rem(30);
+        padding-bottom: rem(50);
 
-                .product-description__content {
-                    top: calc(rem(120) + rem(25) + rem(70));
-                    bottom: rem(70);
-                    padding: 0 $padding-tablet-s;
-                    flex-direction: column;
-                    gap: rem(30);
-                    align-items: center;
-                    justify-content: center;
-                    pointer-events: auto;
-                }
-
-                .product-description__image {
-                    background-size: contain;
-                    width: rem(200);
-                    height: rem(350);
-                    max-width: 100%;
-                    max-height: 50vh;
-                    flex-shrink: 0;
-                }
-
-                .product-description__text {
-                    font-size: rem(16);
-                    text-align: center;
-                    width: 100%;
-                    pointer-events: auto;
-                    position: relative;
-                    z-index: 12;
-
-                    p {
-                        margin-bottom: rem(14);
-
-                        &:last-child {
-                            margin-bottom: 0;
-                        }
-                    }
-
-                    &-image {
-                        width: rem(240);
-                        height: rem(108);
-                        margin: 0 auto;
-
-                        .product-description__view-btn {
-                            padding: rem(10) rem(24);
-                            border-radius: rem(24);
-                            font-size: rem(14);
-                        }
-                    }
-                }
-            }
-
-            >.container {
-                max-width: $container-tablet-s;
-                padding: 0 $padding-tablet-s;
-
-                .swiper-button-next {
-                    right: 0;
-                }
-
-                .swiper-button-prev {
-                    left: 0;
-                }
-            }
+        &__bg {
+            z-index: -2;
         }
 
         &__thumbs {
-            height: rem(120);
-            padding-top: rem(25);
+            height: rem(70);
+            margin-bottom: rem(50);
+        }
 
-            .swiper-slide {
-                width: calc((100% - 32px) / 3);
-            }
+        &__nav {
+            // display: none;
+            width: 100%;
+            max-width: rem(600);
+            margin: 0 auto rem(60);
+        }
+
+        &__info {
+            width: 100%;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            gap: rem(30);
+            padding: 0 $padding-tablet-s;
+            z-index: -1;
+        }
+
+        &__info-image img {
+            width: rem(200);
+        }
+
+        &__info-text {
+            max-width: 100%;
+            text-align: center;
+            align-items: center;
+            gap: rem(24);
+        }
+
+        &__info-title {
+            font-size: rem(28);
+        }
+
+        &__info-subtitle {
+            font-size: rem(14);
+        }
+
+        &__info-desc {
+            font-size: rem(14);
+        }
+
+        &__info-btn {
+            align-self: center;
         }
     }
 
@@ -1224,55 +574,13 @@
             margin-bottom: rem(20);
         }
     }
-
-    .image-modal {
-        &__content {
-            max-width: 92%;
-            max-height: 88%;
-        }
-
-        &__close {
-            font-size: rem(40);
-            width: rem(44);
-            height: rem(44);
-            margin: rem(8);
-        }
-    }
-
-    .artwork-modal {
-        &__content {
-            max-width: 95%;
-            padding: rem(25);
-            gap: rem(18);
-        }
-
-        &__close {
-            top: rem(12);
-            right: rem(12);
-            font-size: rem(36);
-            width: rem(40);
-            height: rem(40);
-        }
-
-        &__title {
-            font-size: rem(24);
-        }
-
-        &__artist {
-            font-size: rem(18);
-        }
-
-        &__description {
-            font-size: rem(15);
-        }
-    }
 }
 
 // ========================================
 // Mobile Styles (min-width: 320px and max-width: 479px)
 // ========================================
 
-@media (min-width: $breakpoint-mobile) and (max-width: 479px) {
+@media (min-width: 320px) and (max-width: 479px) {
     .sub-2__kv {
         .kv-text {
             .kv__title {
@@ -1290,90 +598,61 @@
         }
     }
 
-    .product-description {
-        &__main {
-            .swiper-slide {
-                .container {
-                    max-width: $container-mobile;
-                    padding: 0 $padding-mobile;
-                }
-
-                .product-description__content {
-                    top: calc(rem(100) + rem(20) + rem(60));
-                    bottom: rem(60);
-                    padding: 0 $padding-mobile;
-                    flex-direction: column;
-                    gap: rem(20);
-                    align-items: center;
-                    justify-content: center;
-                    pointer-events: auto;
-                }
-
-                .product-description__image {
-                    background-size: contain;
-                    width: rem(160);
-                    height: rem(280);
-                    max-width: 100%;
-                    max-height: 40vh;
-                    flex-shrink: 0;
-                }
-
-                .product-description__text {
-                    font-size: rem(14);
-                    text-align: center;
-                    width: 100%;
-                    pointer-events: auto;
-                    position: relative;
-                    z-index: 12;
-
-                    p {
-                        margin-bottom: rem(12);
-
-                        &:last-child {
-                            margin-bottom: 0;
-                        }
-                    }
-
-                    &-image {
-                        width: rem(200);
-                        height: rem(90);
-                        margin: 0 auto;
-
-                        .product-description__view-btn {
-                            padding: rem(8) rem(20);
-                            border-radius: rem(20);
-                            font-size: rem(12);
-                        }
-                    }
-                }
-            }
-
-            >.container {
-                max-width: $container-mobile;
-                padding: 0 $padding-mobile;
-
-                .swiper-button-next,
-                .swiper-button-prev {
-                    display: none;
-                }
-
-                .swiper-button-next {
-                    right: 0;
-                }
-
-                .swiper-button-prev {
-                    left: 0;
-                }
-            }
-        }
+    .perfume-list {
+        padding-top: rem(20);
+        padding-bottom: rem(40);
 
         &__thumbs {
-            height: rem(100);
-            padding-top: rem(20);
+            height: rem(60);
+            padding: 0 rem(16);
+            margin-bottom: rem(40);
+        }
 
-            .swiper-slide {
-                width: calc((100% - 12px) / 2);
-            }
+        &__nav {
+            // display: none;
+            width: 100%;
+            // max-width: rem(600);
+            // margin: 0 auto rem(60);
+        }
+
+        &__info {
+            width: 100%;
+            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            gap: rem(24);
+            padding: 0 $padding-mobile;
+        }
+
+        &__info-image img {
+            width: rem(160);
+        }
+
+        &__info-text {
+            max-width: 100%;
+            text-align: center;
+            align-items: center;
+            gap: rem(20);
+        }
+
+        &__info-top {
+            gap: rem(10);
+        }
+
+        &__info-bottom {
+            gap: rem(16);
+        }
+
+        &__info-title {
+            font-size: rem(24);
+        }
+
+        &__info-subtitle {
+            font-size: rem(13);
+        }
+
+        &__info-desc {
+            font-size: rem(13);
         }
     }
 
@@ -1387,61 +666,6 @@
         &__title {
             font-size: rem(18);
             margin-bottom: rem(16);
-        }
-    }
-
-    .image-modal {
-        &__content {
-            max-width: 95%;
-            max-height: 85%;
-        }
-
-        &__close {
-            font-size: rem(32);
-            width: rem(36);
-            height: rem(36);
-            margin: rem(6);
-        }
-
-        &__image {
-            max-height: 80vh;
-        }
-    }
-
-    .artwork-modal {
-        &__content {
-            max-width: 98%;
-            padding: rem(20);
-            gap: rem(15);
-            max-height: 85vh;
-        }
-
-        &__close {
-            top: rem(10);
-            right: rem(10);
-            font-size: rem(32);
-            width: rem(36);
-            height: rem(36);
-        }
-
-        &__image-wrapper {
-            max-width: 100%;
-        }
-
-        &__image {
-            max-height: 40vh;
-        }
-
-        &__title {
-            font-size: rem(20);
-        }
-
-        &__artist {
-            font-size: rem(16);
-        }
-
-        &__description {
-            font-size: rem(14);
         }
     }
 }

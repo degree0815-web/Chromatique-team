@@ -4,245 +4,155 @@
  * ==========================================================================
  * 
  * Page-specific JavaScript for sub-2 page
+ * Perfume List Swiper initialization and data sync
  * 
  */
 
 // ========================================
-// Product Description Swiper
+// Perfume List Swiper
 // ========================================
 
-function initProductDescriptionSwiper() {
-    const thumbsSwiper = new Swiper('.product-description__thumbs', {
+function initPerfumeListSwiper() {
+    const thumbsSwiper = new Swiper('.perfume-list__thumbs', {
         spaceBetween: 24,
         slidesPerView: 9.5,
         freeMode: true,
         watchSlidesProgress: true,
+        breakpoints: {
+            320: {
+                slidesPerView: 4.5,
+                spaceBetween: 12,
+            },
+            480: {
+                slidesPerView: 5.5,
+                spaceBetween: 16,
+            },
+            768: {
+                slidesPerView: 7.5,
+                spaceBetween: 20,
+            },
+            1200: {
+                slidesPerView: 9.5,
+                spaceBetween: 24,
+            },
+        },
     });
 
-    const mainSwiper = new Swiper('.product-description__main', {
-        spaceBetween: 10,
+    const bgSwiper = new Swiper('.perfume-list__bg', {
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true,
+        },
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: '.perfume-list__nav .swiper-button-next',
+            prevEl: '.perfume-list__nav .swiper-button-prev',
         },
         thumbs: {
             swiper: thumbsSwiper,
         },
+        on: {
+            slideChange: function () {
+                updateInfoContent(this.realIndex);
+            },
+            init: function () {
+                // Swiper 초기화 후 높이 업데이트
+                setTimeout(() => {
+                    const section = document.querySelector('.perfume-list');
+                    const bg = document.querySelector('.perfume-list__bg');
+                    if (section && bg) {
+                        bg.style.height = section.offsetHeight + 'px';
+                    }
+                }, 100);
+            },
+        },
     });
 
-    return { mainSwiper, thumbsSwiper };
+    // Initial info content update
+    updateInfoContent(0);
+
+    return { bgSwiper, thumbsSwiper };
 }
 
 // ========================================
-// Image Modal
+// Update Info Content
 // ========================================
 
-function initImageModal() {
-    const modal = document.getElementById('imageModal');
-    if (!modal) return;
+function updateInfoContent(index) {
+    const slides = document.querySelectorAll('.perfume-list__bg .swiper-slide');
+    if (!slides[index]) return;
 
-    const modalImage = modal.querySelector('.image-modal__image');
-    const modalOverlay = modal.querySelector('.image-modal__overlay');
-    const modalClose = modal.querySelector('.image-modal__close');
-    const viewButtons = document.querySelectorAll('.product-description__view-btn');
+    const slide = slides[index];
+    const perfumeImg = slide.dataset.perfume;
+    const title = slide.dataset.title;
+    const subtitle = slide.dataset.subtitle;
+    const descTop = slide.dataset.descTop;
+    const descMiddle = slide.dataset.descMiddle;
+    const descBase = slide.dataset.descBase;
+    const artTitle = slide.dataset.artTitle;
+    const artArtist = slide.dataset.artArtist;
+    const artDesc = slide.dataset.artDesc;
 
-    if (!modalImage || !modalOverlay || !modalClose || viewButtons.length === 0) return;
+    const infoImage = document.querySelector('.perfume-list__info-image img');
+    const infoTitle = document.querySelector('.perfume-list__info-title');
+    const infoSubtitle = document.querySelector('.perfume-list__info-subtitle');
+    const infoDescTop = document.querySelector('.perfume-list__info-desc--top');
+    const infoDescMiddle = document.querySelector('.perfume-list__info-desc--middle');
+    const infoDescBase = document.querySelector('.perfume-list__info-desc--base');
+    const infoArtTitle = document.querySelector('.perfume-list__info-art-title');
+    const infoArtArtist = document.querySelector('.perfume-list__info-art-artist');
+    const infoArtDesc = document.querySelector('.perfume-list__info-art-desc');
 
-    // Get background image URL from computed styles
-    function getBackgroundImageUrl(element) {
-        // Find the parent .product-description__text-image element
-        const textImage = element.closest('.product-description__text-image');
-        if (!textImage) return '';
-
-        const computedStyle = window.getComputedStyle(textImage);
-        const bgImage = computedStyle.backgroundImage;
-
-        // Extract URL from background-image property
-        // Format: url("path/to/image.png") or url(path/to/image.png)
-        const match = bgImage.match(/url\(['"]?(.+?)['"]?\)/);
-        return match ? match[1] : '';
-    }
-
-    // Open modal with image
-    function openModal(imageUrl) {
-        if (imageUrl) {
-            modalImage.src = imageUrl;
-            modal.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-
-    // Close modal
-    function closeModal() {
-        modal.classList.remove('is-open');
-        document.body.style.overflow = '';
-    }
-
-    // Add click event to all view buttons
-    viewButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            const imageUrl = getBackgroundImageUrl(button);
-            openModal(imageUrl);
-        });
-    });
-
-    // Close modal when clicking overlay or close button
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeModal);
-    }
-    if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
-    }
-
-    // Close modal on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeModal();
-        }
-    });
+    if (infoImage) infoImage.src = perfumeImg;
+    if (infoTitle) infoTitle.textContent = title;
+    if (infoSubtitle) infoSubtitle.textContent = subtitle;
+    if (infoDescTop) infoDescTop.textContent = descTop;
+    if (infoDescMiddle) infoDescMiddle.textContent = descMiddle;
+    if (infoDescBase) infoDescBase.textContent = descBase;
+    if (infoArtTitle) infoArtTitle.textContent = artTitle;
+    if (infoArtArtist) infoArtArtist.textContent = artArtist;
+    if (infoArtDesc) infoArtDesc.textContent = artDesc;
 }
 
 // ========================================
-// Artwork Modal
+// Dynamic Height Observer
 // ========================================
 
-function initArtworkModal() {
-    const modal = document.getElementById('artworkModal');
-    if (!modal) {
-        console.error('Artwork modal not found');
-        return;
-    }
+function initDynamicHeightObserver() {
+    const section = document.querySelector('.perfume-list');
+    const bg = document.querySelector('.perfume-list__bg');
+    const bgWrapper = bg?.querySelector('.swiper-wrapper');
+    const bgSlides = bg?.querySelectorAll('.swiper-slide');
 
-    const modalOverlay = modal.querySelector('.artwork-modal__overlay');
-    const modalClose = modal.querySelector('.artwork-modal__close');
-    const modalImage = modal.querySelector('.artwork-modal__image');
-    const modalTitle = modal.querySelector('.artwork-modal__title');
-    const modalArtist = modal.querySelector('.artwork-modal__artist');
-    const modalDescription = modal.querySelector('.artwork-modal__description');
-    const artworkButtons = document.querySelectorAll('.product-description__artwork-btn');
+    if (section && bg) {
+        const updateHeight = () => {
+            const sectionHeight = section.offsetHeight;
+            bg.style.height = sectionHeight + 'px';
 
-    if (artworkButtons.length === 0) {
-        console.warn('No artwork buttons found');
-        return;
-    }
+            if (bgWrapper) {
+                bgWrapper.style.height = sectionHeight + 'px';
+            }
 
-    console.log(`Found ${artworkButtons.length} artwork buttons`);
-
-    // Get artwork data from the slide
-    function getArtworkData(button) {
-        const slide = button.closest('.swiper-slide');
-        if (!slide) {
-            console.error('Slide not found');
-            return null;
-        }
-
-        // Get image from slide's img tag
-        const slideImage = slide.querySelector('img');
-        const imageUrl = slideImage ? slideImage.src : '';
-
-        if (!imageUrl) {
-            console.error('Image URL not found');
-        }
-
-        // Get text data from product-description__text-top
-        const textTop = slide.querySelector('.product-description__text-top');
-        if (!textTop) {
-            console.error('Text top not found');
-            return null;
-        }
-
-        const title = textTop.querySelector('h3')?.textContent || '';
-        const artist = textTop.querySelector('p')?.textContent || '';
-        const description = Array.from(textTop.querySelectorAll('p')).slice(1).map(p => p.textContent).join(' ').trim();
-
-        const data = {
-            imageUrl,
-            title,
-            artist,
-            description
+            if (bgSlides) {
+                bgSlides.forEach(slide => {
+                    slide.style.height = sectionHeight + 'px';
+                });
+            }
         };
 
-        console.log('Artwork data:', data);
-        return data;
-    }
-
-    // Open modal with artwork data
-    function openArtworkModal(data) {
-        console.log('Opening modal with data:', data);
-
-        if (!data) {
-            console.error('No data provided');
-            return;
-        }
-
-        if (!data.imageUrl) {
-            console.error('No image URL in data');
-            return;
-        }
-
-        if (!modalImage) {
-            console.error('Modal image element not found');
-            return;
-        }
-        if (!modalTitle) {
-            console.error('Modal title element not found');
-            return;
-        }
-        if (!modalArtist) {
-            console.error('Modal artist element not found');
-            return;
-        }
-        if (!modalDescription) {
-            console.error('Modal description element not found');
-            return;
-        }
-
-        modalImage.src = data.imageUrl;
-        modalImage.alt = data.title || 'Artwork image';
-        modalTitle.textContent = data.title || '';
-        modalArtist.textContent = data.artist || '';
-        modalDescription.textContent = data.description || '';
-
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        console.log('Modal opened, classes:', modal.className);
-        console.log('Modal element:', modal);
-        console.log('Modal computed style:', window.getComputedStyle(modal));
-    }
-
-    // Close modal
-    function closeArtworkModal() {
-        modal.classList.remove('is-open');
-        document.body.style.overflow = '';
-    }
-
-    // Add click event to all artwork buttons
-    artworkButtons.forEach((button, index) => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log(`Button ${index + 1} clicked`);
-            const artworkData = getArtworkData(button);
-            openArtworkModal(artworkData);
+        const observer = new ResizeObserver(entries => {
+            for (const entry of entries) {
+                updateHeight();
+            }
         });
-    });
 
-    // Close modal when clicking overlay or close button
-    if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeArtworkModal);
-    }
-    if (modalClose) {
-        modalClose.addEventListener('click', closeArtworkModal);
-    }
+        observer.observe(section);
 
-    // Close modal on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeArtworkModal();
-        }
-    });
+        // Initial height set
+        updateHeight();
+
+        // Update on window resize
+        window.addEventListener('resize', updateHeight);
+    }
 }
 
 // ========================================
@@ -250,14 +160,28 @@ function initArtworkModal() {
 // ========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Check if we're on sub-2 page
-    if (document.querySelector('.product-description')) {
-        initProductDescriptionSwiper();
-        initImageModal();
-        initArtworkModal();
-        console.log('🎠 Product description swiper initialized');
-        console.log('🖼️ Image modal initialized');
-        console.log('🎨 Artwork modal initialized');
+    if (document.querySelector('.perfume-list')) {
+        const { bgSwiper } = initPerfumeListSwiper();
+        initDynamicHeightObserver();
+
+        // Swiper 초기화 완료 후 높이 재설정
+        setTimeout(() => {
+            const section = document.querySelector('.perfume-list');
+            const bg = document.querySelector('.perfume-list__bg');
+            if (section && bg) {
+                const sectionHeight = section.offsetHeight;
+                bg.style.height = sectionHeight + 'px';
+                const bgWrapper = bg.querySelector('.swiper-wrapper');
+                const bgSlides = bg.querySelectorAll('.swiper-slide');
+                if (bgWrapper) bgWrapper.style.height = sectionHeight + 'px';
+                bgSlides.forEach(slide => {
+                    slide.style.height = sectionHeight + 'px';
+                });
+                if (bgSwiper) bgSwiper.update();
+            }
+        }, 200);
+
+        console.log('✨ Perfume list swiper initialized');
+        console.log('📏 Dynamic height observer initialized');
     }
 });
-
