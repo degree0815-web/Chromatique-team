@@ -1,0 +1,607 @@
+@use '../base/mixins' as *;
+@use '../base/variables' as *;
+
+// sub01__heroSec
+.sub01__heroSec {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__txt__wrap {
+        text-align: center;
+        color: $colorText50;
+        z-index: 10;
+        max-width: rem(967);
+        color: $colorText50;
+        margin: 0 auto;
+
+        h2 {
+            @include defineFont(rem(122), 700, 1.3, 0);
+            font-size: rem(122);
+            margin-bottom: rem(30);
+        }
+
+        p {
+            @include defineFont(rem(28), 300, 1.3, 0);
+            font-size: rem(28);
+        }
+
+        ;
+    }
+}
+
+// sub01__content__bg
+.sub01__content__bg {
+    width: 100%;
+    position: relative;
+
+    &>img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(8px);
+        z-index: -1;
+    }
+
+    // sub01__introSec
+    .sub01__introSec {
+        width: 100%;
+        height: 100vh;
+        position: relative;
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &__txt__wrap {
+            text-align: center;
+            color: $colorText50;
+            z-index: 10;
+            @include flex(center, center, rem(20));
+            flex-direction: column;
+            max-width: rem(824);
+            margin: 0 auto;
+
+            h3 {
+                @include defineFont(rem(36), 400, 1.3);
+                font-size: rem(36);
+            }
+
+            h2 {
+                @include defineFont(rem(64), 700, 1.3);
+                font-size: rem(64);
+            }
+
+            p {
+                @include defineFont(rem(28), 300, 1.3);
+                font-size: rem(28);
+
+            }
+        }
+    }
+
+    // sub01__descSec
+    .sub01__descSec {
+        width: 100%;
+        color: $colorText50;
+
+        padding: 0 rem(20) rem(300) rem(20);
+
+
+        &__content__wrap {
+            max-width: rem(1316);
+            @include flex(center, flex-start, rem(300));
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+        &__item {
+            @include flex(center, flex-start, rem(40));
+            flex-direction: column;
+
+            &:nth-child(even) {
+                align-self: flex-end;
+                align-items: flex-end;
+                text-align: right;
+
+
+
+            }
+
+            &>img {
+                width: rem(915);
+                height: rem(514);
+            }
+
+            &__txtWrap {
+                max-width: rem(625);
+
+                h3 {
+                    @include defineFont(rem(32), 400, 1.3);
+                    font-size: rem(32);
+                    margin-bottom: rem(20);
+                }
+
+                h2 {
+                    @include defineFont(rem(64), 500, 1.3);
+                    font-size: rem(36);
+                    margin-bottom: rem(20);
+                }
+
+                p {
+                    @include defineFont(rem(28), 400, 1.3);
+                    font-size: rem(28);
+                    word-break: keep-all;
+
+                }
+            }
+        }
+    }
+}
+
+// sub01__ctaSec
+.sub01__ctaSec {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background-image: url('../../assets/images/sub-1/ctaBg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: $colorText50;
+
+    &__content__wrap {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        @include flex(center, center, rem(30));
+        flex-direction: column;
+
+        p {
+            @include defineFont(rem(32), 400, 1.3);
+            font-size: rem(32);
+            text-align: center;
+            width: max-content;
+        }
+
+    }
+}
+
+
+
+
+
+
+
+// 반응형
+@media (min-width:320px) and (max-width: 479px) {
+
+    // ++++++++++++++++++++++++++++++++++Sub01Page++++++++++++++++++++++++++++++
+    // sub01__heroSec
+    .sub01__heroSec__txt__wrap {
+        h2 {
+            font-size: rem(48);
+            margin-bottom: rem(20);
+        }
+
+        p {
+            font-size: rem(14);
+        }
+    }
+
+    // sub01__introSec
+    .sub01__content__bg {
+        .sub01__introSec {
+            &__txt__wrap {
+
+                h3 {
+                    font-size: rem(20);
+                }
+
+                h2 {
+                    font-size: rem(28);
+                }
+
+                p {
+                    font-size: rem(14);
+                }
+            }
+        }
+    }
+
+    // sub01__descSec
+    .sub01__content__bg {
+        .sub01__descSec {
+
+            &__content__wrap {
+                max-width: rem(288);
+                @include flex(center, center, rem(300));
+            }
+
+            &__item {
+                text-align: center;
+                @include flex(center, center, rem(40));
+
+                &>img {
+                    width: 100%;
+                    height: rem(215);
+                }
+
+                &:nth-child(even) {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                &__txtWrap {
+                    max-width: 100%;
+
+                    h3 {
+
+                        font-size: rem(18);
+                    }
+
+                    h2 {
+                        font-size: rem(20);
+                        margin-bottom: rem(40);
+                    }
+
+                    p {
+                        font-size: rem(14);
+                    }
+                }
+            }
+        }
+    }
+
+    // sub01__ctaSec
+    .sub01__ctaSec {
+        &__content__wrap {
+            gap: rem(20);
+
+            p {
+                font-size: rem(16);
+            }
+        }
+    }
+
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:480px) and (max-width: 767px) {
+
+    //++++++++++++++++++++++++++++++++++Sub01Page++++++++++++++++++++++++++++++
+    // sub01__heroSec
+    .sub01__heroSec__txt__wrap {
+        h2 {
+            font-size: rem(64);
+            margin-bottom: rem(28);
+        }
+
+        p {
+            font-size: rem(18);
+        }
+    }
+
+    // sub01__introSec
+    .sub01__content__bg {
+        .sub01__introSec {
+            &__txt__wrap {
+
+                h3 {
+                    font-size: rem(26);
+                }
+
+                h2 {
+                    font-size: rem(36);
+                }
+
+                p {
+                    font-size: rem(18);
+                }
+            }
+        }
+    }
+
+    // sub01__descSec
+    .sub01__content__bg {
+        .sub01__descSec {
+
+            &__content__wrap {
+                max-width: rem(400);
+                @include flex(center, center, rem(300));
+            }
+
+            &__item {
+                text-align: center;
+                @include flex(center, center, rem(40));
+
+                &>img {
+                    width: 100%;
+                    height: rem(299);
+                }
+
+                &:nth-child(even) {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                &__txtWrap {
+                    max-width: 100%;
+
+                    h3 {
+
+                        font-size: rem(22);
+                    }
+
+                    h2 {
+                        font-size: rem(26);
+                        margin-bottom: rem(40);
+                    }
+
+                    p {
+                        font-size: rem(18);
+                    }
+                }
+            }
+        }
+    }
+
+    // sub01__ctaSec
+    .sub01__ctaSec {
+        &__content__wrap {
+            gap: rem(20);
+
+            p {
+                font-size: rem(22);
+            }
+        }
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:768px) and (max-width: 1199px) {
+
+    //++++++++++++++++++++++++++++++++++Sub01Page++++++++++++++++++++++++++++++
+    // sub01__heroSec
+    .sub01__heroSec__txt__wrap {
+
+        h2 {
+            font-size: rem(80);
+        }
+
+        p {
+            font-size: rem(22);
+        }
+    }
+
+    // sub01__introSec
+    .sub01__content__bg {
+        .sub01__introSec {
+            &__txt__wrap {
+                max-width: rem(640);
+
+                h3 {
+                    font-size: rem(30);
+                }
+
+                h2 {
+                    font-size: rem(48);
+                }
+
+                p {
+                    font-size: rem(22);
+                }
+            }
+        }
+    }
+
+    // sub01__descSec
+    .sub01__content__bg {
+        .sub01__descSec {
+
+            &__content__wrap {
+                max-width: rem(500);
+                @include flex(center, center, rem(300));
+            }
+
+            &__item {
+                text-align: center;
+                @include flex(center, center, rem(40));
+
+                &>img {
+                    width: 100%;
+                    height: rem(371);
+                }
+
+                &:nth-child(even) {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                &__txtWrap {
+                    max-width: 100%;
+
+                    h3 {
+
+                        font-size: rem(26);
+                    }
+
+                    h2 {
+                        font-size: rem(30);
+                        margin-bottom: rem(40);
+                    }
+
+                    p {
+                        font-size: rem(22);
+                    }
+                }
+            }
+        }
+    }
+
+    // sub01__ctaSec
+    .sub01__ctaSec {
+        &__content__wrap {
+            gap: rem(20);
+
+            p {
+                font-size: rem(26);
+            }
+        }
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:1200px) and (max-width: 1469px) {
+
+    // ++++++++++++++++++++++++++++++++++Sub01Page++++++++++++++++++++++++++++++
+    // sub01__heroSec
+    .sub01__heroSec__txt__wrap {
+
+        h2 {
+            font-size: rem(104);
+        }
+
+        p {
+            font-size: rem(24);
+        }
+    }
+
+    // sub01__introSec
+    .sub01__content__bg {
+        .sub01__introSec {
+            &__txt__wrap {
+                max-width: rem(698);
+
+                h3 {
+                    font-size: rem(32);
+                }
+
+                h2 {
+                    font-size: rem(56);
+                }
+
+                p {
+                    font-size: rem(24);
+                }
+            }
+        }
+    }
+
+    // sub01__descSec
+    .sub01__content__bg {
+        .sub01__descSec {
+
+            &__content__wrap {
+                max-width: rem(910);
+            }
+
+            &__item {
+
+                &>img {
+                    width: rem(631);
+                    height: rem(421);
+                }
+
+
+
+                &__txtWrap {
+                    max-width: rem(536);
+
+                    h3 {
+
+                        font-size: rem(28);
+                    }
+
+                    h2 {
+                        font-size: rem(32);
+                        margin-bottom: rem(40);
+                    }
+
+                    p {
+                        font-size: rem(24);
+                    }
+                }
+            }
+        }
+    }
+
+    // sub01__ctaSec
+    .sub01__ctaSec {
+        &__content__wrap {
+            p {
+                font-size: rem(28);
+            }
+        }
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+@media (min-width:1470px) and (max-width: 1719px) {
+
+    // ++++++++++++++++++++++++++++++++++Sub01Page++++++++++++++++++++++++++++++
+
+    // sub01__descSec
+    .sub01__content__bg {
+        .sub01__descSec {
+
+            &__content__wrap {
+                max-width: rem(1116);
+            }
+
+            &__item {
+
+                &>img {
+                    width: rem(774);
+                    height: rem(421);
+                }
+
+
+
+                &__txtWrap {
+                    max-width: rem(536);
+
+                    h3 {
+
+                        font-size: rem(32);
+                    }
+
+                    h2 {
+                        font-size: rem(36);
+                        margin-bottom: rem(40);
+                    }
+
+                    p {
+                        font-size: rem(28);
+                    }
+                }
+            }
+        }
+    }
+
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+}

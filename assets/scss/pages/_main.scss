@@ -1,18 +1,5 @@
 @use '../base/mixins' as *;
 @use '../base/variables' as *;
-
-// ==========================================================================
-// Main Page Styles - Chromatique Perfume Brand
-// ==========================================================================
-// 
-// Page-specific styles for the main page.
-// This file is imported by style.scss and will not compile to CSS directly.
-//
-// ==========================================================================
-
-@use '../base/variables' as *;
-@use '../base/mixins' as *;
-
 // ========================================
 // 6. Loading Screen
 // ========================================
@@ -146,9 +133,13 @@
   }
 
   .btn {
-    background-color: $colorBlack;
-    color: $colorText50;
-    width: max-content;
+    background: $colorBlack;
+    border: 1px solid #000;
+
+    &:hover {
+      background: $colorPrimary100;
+      border: 1px solid $colorText50;
+    }
   }
 
 
@@ -609,10 +600,6 @@
       width: max-content;
     }
 
-    .btn {
-      background: #27170C;
-      color: $colorText50;
-    }
   }
 }
 
