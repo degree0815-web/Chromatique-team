@@ -39,10 +39,10 @@ function initPerfumeListSwiper() {
     });
 
     const bgSwiper = new Swiper('.perfume-list__bg', {
-        effect: 'fade',
-        fadeEffect: {
-            crossFade: true,
-        },
+        // effect: 'fade',
+        // fadeEffect: {
+        //     crossFade: true,
+        // },
         navigation: {
             nextEl: '.perfume-list__nav .swiper-button-next',
             prevEl: '.perfume-list__nav .swiper-button-prev',
