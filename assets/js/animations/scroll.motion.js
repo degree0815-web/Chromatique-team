@@ -258,13 +258,24 @@ class ScrollMotion {
       });
 
       // Create master timeline with ScrollTrigger
-      // Each item has display time + transition time
-      const itemDisplayTime = 1.5; // 아이템이 표시되는 시간
+      // 세 아이템이 균등한 비율을 차지하도록 설정
       const transitionDuration = 1; // 전환 애니메이션 시간
+      const pauseAfterOpacity1 = 0.5; // opacity: 1이 된 후 대기 시간
+      const extraTimeAfterLastItem = 3; // 마지막 아이템 표시 후 추가 여유 시간
 
-      // 총 타임라인 길이 계산: (표시시간 + 전환시간) * (아이템수 - 1) + 마지막 아이템 표시시간
-      const totalTimelineDuration = (itemDisplayTime + transitionDuration) * (items.length - 1) + itemDisplayTime;
-      const totalScrollHeight = window.innerHeight * totalTimelineDuration / itemDisplayTime;
+      // 각 아이템이 차지하는 시간을 균등하게 계산
+      // 각 아이템 = pause + 표시시간 + 전환시간 (마지막 아이템은 전환시간 없음)
+      // 마지막 아이템 표시 후 여유시간 추가
+      const itemCount = items.length;
+      const baseTimePerItem = 2; // 기본 시간 단위 (초)
+      const itemDisplayTime = baseTimePerItem; // 각 아이템이 표시되는 시간 (균등하게 조정)
+
+      // 총 타임라인 길이 계산
+      // 각 아이템: pause + 표시시간 + 전환시간 (마지막 아이템은 전환시간 없음)
+      // 마지막 아이템 표시 후 여유시간 추가
+      const totalTimelineDuration = (pauseAfterOpacity1 + itemDisplayTime + transitionDuration) * (itemCount - 1) +
+        (pauseAfterOpacity1 + itemDisplayTime) + extraTimeAfterLastItem;
+      const totalScrollHeight = window.innerHeight * totalTimelineDuration / baseTimePerItem;
 
       // Kill any existing ScrollTrigger for this section
       ScrollTrigger.getAll().forEach(trigger => {
@@ -287,14 +298,28 @@ class ScrollMotion {
       });
 
       // Create transitions for each item pair
+      // 각 아이템이 균등한 비율을 차지하도록 타임라인 구성
       items.forEach((item, index) => {
+        // 각 아이템이 opacity: 1이 되는 시점 계산
+        let currentItemOpacity1Time;
+        if (index === 0) {
+          // 첫 번째 아이템: 0부터 opacity: 1
+          currentItemOpacity1Time = 0;
+        } else {
+          // 이후 아이템: 이전 아이템의 시작 + pause + 표시시간 + 전환시간
+          currentItemOpacity1Time = index * (pauseAfterOpacity1 + itemDisplayTime + transitionDuration);
+        }
+
+        // 각 아이템이 opacity: 1이 된 후 0.5초 pause 추가
+        masterTl.to({}, { duration: pauseAfterOpacity1 }, currentItemOpacity1Time);
+
         if (index < items.length - 1) {
           const nextItem = items[index + 1];
-          // 각 아이템이 표시되는 시간 + 이전 전환 시간
-          // 첫 번째 아이템: 0부터 시작
-          // 두 번째 아이템: itemDisplayTime + transitionDuration 후 시작
-          // 세 번째 아이템: (itemDisplayTime + transitionDuration) * 2 후 시작
-          const timelinePosition = index * (itemDisplayTime + transitionDuration) + itemDisplayTime;
+
+          // 전환 시작 시점 계산 (각 아이템이 균등한 비율을 차지)
+          // 각 아이템 = pause + 표시시간
+          // 전환 시작 = pause + 표시시간
+          const transitionStartPosition = currentItemOpacity1Time + pauseAfterOpacity1 + itemDisplayTime;
 
           // Fade out current item (move up) and fade in next item simultaneously
           masterTl.to(item, {
@@ -304,7 +329,7 @@ class ScrollMotion {
             duration: transitionDuration,
             ease: 'power2.inOut',
             force3D: true,
-          }, timelinePosition)
+          }, transitionStartPosition)
             .fromTo(nextItem,
               { opacity: 0, y: 100, scale: 1, force3D: true }, // Set initial scale to 1
               {
@@ -315,8 +340,12 @@ class ScrollMotion {
                 ease: 'power2.inOut',
                 force3D: true,
               },
-              timelinePosition
+              transitionStartPosition
             );
+        } else {
+          // 마지막 아이템: 완전히 표시된 후 1초 pause 추가
+          const lastItemDisplayEndTime = currentItemOpacity1Time + pauseAfterOpacity1 + itemDisplayTime;
+          masterTl.to({}, { duration: 3 }, lastItemDisplayEndTime);
         }
       });
 

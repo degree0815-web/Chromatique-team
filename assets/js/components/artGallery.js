@@ -29,6 +29,9 @@ class ArtGallery {
     // Track which slides are showing perfume
     this.perfumeActiveSlides = new Set();
 
+    // Track previous slide index for resetting perfume images
+    this.previousSlideIndex = 0;
+
     // Artwork data
     this.artworkData = [
       {
@@ -95,6 +98,9 @@ class ArtGallery {
       // Slides configuration
       slidesPerView: 1,
       centeredSlides: true,
+      pagination: {
+        el: ".swiper-pagination",
+      },
 
       // Speed
       speed: 600,
@@ -138,6 +144,7 @@ class ArtGallery {
    * Called when swiper initializes
    */
   onInit() {
+    this.previousSlideIndex = 0;
     this.updateArtworkInfo(0);
   }
 
@@ -148,6 +155,28 @@ class ArtGallery {
     if (!this.swiper) return;
 
     const realIndex = this.swiper.realIndex;
+    const previousIndex = this.previousSlideIndex;
+
+    // 이전 슬라이드가 perfume 상태였다면 원래 이미지로 초기화
+    if (previousIndex !== realIndex) {
+      const previousSlide = this.swiper.slides[previousIndex];
+      if (previousSlide) {
+        const previousSlideNumber = previousSlide.getAttribute('data-slide');
+        const isPerfumeActive = this.perfumeActiveSlides.has(previousSlideNumber);
+
+        if (isPerfumeActive) {
+          const artworkImg = previousSlide.querySelector('.artGallerySec__artwork');
+          if (artworkImg) {
+            this.switchToArtwork(artworkImg, previousSlideNumber);
+            this.perfumeActiveSlides.delete(previousSlideNumber);
+          }
+        }
+      }
+    }
+
+    // 현재 인덱스를 이전 인덱스로 저장
+    this.previousSlideIndex = realIndex;
+
     this.updateArtworkInfo(realIndex);
   }
 

@@ -224,6 +224,7 @@
     background: radial-gradient(ellipse at center top, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
     pointer-events: none;
     z-index: 1;
+
   }
 
   .container {
@@ -299,11 +300,21 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 200%;
+        width: 220%;
         height: 80%;
         background: radial-gradient(circle, transparent 5%, rgba(0, 0, 0, 0.7) 40%, rgba(0, 0, 0, 0.7) 60%, transparent 95%);
         pointer-events: none;
         z-index: -1;
+        -webkit-mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%);
+        mask-image: linear-gradient(to bottom,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%);
       }
 
       .artGallerySec__artwork {
@@ -407,7 +418,17 @@
     transition: opacity 0.4s ease;
   }
 
-  // Swiper 커스터마이징
+  .swiper-pagination {
+    position: relative;
+    display: none;
+
+    .swiper-pagination-bullet {
+      width: rem(7);
+      height: rem(7);
+      background-color: $colorText100;
+    }
+  }
+
   .swiper-slide {
     transition: opacity 0.6s ease;
 
@@ -664,6 +685,16 @@
           display: none;
         }
       }
+
+      &:not(.swiper-slide-active) {
+        transform: scale(1.0);
+      }
+    }
+
+    .swiper-pagination {
+      display: block;
+      margin-top: rem(40);
+
     }
 
     &__nav {
@@ -699,6 +730,7 @@
     &__info-artist {
       font-size: rem(14);
     }
+
   }
 
 
@@ -761,6 +793,12 @@
 
       p:first-child {
         margin-bottom: rem(10);
+      }
+
+      p {
+        br {
+          display: none;
+        }
       }
     }
   }
@@ -833,6 +871,15 @@
           display: none;
         }
       }
+
+      &:not(.swiper-slide-active) {
+        transform: scale(1.0);
+      }
+    }
+
+    .swiper-pagination {
+      display: block;
+      margin-top: rem(40);
     }
 
     &__nav {
@@ -887,6 +934,7 @@
 
       p {
         font-size: rem(18);
+
       }
     }
   }
@@ -929,6 +977,12 @@
       p:first-child {
         margin-bottom: rem(10);
       }
+
+      p {
+        br {
+          display: none;
+        }
+      }
     }
   }
 
@@ -961,6 +1015,7 @@
 
       p {
         font-size: rem(22);
+
       }
     }
   }
@@ -1037,6 +1092,10 @@
 
       p {
         font-size: rem(22);
+
+        br {
+          display: none;
+        }
       }
     }
   }
