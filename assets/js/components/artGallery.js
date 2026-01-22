@@ -119,10 +119,6 @@ class ArtGallery {
           slidesPerView: 3,
           spaceBetween: -20,
         },
-        [breakpoints.xl]: {
-          slidesPerView: 3,
-          spaceBetween: -20,
-        },
       },
 
       // Events

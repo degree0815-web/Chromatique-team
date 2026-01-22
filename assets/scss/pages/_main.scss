@@ -230,9 +230,9 @@
   .container {
     position: relative;
     z-index: 2;
-    overflow: visible; // Allow nav buttons to be visible outside
+    overflow: visible;
     align-self: center;
-    min-height: 100vh; // Ensure container has height for centering
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -271,6 +271,7 @@
 
   &__swiper {
     width: 100%;
+    max-width: rem(1364);
     overflow: hidden;
   }
 
@@ -307,12 +308,17 @@
       }
 
       .artGallerySec__artwork {
-        transform: scale(1.5);
+        transform: scaleX(1.42522);
         object-fit: fill;
 
         &.is-perfume {
           transform: scale(1.0);
           object-fit: contain;
+
+          .secGradient {
+            display: none;
+          }
+
         }
       }
 
@@ -321,7 +327,7 @@
     &:not(.swiper-slide-active) {
       cursor: default;
       opacity: 0.8;
-      transform: scale(1.0);
+      transform: scale(0.95);
       z-index: 1;
       pointer-events: none;
 
@@ -374,11 +380,11 @@
     }
 
     &--prev {
-      left: rem(-80);
+      left: rem(30);
     }
 
     &--next {
-      right: rem(-80);
+      right: rem(30);
     }
   }
 
@@ -406,22 +412,6 @@
   .swiper-slide {
     transition: opacity 0.6s ease;
 
-  }
-
-  //반응형
-  @media (max-width: 1024px) {
-    &__nav {
-      width: rem(50);
-      height: rem(50);
-
-      &--prev {
-        left: rem(-60);
-      }
-
-      &--next {
-        right: rem(-60);
-      }
-    }
   }
 
 }
@@ -1125,6 +1115,73 @@
     }
   }
 
+  // artGallerySec
+  .artGallerySec {
+    &__swiper {
+      max-width: rem(764);
+    }
+
+    &__slide {
+      width: rem(379);
+      height: rem(335);
+
+
+
+      &.swiper-slide-active {
+        .artGallerySec__artwork {
+          transform: scaleX(1.41946);
+        }
+
+      }
+
+      &:not(.swiper-slide-active) {
+        .artGallerySec__artwork {
+          transform: scale(0.9);
+        }
+
+      }
+    }
+
+    &__nav {
+      width: rem(50);
+      height: rem(50);
+
+      &--prev {
+        left: rem(22);
+      }
+
+      &--next {
+        right: rem(22);
+      }
+    }
+
+    &__header {
+      margin-bottom: rem(30);
+      color: $colorText50;
+    }
+
+    &__title {
+      font-size: rem(44);
+
+    }
+
+    &__subtitle {
+      font-size: rem(24);
+    }
+
+    &__info {
+      margin-top: rem(20);
+    }
+
+    &__info-title {
+      font-size: rem(32);
+    }
+
+    &__info-artist {
+      font-size: rem(24);
+    }
+  }
+
   //aboutSec
   .aboutSec {
     &__content {
@@ -1198,6 +1255,73 @@
       p {
         font-size: rem(28);
       }
+    }
+  }
+
+  // artGallerySec
+  .artGallerySec {
+    &__swiper {
+      max-width: rem(1164);
+    }
+
+    &__slide {
+      width: rem(519);
+      height: rem(449);
+
+
+
+      &.swiper-slide-active {
+        .artGallerySec__artwork {
+          transform: scaleX(1.2932);
+        }
+
+      }
+
+      &:not(.swiper-slide-active) {
+        .artGallerySec__artwork {
+          transform: scale(0.9);
+        }
+
+      }
+    }
+
+    &__nav {
+      width: rem(50);
+      height: rem(50);
+
+      &--prev {
+        left: rem(28);
+      }
+
+      &--next {
+        right: rem(28);
+      }
+    }
+
+    &__header {
+      margin-bottom: rem(30);
+      color: $colorText50;
+    }
+
+    &__title {
+      font-size: rem(48);
+
+    }
+
+    &__subtitle {
+      font-size: rem(28);
+    }
+
+    &__info {
+      margin-top: rem(20);
+    }
+
+    &__info-title {
+      font-size: rem(36);
+    }
+
+    &__info-artist {
+      font-size: rem(28);
     }
   }
 

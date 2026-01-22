@@ -733,6 +733,7 @@ body {
 }
 .artGallerySec__swiper {
   width: 100%;
+  max-width: 85.25rem;
   overflow: hidden;
 }
 .artGallerySec .swiper-wrapper {
@@ -766,17 +767,20 @@ body {
   z-index: -1;
 }
 .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
-  transform: scale(1.5);
+  transform: scaleX(1.42522);
   object-fit: fill;
 }
 .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork.is-perfume {
   transform: scale(1);
   object-fit: contain;
 }
+.artGallerySec__slide.swiper-slide-active .artGallerySec__artwork.is-perfume .secGradient {
+  display: none;
+}
 .artGallerySec__slide:not(.swiper-slide-active) {
   cursor: default;
   opacity: 0.8;
-  transform: scale(1);
+  transform: scale(0.95);
   z-index: 1;
   pointer-events: none;
 }
@@ -822,10 +826,10 @@ body {
   transform: translateY(-50%) scale(0.95);
 }
 .artGallerySec__nav--prev {
-  left: -5rem;
+  left: 1.875rem;
 }
 .artGallerySec__nav--next {
-  right: -5rem;
+  right: 1.875rem;
 }
 .artGallerySec__info {
   text-align: center;
@@ -852,18 +856,6 @@ body {
 }
 .artGallerySec .swiper-slide {
   transition: opacity 0.6s ease;
-}
-@media (max-width: 1024px) {
-  .artGallerySec__nav {
-    width: 3.125rem;
-    height: 3.125rem;
-  }
-  .artGallerySec__nav--prev {
-    left: -3.75rem;
-  }
-  .artGallerySec__nav--next {
-    right: -3.75rem;
-  }
 }
 
 .aboutSec {
@@ -1346,6 +1338,48 @@ body {
   .introSec__content p {
     font-size: 1.5rem;
   }
+  .artGallerySec__swiper {
+    max-width: 47.75rem;
+  }
+  .artGallerySec__slide {
+    width: 23.6875rem;
+    height: 20.9375rem;
+  }
+  .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+    transform: scaleX(1.41946);
+  }
+  .artGallerySec__slide:not(.swiper-slide-active) .artGallerySec__artwork {
+    transform: scale(0.9);
+  }
+  .artGallerySec__nav {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .artGallerySec__nav--prev {
+    left: 1.375rem;
+  }
+  .artGallerySec__nav--next {
+    right: 1.375rem;
+  }
+  .artGallerySec__header {
+    margin-bottom: 1.875rem;
+    color: #ffffff;
+  }
+  .artGallerySec__title {
+    font-size: 2.75rem;
+  }
+  .artGallerySec__subtitle {
+    font-size: 1.5rem;
+  }
+  .artGallerySec__info {
+    margin-top: 1.25rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 2rem;
+  }
+  .artGallerySec__info-artist {
+    font-size: 1.5rem;
+  }
   .aboutSec__content h3 {
     font-size: 2rem;
   }
@@ -1383,6 +1417,48 @@ body {
     font-size: 4rem;
   }
   .introSec__content p {
+    font-size: 1.75rem;
+  }
+  .artGallerySec__swiper {
+    max-width: 72.75rem;
+  }
+  .artGallerySec__slide {
+    width: 32.4375rem;
+    height: 28.0625rem;
+  }
+  .artGallerySec__slide.swiper-slide-active .artGallerySec__artwork {
+    transform: scaleX(1.2932);
+  }
+  .artGallerySec__slide:not(.swiper-slide-active) .artGallerySec__artwork {
+    transform: scale(0.9);
+  }
+  .artGallerySec__nav {
+    width: 3.125rem;
+    height: 3.125rem;
+  }
+  .artGallerySec__nav--prev {
+    left: 1.75rem;
+  }
+  .artGallerySec__nav--next {
+    right: 1.75rem;
+  }
+  .artGallerySec__header {
+    margin-bottom: 1.875rem;
+    color: #ffffff;
+  }
+  .artGallerySec__title {
+    font-size: 3rem;
+  }
+  .artGallerySec__subtitle {
+    font-size: 1.75rem;
+  }
+  .artGallerySec__info {
+    margin-top: 1.25rem;
+  }
+  .artGallerySec__info-title {
+    font-size: 2.25rem;
+  }
+  .artGallerySec__info-artist {
     font-size: 1.75rem;
   }
   .aboutSec__content h3 {
