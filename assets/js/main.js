@@ -20,6 +20,7 @@ import { createProductSwiper } from './components/productSwiper.js';
 import { createArtGallery } from './components/artGallery.js';
 import { initHeroMotion } from './animations/hero.motion.js';
 import { initScrollMotion, initScrollProgress } from './animations/scroll.motion.js';
+import { initSub1BlurReveal, initSub1DescSecAnimation, initSub1IntroSecAnimation } from './animations/sub-1.motion.js';
 
 // ========================================
 // Application State
@@ -46,24 +47,24 @@ const App = {
  */
 function init() {
   console.log('🚀 Chromatique - Initializing...');
-  
+
   // Initialize GSAP
   initGSAP();
   initSwipers();
-  
+
   // Initialize components
   initComponents();
-  
+
   // Initialize animations
   initAnimations();
-  
+
   // Setup event listeners
   setupEventListeners();
-  
+
   // Mark as loaded
   App.isLoaded = true;
   document.body.classList.add('is-loaded');
-  
+
   console.log('✅ Chromatique - Ready');
 }
 
@@ -73,12 +74,12 @@ function init() {
 function initComponents() {
   // Header
   App.instances.header = initHeader();
-  
+
   // Product Swiper
   if (document.querySelector('.product-swiper')) {
     App.instances.productSwiper = createProductSwiper('.product-swiper');
   }
-  
+
   // Art Gallery
   if (document.querySelector('.artGallerySec')) {
     App.instances.artGallery = createArtGallery('.artGallerySec');
@@ -93,12 +94,27 @@ function initAnimations() {
   if (document.querySelector('.hero')) {
     App.instances.heroMotion = initHeroMotion('.hero');
   }
-  
+
   // Scroll-based animations
   App.instances.scrollMotion = initScrollMotion();
-  
+
   // Scroll progress indicator
   initScrollProgress();
+
+  // Sub-1 page blur reveal animation
+  if (document.querySelector('.sub01__content__bg')) {
+    initSub1BlurReveal();
+  }
+
+  // Sub-1 page intro section animation
+  if (document.querySelector('.sub01__introSec')) {
+    initSub1IntroSecAnimation();
+  }
+
+  // Sub-1 page desc section animation
+  if (document.querySelector('.sub01__descSec')) {
+    initSub1DescSecAnimation();
+  }
 }
 
 /**
@@ -115,17 +131,17 @@ function setupEventListeners() {
       refreshScrollTriggers();
     }, 250);
   });
-  
+
   // Refresh ScrollTrigger on font load
   if (document.fonts) {
     document.fonts.ready.then(() => {
       refreshScrollTriggers();
     });
   }
-  
+
   // Handle smooth scroll to anchors
   setupSmoothScroll();
-  
+
   // Handle loading screen
   hideLoadingScreen();
 }
@@ -135,17 +151,17 @@ function setupEventListeners() {
  */
 function setupSmoothScroll() {
   const anchors = document.querySelectorAll('a[href^="#"]');
-  
+
   anchors.forEach(anchor => {
     anchor.addEventListener('click', (e) => {
       const targetId = anchor.getAttribute('href');
       if (targetId === '#') return;
-      
+
       const target = document.querySelector(targetId);
       if (!target) return;
-      
+
       e.preventDefault();
-      
+
       // Use GSAP for smooth scroll
       gsap.to(window, {
         duration: 1,
@@ -165,14 +181,14 @@ function setupSmoothScroll() {
 function hideLoadingScreen() {
   const loadingScreen = document.querySelector('.loading-screen');
   if (!loadingScreen) return;
-  
+
   // Prevent body scroll while loading
   document.body.style.overflow = 'hidden';
-  
+
   // Animate loading progress
   const progressBar = loadingScreen.querySelector('.loading-screen__progress-bar');
   const counter = loadingScreen.querySelector('.loading-screen__counter');
-  
+
   const tl = gsap.timeline({
     onComplete: () => {
       // Restore body scroll
@@ -180,14 +196,14 @@ function hideLoadingScreen() {
       loadingScreen.remove();
     },
   });
-  
+
   // Simulate loading progress
   if (progressBar) {
     tl.to(progressBar, {
       width: '100%',
       duration: 1.5,
       ease: 'power2.inOut',
-      onUpdate: function() {
+      onUpdate: function () {
         if (counter) {
           const progress = Math.round(this.progress() * 100);
           counter.textContent = `${progress}%`;
@@ -195,7 +211,7 @@ function hideLoadingScreen() {
       },
     });
   }
-  
+
   // Fade out loading screen
   tl.to(loadingScreen, {
     opacity: 0,
