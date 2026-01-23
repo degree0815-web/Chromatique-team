@@ -16,11 +16,9 @@
     padding: rem(12) rem(60);
     text-align: center;
     cursor: pointer;
-    border: none;
     background: $colorPrimary50;
     border-radius: rem(30);
     transition: all 0.3s ease;
-    border-radius: rem(30);
     border: 1px solid $colorPrimary50;
 
     &:hover {
@@ -32,7 +30,7 @@
 @media (min-width:320px) and (max-width: 479px) {
     .btn {
         font-size: rem(14);
-        padding: rem(8) rem(10);
+        padding: rem(10) rem(30);
     }
 
 
@@ -41,7 +39,7 @@
 @media (min-width:480px) and (max-width: 767px) {
     .btn {
         font-size: rem(16);
-        padding: rem(10) rem(18);
+        padding: rem(12) rem(40);
     }
 
 }
@@ -49,20 +47,20 @@
 @media (min-width:768px) and (max-width: 1199px) {
     .btn {
         font-size: rem(20);
-        padding: rem(10) rem(35);
+        padding: rem(12) rem(50);
     }
 }
 
 @media (min-width:1200px) and (max-width: 1469px) {
     .btn {
         font-size: rem(20);
-        padding: rem(10) rem(35);
+        padding: rem(12) rem(50);
     }
 }
 
 @media (min-width:1470px) and (max-width: 1719px) {
     .btn {
         font-size: rem(24);
-        padding: rem(12) rem(35);
+        padding: rem(12) rem(60);
     }
 }
