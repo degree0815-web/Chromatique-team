@@ -113,6 +113,11 @@ function updateInfoContent(index) {
     const graphMusk = slide.dataset.graphMusk || '0';
     const graphAldehyde = slide.dataset.graphAldehyde || '0';
 
+    // Graph labels
+    const graphLabelFirst = slide.dataset.graphLabelFirst || 'First';
+    const graphLabelSecond = slide.dataset.graphLabelSecond || 'Second';
+    const graphLabelThird = slide.dataset.graphLabelThird || 'Third';
+
     if (infoImage) infoImage.src = perfumeImg;
     if (infoTitle) infoTitle.textContent = title;
     if (infoSubtitle) infoSubtitle.textContent = subtitle;
@@ -128,6 +133,9 @@ function updateInfoContent(index) {
     if (infoArtTitle) infoArtTitle.textContent = artTitle;
     if (infoArtArtist) infoArtArtist.textContent = artArtist;
     if (infoArtDesc) infoArtDesc.textContent = artDesc;
+
+    // Update graph labels
+    updateGraphLabels(graphLabelFirst, graphLabelSecond, graphLabelThird);
 
     // Update graphs
     updateGraphs(graphSmokyLeather, graphMusk, graphAldehyde);
@@ -182,6 +190,20 @@ function alignNoteLabels() {
             container.style.gap = '20px';
         });
     });
+}
+
+// ========================================
+// Update Graph Labels
+// ========================================
+
+function updateGraphLabels(first, second, third) {
+    const firstLabel = document.querySelector('[data-graph="smoky-leather"]').closest('.perfume-list__info-graph-item').querySelector('.perfume-list__info-graph-label');
+    const secondLabel = document.querySelector('[data-graph="musk"]').closest('.perfume-list__info-graph-item').querySelector('.perfume-list__info-graph-label');
+    const thirdLabel = document.querySelector('[data-graph="aldehyde"]').closest('.perfume-list__info-graph-item').querySelector('.perfume-list__info-graph-label');
+
+    if (firstLabel) firstLabel.textContent = first;
+    if (secondLabel) secondLabel.textContent = second;
+    if (thirdLabel) thirdLabel.textContent = third;
 }
 
 // ========================================
@@ -278,6 +300,150 @@ function initDynamicHeightObserver() {
 // Initialize
 // ========================================
 
+// ========================================
+// Swipe Guide Modal
+// ========================================
+
+function initSwipeGuide() {
+    const swipeGuide = document.getElementById('swipeGuide');
+    const infoSection = document.querySelector('.perfume-list__info');
+
+    if (!swipeGuide || !infoSection) return;
+
+    // Check if guide was already shown (using sessionStorage)
+    const guideShown = sessionStorage.getItem('perfumeSwipeGuideShown');
+    if (guideShown === 'true') return;
+
+    // Check if device is Tablet-S or Mobile
+    const isTabletSOrMobile = () => {
+        const width = window.innerWidth;
+        return (width >= 480 && width <= 767) || (width >= 320 && width <= 479);
+    };
+
+    // Only show on Tablet-S and Mobile
+    if (!isTabletSOrMobile()) {
+        // Hide guide on desktop
+        swipeGuide.style.display = 'none';
+        return;
+    }
+
+    let hasShown = false;
+    let scrollTimeout = null;
+    let scrollPosition = 0;
+
+    // Function to prevent body scroll while maintaining scroll position
+    const preventScroll = () => {
+        // Save current scroll position
+        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Apply styles to prevent scroll
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPosition}px`;
+        document.body.style.width = '100%';
+    };
+
+    // Function to allow body scroll and restore position
+    const allowScroll = () => {
+        // Remove fixed positioning
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+
+        // Restore scroll position
+        window.scrollTo(0, scrollPosition);
+    };
+
+    // Function to show guide modal
+    const showGuide = () => {
+        if (hasShown) return;
+        hasShown = true;
+
+        // Prevent scroll
+        preventScroll();
+
+        // Show guide modal
+        swipeGuide.classList.add('is-active');
+
+        // Mark as shown
+        sessionStorage.setItem('perfumeSwipeGuideShown', 'true');
+
+        // Remove all listeners
+        window.removeEventListener('scroll', checkSectionBottom, { passive: true });
+        if (observer) {
+            observer.disconnect();
+        }
+    };
+
+    // Function to check if info section bottom has reached viewport bottom
+    const checkSectionBottom = () => {
+        if (hasShown) return;
+
+        // Clear previous timeout
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+
+        // Debounce scroll check
+        scrollTimeout = setTimeout(() => {
+            const rect = infoSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // When section bottom is at or near viewport bottom (within 150px)
+            if (rect.bottom <= viewportHeight + 150 && rect.bottom >= viewportHeight - 50) {
+                showGuide();
+            }
+        }, 100);
+    };
+
+    // Initial check after a short delay
+    setTimeout(() => {
+        checkSectionBottom();
+    }, 500);
+
+    // Listen to scroll events
+    window.addEventListener('scroll', checkSectionBottom, { passive: true });
+
+    // Use Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (hasShown) return;
+
+            const rect = entry.boundingClientRect;
+            const viewportHeight = window.innerHeight;
+
+            // When section bottom is at viewport bottom
+            if (rect.bottom <= viewportHeight + 150 && rect.bottom >= viewportHeight - 50) {
+                showGuide();
+            }
+        });
+    }, {
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+        rootMargin: '0px'
+    });
+
+    observer.observe(infoSection);
+
+    // Close on click
+    swipeGuide.addEventListener('click', () => {
+        swipeGuide.classList.remove('is-active');
+        allowScroll();
+    });
+
+    // Also close on touch/click outside
+    swipeGuide.addEventListener('touchstart', (e) => {
+        if (e.target === swipeGuide) {
+            swipeGuide.classList.remove('is-active');
+            allowScroll();
+        }
+    });
+}
+
+// ========================================
+// Initialize
+// ========================================
+
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize header
     initHeader();
@@ -285,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.perfume-list')) {
         const { bgSwiper } = initPerfumeListSwiper();
         initDynamicHeightObserver();
+        initSwipeGuide();
 
         // Swiper 초기화 완료 후 높이 재설정
         setTimeout(() => {
