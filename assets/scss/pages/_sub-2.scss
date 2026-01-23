@@ -49,13 +49,11 @@
 
         .kv__title {
             font-size: rem(122);
-            transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .kv__description {
             padding-top: rem(30);
             font-size: rem(24);
-            transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
             br {
                 display: block;
@@ -71,7 +69,7 @@
 .perfume-list {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    // min-height: 100vh;
     overflow: hidden;
     padding-top: rem(40);
     padding-bottom: rem(100);
@@ -103,7 +101,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background-color: rgba(0, 0, 0, 0.6);
+                background-color: rgba(0, 0, 0, 0.8);
                 pointer-events: none;
             }
         }
@@ -137,31 +135,24 @@
         }
     }
 
-    // Navigation (padded to match container start/end)
+    // Inner container wrapper
+    &__inner {
+        position: relative;
+        z-index: 15;
+    }
+
+    // Navigation (follows container responsive behavior)
     &__nav {
         width: 100%;
-        // pointer-events: none;
 
         .swiper-button-prev,
         .swiper-button-next {
             pointer-events: auto;
             color: $colorText50;
         }
-
-        .swiper-button-prev {
-            &::after {
-                padding-left: rem(168);
-            }
-        }
-
-        .swiper-button-next {
-            &::after {
-                padding-right: rem(168);
-            }
-        }
     }
 
-    // Info Area
+    // Info Area (direct width values, not following container)
     &__info {
         position: relative;
         width: rem(1001);
@@ -172,7 +163,6 @@
         justify-content: space-between;
         align-items: center;
         box-sizing: border-box;
-        padding: 0 $padding-desktop-l;
     }
 
     &__info-image {
@@ -187,46 +177,200 @@
     }
 
     &__info-text {
-        max-width: rem(482);
+        width: rem(482);
         color: $colorText50;
         display: flex;
         flex-direction: column;
-        // justify-content: left;
-        gap: rem(40);
+        gap: rem(30);
     }
 
     &__info-top {
         display: flex;
         flex-direction: column;
+    }
+
+    // Graph Section
+    &__info-graph {
+        display: flex;
+        flex-direction: column;
+        gap: rem(10);
+        margin-top: rem(30);
+    }
+
+    &__info-graph-item {
+        display: flex;
+        align-items: center;
         gap: rem(16);
     }
 
+    &__info-graph-label {
+        min-width: rem(100);
+        font-size: rem(16);
+        color: $colorText50;
+        opacity: 0.9;
+    }
+
+    &__info-graph-bar {
+        flex: 1;
+        height: rem(8);
+        background-color: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        position: relative;
+    }
+
+    &__info-graph-fill {
+        width: 0%;
+        height: 100%;
+        background-color: $colorText50;
+        transition: width 0.8s ease;
+    }
+
     &__info-title {
-        font-size: rem(48);
+        font-size: rem(36);
         font-weight: 600;
-        line-height: 1.2;
     }
 
     &__info-subtitle {
         font-size: rem(20);
-        opacity: 0.8;
+        font-weight: 300;
+    }
+
+    &__info-desc {
+        padding-top: rem(20);
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    &__info-desc-label {
+        font-size: rem(18);
+        font-weight: 600;
+        color: $colorText50;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    &__info-notes {
+        font-size: rem(16);
+        font-weight: 300;
     }
 
     &__info-bottom {
         display: flex;
         flex-direction: column;
-        gap: rem(24);
-    }
-
-    &__info-desc {
-        font-size: rem(18);
-        line-height: 1.6;
-        opacity: 0.9;
     }
 
     &__info-btn {
+        margin-top: rem(30);
+        font-size: rem(20);
         align-self: flex-start;
+        background-color: $colorText50;
+        color: $colorBlack;
+        border: 1px solid $colorText50;
+
+        &:hover {
+            color: $colorText50;
+            background-color: $colorBlack;
+        }
     }
+
+    &__info-art-title {
+        font-size: rem(36);
+        font-weight: 600;
+    }
+
+    &__info-art-artist {
+        font-size: rem(20);
+        font-weight: 500;
+    }
+
+    &__info-art-desc {
+        padding-top: rem(10);
+        font-size: rem(18);
+        font-weight: 300;
+    }
+
+    // Swipe Guide Modal (Tablet-S & Mobile only)
+    &__swipe-guide {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(22, 22, 22, 0.9);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        cursor: pointer;
+        pointer-events: none;
+
+        &.is-active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    }
+
+    &__swipe-guide-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: rem(30);
+        text-align: center;
+    }
+
+    &__swipe-guide-arrows {
+        display: flex;
+        gap: rem(60);
+        align-items: center;
+    }
+
+    &__swipe-guide-arrow {
+        width: rem(48);
+        height: rem(48);
+        color: $colorText50;
+        animation: swipeHint 1.5s ease-in-out infinite;
+
+        &--left {
+            animation-delay: 0s;
+        }
+
+        &--right {
+            animation-delay: 0.75s;
+        }
+    }
+
+    &__swipe-guide-text {
+        font-size: rem(18);
+        color: $colorText50;
+        font-weight: 400;
+    }
+}
+
+@keyframes swipeHint {
+
+    0%,
+    100% {
+        transform: translateX(0);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: translateX(var(--arrow-direction, 10px));
+        opacity: 1;
+    }
+}
+
+.perfume-list__swipe-guide-arrow--left {
+    --arrow-direction: -10px;
+}
+
+.perfume-list__swipe-guide-arrow--right {
+    --arrow-direction: 10px;
 }
 
 .direct {
@@ -240,7 +384,6 @@
     align-items: center;
     justify-content: center;
     height: 80vh;
-    transition: height 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     &::after {
         content: '';
@@ -259,14 +402,12 @@
         z-index: 10;
         text-align: center;
         padding: 0 $padding-desktop-l;
-        transition: padding 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     &__title {
         color: $colorText50;
         font-size: rem(32);
         margin-bottom: rem(30);
-        transition: font-size 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), margin-bottom 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 }
 
@@ -290,17 +431,6 @@
     }
 
     .perfume-list {
-        &__info {
-            width: rem(900);
-            padding: 0 $padding-desktop-s;
-        }
-
-        &__nav {
-            max-width: $container-desktop-s;
-            margin: 0 auto rem(100);
-            padding: 0 $padding-desktop-s;
-        }
-
         &__info {
             width: rem(888);
         }
@@ -353,17 +483,6 @@
     .perfume-list {
         &__thumbs {
             height: rem(110);
-        }
-
-        &__info {
-            width: rem(800);
-            padding: 0 $padding-laptop;
-        }
-
-        &__nav {
-            max-width: $container-laptop;
-            margin: 0 auto rem(100);
-            padding: 0 $padding-laptop;
         }
 
         &__info {
@@ -439,43 +558,52 @@
 
         &__nav {
             width: 100%;
-            max-width: rem(600);
-            margin: 0 auto rem(60);
         }
 
         &__info {
-            width: 100%;
+            // width: 100%;
+            width: rem(500);
             max-width: rem(600);
             margin: 0 auto;
             flex-direction: column;
             align-items: center;
             gap: rem(40);
-            padding: 0 $padding-tablet-l;
         }
 
         &__info-image img {
-            width: rem(240);
+            width: rem(274);
         }
 
         &__info-text {
             max-width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: left;
+            align-items: left;
         }
 
         &__info-title {
             font-size: rem(32);
+            text-align: center;
         }
 
         &__info-subtitle {
             font-size: rem(16);
+            text-align: center;
         }
 
         &__info-desc {
             font-size: rem(15);
         }
 
+        &__info-art-title {
+            text-align: center;
+        }
+
+        &__info-art-artist {
+            text-align: center;
+        }
+
         &__info-btn {
+            width: 100%;
             align-self: center;
         }
     }
@@ -517,7 +645,7 @@
         padding-bottom: rem(50);
 
         &__thumbs {
-            height: rem(70);
+            height: rem(96);
             margin-bottom: rem(50);
         }
 
@@ -531,17 +659,16 @@
             flex-direction: column;
             align-items: center;
             gap: rem(30);
-            padding: 0 $padding-tablet-s;
         }
 
         &__info-image img {
-            width: rem(200);
+            width: rem(160);
         }
 
         &__info-text {
             max-width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: left;
+            align-items: left;
             gap: rem(24);
         }
 
@@ -557,8 +684,33 @@
             font-size: rem(14);
         }
 
+        &__info-art-title {
+            text-align: left;
+        }
+
+        &__info-art-artist {
+            text-align: left;
+        }
+
         &__info-btn {
-            align-self: center;
+            width: 100%;
+        }
+
+        &__swipe-guide {
+            display: none;
+
+            &.is-active {
+                display: flex;
+            }
+        }
+
+        &__swipe-guide-arrow {
+            width: rem(40);
+            height: rem(40);
+        }
+
+        &__swipe-guide-text {
+            font-size: rem(16);
         }
     }
 
@@ -618,17 +770,16 @@
             flex-direction: column;
             align-items: center;
             gap: rem(24);
-            padding: 0 $padding-mobile;
         }
 
         &__info-image img {
-            width: rem(160);
+            width: rem(138);
         }
 
         &__info-text {
             max-width: 100%;
-            text-align: center;
-            align-items: center;
+            text-align: left;
+            align-items: left;
             gap: rem(20);
         }
 
@@ -650,6 +801,27 @@
 
         &__info-desc {
             font-size: rem(13);
+        }
+
+        &__info-btn {
+            width: 100%;
+        }
+
+        &__swipe-guide {
+            display: none;
+
+            &.is-active {
+                display: flex;
+            }
+        }
+
+        &__swipe-guide-arrow {
+            width: rem(36);
+            height: rem(36);
+        }
+
+        &__swipe-guide-text {
+            font-size: rem(14);
         }
     }
 
