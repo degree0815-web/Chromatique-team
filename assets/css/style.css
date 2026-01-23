@@ -2108,7 +2108,7 @@ body {
   object-fit: contain;
 }
 .perfume-list__info-text {
-  width: 30.125rem;
+  width: 31.25rem;
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -2264,6 +2264,150 @@ body {
     opacity: 1;
   }
 }
+.artwork-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.artwork-modal.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+.artwork-modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+.artwork-modal__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 87.5rem;
+  max-height: 90vh;
+  background-color: #161616;
+  padding: 4.375rem 5rem 4.375rem 4.375rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+  position: relative;
+}
+.artwork-modal__close {
+  position: absolute;
+  top: 2.5rem;
+  right: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.3s ease;
+}
+.artwork-modal__close:hover {
+  opacity: 0.7;
+}
+.artwork-modal__close svg {
+  width: 100%;
+  height: 100%;
+}
+.artwork-modal__inner {
+  display: flex;
+  gap: 4.375rem;
+  align-items: flex-start;
+}
+.artwork-modal__left {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+.artwork-modal__frame {
+  width: 25rem;
+  height: auto;
+}
+.artwork-modal__frame-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.artwork-modal__art-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+}
+.artwork-modal__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.artwork-modal__right-top {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+.artwork-modal__artist-image {
+  flex-shrink: 0;
+  width: 12.5rem;
+  height: auto;
+}
+.artwork-modal__artist-image-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.artwork-modal__artist-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.artwork-modal__artist-name-en {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+.artwork-modal__artist-name-ko {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #ffffff;
+}
+.artwork-modal__artist-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #BABABA;
+  line-height: 1.6;
+}
+.artwork-modal__divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 1.25rem 0;
+}
+.artwork-modal__artwork-desc {
+  font-size: 1.125rem;
+  font-weight: 300;
+  color: #D9D9D9;
+  line-height: 1.8;
+}
+
 .perfume-list__swipe-guide-arrow--left {
   --arrow-direction: -10px;
 }
@@ -2322,7 +2466,7 @@ body {
     width: 19.875rem;
   }
   .perfume-list__info-text {
-    max-width: 26.875rem;
+    max-width: 28.125rem;
   }
   .perfume-list__info-title {
     font-size: 2.625rem;
@@ -2356,7 +2500,7 @@ body {
     width: 19.875rem;
   }
   .perfume-list__info-text {
-    max-width: 28rem;
+    max-width: 28.125rem;
     gap: 2rem;
   }
   .perfume-list__info-title {
@@ -2409,6 +2553,14 @@ body {
     align-items: center;
     gap: 2.5rem;
   }
+  .perfume-list__info-image {
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .perfume-list__info-image img {
     width: 17.125rem;
   }
@@ -2417,13 +2569,24 @@ body {
     text-align: left;
     align-items: left;
   }
+  .perfume-list__info-top {
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid #ffffff;
+  }
   .perfume-list__info-title {
-    font-size: 2rem;
     text-align: center;
   }
   .perfume-list__info-subtitle {
-    font-size: 1rem;
     text-align: center;
+  }
+  .perfume-list__info-bottom {
+    text-align: center;
+  }
+  .perfume-list__info-title {
+    font-size: 2rem;
+  }
+  .perfume-list__info-subtitle {
+    font-size: 1rem;
   }
   .perfume-list__info-desc {
     font-size: 0.9375rem;
@@ -2469,11 +2632,19 @@ body {
     display: none;
   }
   .perfume-list__info {
-    width: 100%;
+    width: 25rem;
     margin: 0 auto;
     flex-direction: column;
     align-items: center;
     gap: 1.875rem;
+  }
+  .perfume-list__info-image {
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .perfume-list__info-image img {
     width: 10rem;
@@ -2484,20 +2655,23 @@ body {
     align-items: left;
     gap: 1.5rem;
   }
+  .perfume-list__info-top {
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid #ffffff;
+  }
   .perfume-list__info-title {
     font-size: 1.75rem;
+    text-align: center;
   }
   .perfume-list__info-subtitle {
     font-size: 0.875rem;
+    text-align: center;
   }
   .perfume-list__info-desc {
     font-size: 0.875rem;
   }
-  .perfume-list__info-art-title {
-    text-align: left;
-  }
-  .perfume-list__info-art-artist {
-    text-align: left;
+  .perfume-list__info-bottom {
+    text-align: center;
   }
   .perfume-list__info-btn {
     width: 100%;
@@ -2556,6 +2730,14 @@ body {
     align-items: center;
     gap: 1.5rem;
   }
+  .perfume-list__info-image {
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid #ffffff;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .perfume-list__info-image img {
     width: 8.625rem;
   }
@@ -2567,9 +2749,12 @@ body {
   }
   .perfume-list__info-top {
     gap: 0.625rem;
+    padding-bottom: 3.125rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   .perfume-list__info-bottom {
     gap: 1rem;
+    text-align: center;
   }
   .perfume-list__info-title {
     font-size: 1.5rem;
@@ -2605,5 +2790,67 @@ body {
   .direct__title {
     font-size: 1.125rem;
     margin-bottom: 1rem;
+  }
+}
+@media (max-width: 1199px) {
+  .artwork-modal__content {
+    padding: 3.125rem 2.5rem 3.125rem 2.5rem;
+  }
+  .artwork-modal__close {
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  .artwork-modal__inner {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .artwork-modal__left {
+    width: 100%;
+  }
+  .artwork-modal__frame {
+    width: 100%;
+    max-width: 25rem;
+  }
+  .artwork-modal__right-top {
+    flex-direction: column;
+    gap: 1.875rem;
+  }
+  .artwork-modal__artist-image {
+    width: 9.375rem;
+  }
+}
+@media (max-width: 767px) {
+  .artwork-modal__content {
+    padding: 2.5rem 1.5rem 2.5rem 1.5rem;
+    width: 95%;
+  }
+  .artwork-modal__close {
+    top: 1rem;
+    right: 1rem;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .artwork-modal__inner {
+    gap: 1.875rem;
+  }
+  .artwork-modal__frame {
+    max-width: 100%;
+  }
+  .artwork-modal__art-title {
+    font-size: 1.5rem;
+  }
+  .artwork-modal__artist-name-en {
+    font-size: 1.25rem;
+  }
+  .artwork-modal__artist-name-ko {
+    font-size: 1.125rem;
+  }
+  .artwork-modal__artist-desc {
+    font-size: 0.875rem;
+  }
+  .artwork-modal__artwork-desc {
+    font-size: 1rem;
   }
 }
