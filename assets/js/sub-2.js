@@ -441,6 +441,138 @@ function initSwipeGuide() {
 }
 
 // ========================================
+// Artwork Modal
+// ========================================
+
+function initArtworkModal() {
+    const modal = document.getElementById('artworkModal');
+    const closeBtn = modal?.querySelector('.artwork-modal__close');
+    const overlay = modal?.querySelector('.artwork-modal__overlay');
+    const openBtn = document.querySelector('.perfume-list__info-btn');
+
+    if (!modal || !openBtn) return;
+
+    // 작가 정보 데이터 (한글 이름과 설명)
+    const artistData = {
+        'Claude Monet': {
+            nameKo: '클로드 모네',
+            desc: '프랑스 인상주의 화가. 빛과 색채의 변화를 포착하여 자연의 순간적인 아름다움을 그려낸 대표적인 인상주의 작가입니다.'
+        },
+        'Grant Wood': {
+            nameKo: '그랜트 우드',
+            desc: '미국 화가. 미국 중서부의 풍경과 사람들을 사실적으로 그려낸 지역주의 화가입니다.'
+        },
+        'Georges Seurat': {
+            nameKo: '조르주 쇠라',
+            desc: '프랑스 신인상주의 화가. 점묘법을 사용하여 과학적인 색채 이론을 그림에 적용한 선구자입니다.'
+        },
+        'Edgar Degas': {
+            nameKo: '에드가 드가',
+            desc: '프랑스 인상주의 화가. 발레리나와 경마장을 주제로 한 작품으로 유명하며, 동작의 순간을 포착하는 데 뛰어났습니다.'
+        },
+        'René Magritte': {
+            nameKo: '르네 마그리트',
+            desc: '벨기에 초현실주의 화가. 일상적인 사물을 비현실적인 맥락에 배치하여 관습적인 인식에 도전했습니다.'
+        },
+        'Pablo-Picasso': {
+            nameKo: '파블로 피카소',
+            desc: '스페인 출신의 20세기 가장 영향력 있는 화가. 입체주의를 창시하고 다양한 예술 형식을 실험했습니다.'
+        },
+        'Leonardo da vinci': {
+            nameKo: '레오나르도 다 빈치',
+            desc: '이탈리아 르네상스의 천재. 예술, 과학, 공학 등 다방면에 뛰어난 재능을 발휘한 인물입니다.'
+        },
+        'Edvard Munch': {
+            nameKo: '에드바르 뭉크',
+            desc: '노르웨이 표현주의 화가. 인간의 내면 심리와 감정을 강렬하게 표현한 작품으로 유명합니다.'
+        },
+        'Gustav Klint': {
+            nameKo: '구스타프 클림트',
+            desc: '오스트리아 분리파 화가. 장식적이고 화려한 금박을 사용한 작품으로 유명하며, 여성의 아름다움을 주제로 했습니다.'
+        },
+        'Jean-Honoré Fragonard': {
+            nameKo: '장 오노레 프라고나르',
+            desc: '프랑스 로코코 화가. 우아하고 장식적인 작품으로 유명하며, 사랑과 유희를 주제로 한 작품을 많이 그렸습니다.'
+        },
+        'Vincent van gogh': {
+            nameKo: '빈센트 반 고흐',
+            desc: '네덜란드 후기 인상주의 화가. 강렬한 색채와 두터운 붓터치로 감정을 표현한 작품으로 유명합니다.'
+        }
+    };
+
+    function openModal() {
+        // 현재 활성화된 슬라이드에서 데이터 가져오기
+        const bgSwiper = document.querySelector('.perfume-list__bg')?.swiper;
+        if (!bgSwiper) return;
+
+        const currentIndex = bgSwiper.realIndex;
+        const currentSlide = bgSwiper.slides[currentIndex];
+
+        if (!currentSlide) return;
+
+        const artTitle = currentSlide.dataset.artTitle || '';
+        const artArtist = currentSlide.dataset.artArtist || '';
+        const artDesc = currentSlide.dataset.artDesc || '';
+
+        // 이미지 번호 계산 (1부터 시작)
+        const imageNumber = String(currentIndex + 1).padStart(2, '0');
+
+        // 모달 내용 업데이트
+        const frameImg = modal.querySelector('.artwork-modal__frame-img');
+        const artTitleEl = modal.querySelector('.artwork-modal__art-title');
+        const artistImg = modal.querySelector('.artwork-modal__artist-img');
+        const artistNameEn = modal.querySelector('.artwork-modal__artist-name-en');
+        const artistNameKo = modal.querySelector('.artwork-modal__artist-name-ko');
+        const artistDesc = modal.querySelector('.artwork-modal__artist-desc');
+        const artworkDesc = modal.querySelector('.artwork-modal__artwork-desc');
+
+        if (frameImg) {
+            frameImg.src = `assets/images/sub-2/frame${imageNumber}.png`;
+            frameImg.alt = artTitle;
+        }
+
+        if (artTitleEl) artTitleEl.textContent = artTitle;
+
+        if (artistImg) {
+            // 5번째 이미지는 .jpg 확장자 사용
+            const imageExt = currentIndex === 4 ? 'jpg' : 'png';
+            artistImg.src = `assets/images/sub-2/artist${imageNumber}.${imageExt}`;
+            artistImg.alt = artArtist;
+        }
+
+        if (artistNameEn) artistNameEn.textContent = artArtist;
+
+        // 작가 한글 이름과 설명
+        const artistInfo = artistData[artArtist] || {};
+        if (artistNameKo) artistNameKo.textContent = artistInfo.nameKo || '';
+        if (artistDesc) artistDesc.textContent = artistInfo.desc || '';
+
+        if (artworkDesc) artworkDesc.textContent = artDesc;
+
+        // 모달 열기
+        modal.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-active');
+        document.body.style.overflow = '';
+    }
+
+    // 이벤트 리스너
+    openBtn.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    overlay?.addEventListener('click', closeModal);
+
+    // ESC 키로 닫기
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('is-active')) {
+            closeModal();
+        }
+    });
+}
+
+// ========================================
 // Initialize
 // ========================================
 
@@ -452,6 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const { bgSwiper } = initPerfumeListSwiper();
         initDynamicHeightObserver();
         initSwipeGuide();
+        initArtworkModal();
 
         // Swiper 초기화 완료 후 높이 재설정
         setTimeout(() => {
@@ -472,5 +605,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log('✨ Perfume list swiper initialized');
         console.log('📏 Dynamic height observer initialized');
+        console.log('🎨 Artwork modal initialized');
     }
 });
