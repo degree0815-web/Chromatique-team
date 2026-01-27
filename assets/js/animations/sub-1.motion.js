@@ -16,13 +16,16 @@ let animationInstance = null;
 /**
  * Initialize blur reveal animation for sub01__content__bg
  * Creates a circular mask that moves in a random trajectory to reveal the clear image
+ * Also adds mouse pointer following effect
  */
 export function initSub1BlurReveal() {
   const contentBg = document.querySelector('.sub01__content__bg');
   if (!contentBg) return;
 
-  const clearImage = contentBg.querySelector('.sub01__content__bg--clear');
-  if (!clearImage) return;
+  const clearImageRandom = contentBg.querySelector('.sub01__content__bg--clear-random');
+  const clearImageMouse = contentBg.querySelector('.sub01__content__bg--clear-mouse');
+  
+  if (!clearImageRandom || !clearImageMouse) return;
 
   // 기존 애니메이션 정리
   if (animationInstance) {
@@ -31,12 +34,26 @@ export function initSub1BlurReveal() {
   }
 
   // 이미지 로드 대기
-  if (!clearImage.complete) {
-    clearImage.addEventListener('load', () => {
-      startBlurRevealAnimation(clearImage, contentBg);
-    });
+  const imagesLoaded = [clearImageRandom.complete, clearImageMouse.complete];
+  const checkImagesLoaded = () => {
+    if (imagesLoaded[0] && imagesLoaded[1]) {
+      startBlurRevealAnimation(clearImageRandom, contentBg);
+      initMouseBlurReveal(clearImageMouse, contentBg);
+    }
+  };
+
+  if (clearImageRandom.complete && clearImageMouse.complete) {
+    startBlurRevealAnimation(clearImageRandom, contentBg);
+    initMouseBlurReveal(clearImageMouse, contentBg);
   } else {
-    startBlurRevealAnimation(clearImage, contentBg);
+    clearImageRandom.addEventListener('load', () => {
+      imagesLoaded[0] = true;
+      checkImagesLoaded();
+    });
+    clearImageMouse.addEventListener('load', () => {
+      imagesLoaded[1] = true;
+      checkImagesLoaded();
+    });
   }
 
   // Resize 및 Scroll 이벤트 리스너 추가
@@ -51,7 +68,8 @@ export function initSub1BlurReveal() {
         animationInstance.kill();
         animationInstance = null;
       }
-      startBlurRevealAnimation(clearImage, contentBg);
+      startBlurRevealAnimation(clearImageRandom, contentBg);
+      initMouseBlurReveal(clearImageMouse, contentBg);
     }, 250);
   });
 
@@ -226,12 +244,116 @@ function startBlurRevealAnimation(clearImage, container) {
  * @param {number} y - Y position (center of mask)
  */
 function updateMaskPosition(element, x, y) {
-  // CSS mask-position은 픽셀 단위로 설정
+  // CSS mask-position은 mask-origin: center일 때 중심점을 기준으로 설정
+  // 마우스 포인터가 마스크의 정확한 중심에 오도록 픽셀 단위로 설정
   const maskX = `${x}px`;
   const maskY = `${y}px`;
 
   element.style.maskPosition = `${maskX} ${maskY}`;
   element.style.webkitMaskPosition = `${maskX} ${maskY}`;
+}
+
+/**
+ * Initialize mouse pointer blur reveal effect
+ * Creates a circular mask that follows the mouse cursor
+ * @param {HTMLElement} clearImageMouse - The clear image element for mouse effect
+ * @param {HTMLElement} container - The container element
+ */
+function initMouseBlurReveal(clearImageMouse, container) {
+  const maskSize = 200; // 마우스 포인터용 작은 반경
+  const halfMaskSize = maskSize / 2;
+  
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let isMouseInside = false;
+  
+  // 부드러운 마우스 추적을 위한 애니메이션 루프
+  const updateMousePosition = () => {
+    if (isMouseInside) {
+      // 현재 위치를 목표 위치로 부드럽게 이동 (ease-out 효과)
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+      
+      const containerRect = container.getBoundingClientRect();
+      // 마우스 포인터의 정확한 위치를 컨테이너 기준 상대 좌표로 변환
+      // 마스크의 중심이 마우스 포인터 위치와 정확히 일치하도록 계산
+      const relativeX = currentX - containerRect.left;
+      const relativeY = currentY - containerRect.top;
+      
+      // mask-position을 마우스 포인터 위치에 정확히 맞춤
+      // mask-origin: center이므로 마스크의 중심이 이 위치에 오게 됨
+      updateMaskPosition(clearImageMouse, relativeX, relativeY);
+    }
+    
+    requestAnimationFrame(updateMousePosition);
+  };
+  
+  // 애니메이션 루프 시작
+  updateMousePosition();
+  
+  // 마우스 이동 이벤트
+  const handleMouseMove = (e) => {
+    const containerRect = container.getBoundingClientRect();
+    
+    // 컨테이너 내부에 있는지 확인
+    isMouseInside = 
+      e.clientX >= containerRect.left &&
+      e.clientX <= containerRect.right &&
+      e.clientY >= containerRect.top &&
+      e.clientY <= containerRect.bottom;
+    
+    if (isMouseInside) {
+      // 마우스 포인터의 정확한 중앙 위치를 목표로 설정
+      // e.clientX, e.clientY는 이미 마우스 포인터의 정확한 위치
+      targetX = e.clientX;
+      targetY = e.clientY;
+      
+      // 컨테이너 경계 내로 제한 (mask가 컨테이너 밖으로 나가지 않도록)
+      targetX = Math.max(
+        containerRect.left + halfMaskSize,
+        Math.min(containerRect.right - halfMaskSize, targetX)
+      );
+      targetY = Math.max(
+        containerRect.top + halfMaskSize,
+        Math.min(containerRect.bottom - halfMaskSize, targetY)
+      );
+    }
+  };
+  
+  // 마우스가 컨테이너를 벗어날 때
+  const handleMouseLeave = () => {
+    isMouseInside = false;
+  };
+  
+  // 마우스가 컨테이너에 들어올 때
+  const handleMouseEnter = (e) => {
+    isMouseInside = true;
+    handleMouseMove(e);
+  };
+  
+  // 이벤트 리스너 등록
+  container.addEventListener('mousemove', handleMouseMove);
+  container.addEventListener('mouseenter', handleMouseEnter);
+  container.addEventListener('mouseleave', handleMouseLeave);
+  
+  // 초기 위치 설정 (컨테이너 중앙)
+  const containerRect = container.getBoundingClientRect();
+  targetX = containerRect.left + containerRect.width / 2;
+  targetY = containerRect.top + containerRect.height / 2;
+  currentX = targetX;
+  currentY = targetY;
+  
+  // 초기 mask 위치 설정
+  updateMaskPosition(clearImageMouse, containerRect.width / 2, containerRect.height / 2);
+  
+  // 정리 함수 반환 (필요시 사용)
+  return () => {
+    container.removeEventListener('mousemove', handleMouseMove);
+    container.removeEventListener('mouseenter', handleMouseEnter);
+    container.removeEventListener('mouseleave', handleMouseLeave);
+  };
 }
 
 /**
