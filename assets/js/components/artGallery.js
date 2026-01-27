@@ -98,6 +98,7 @@ class ArtGallery {
       // Slides configuration
       slidesPerView: 1,
       centeredSlides: true,
+      loop: true,
       pagination: {
         el: ".swiper-pagination",
       },
